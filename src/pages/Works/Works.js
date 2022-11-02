@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react';
+import CategoryCarousel from '../../components/CategoryCarousel/CategoryCarousel';
 import Header from '../../components/Header/Header';
+
 const Work = () => {
   return (
     <Fragment>
       <Header />
-      <h1>work page</h1>
+      <CategoryCarousel />
     </Fragment>
   );
 };

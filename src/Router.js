@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Works from './pages/Works/Works';
 import Feeds from './pages/Feeds/Feeds';
+import AccountInfo from './components/AccountInfo/AccountInfo';
+import CardDetailContent from './components/CardDetailContent/CardDetailContent';
 
 const Router = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -28,6 +30,8 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/works" element={<Works />} />
+        <Route path="/accountInfo" element={<AccountInfo />} />
+        <Route path="/cardDetailContent" element={<CardDetailContent />} />
         <Route path="/feeds" element={<Feeds />} />
       </Routes>
     </BrowserRouter>
