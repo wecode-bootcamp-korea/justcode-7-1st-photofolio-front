@@ -1,0 +1,31 @@
+.detail-reaction-inner-wrapper {
+  display: flex;
+  flex-direction: column;
+  .detail-reaction-icon-wrapper {
+    text-align: center;
+    .detail-icon {
+      img {
+        width: 38px;
+        height: 38px;
+      }
+    }
+  }
+  .detail-reaction-icon-second-wrapper {
+    flex-direction: column;
+    width: 100px;
+    .detail-reaction-icon-title-wrapper {
+      .detail-icon-title {
+        font-size: 12px;
+        text-align: center;
+        color: #aaaaaa;
+        width: 100%;
+      }
+    }
+    .detail-reaction-icon-count-wrapper {
+      .detail-icon-count {
+        font-size: 16px;
+        text-align: center;
+      }
+    }
+  }
+}
