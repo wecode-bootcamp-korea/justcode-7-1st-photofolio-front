@@ -4,6 +4,7 @@ import Works from './pages/Works/Works';
 import Feeds from './pages/Feeds/Feeds';
 import AccountInfo from './components/AccountInfo/AccountInfo';
 import CardDetailContent from './components/CardDetailContent/CardDetailContent';
+import Channel from './components/Channel/Channel';
 
 const Router = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -33,6 +34,7 @@ const Router = () => {
         <Route path="/accountInfo" element={<AccountInfo />} />
         <Route path="/cardDetailContent" element={<CardDetailContent />} />
         <Route path="/feeds" element={<Feeds />} />
+        <Route path="/myChannel" element={<Channel />} />
       </Routes>
     </BrowserRouter>
   );
