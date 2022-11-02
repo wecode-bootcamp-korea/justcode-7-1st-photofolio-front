@@ -1,0 +1,89 @@
+.channel-out-wrapper {
+  height: 600px;
+  width: 100%;
+  .channel-content-wrapper {
+    display: flex;
+    width: 1248px;
+    max-height: 100%;
+    margin: auto;
+    .channel-content-left-wrapper {
+      display: flex;
+      padding-top: 3%;
+      background-color: #fff;
+
+      .channel-content-left-left {
+        max-width: 100%;
+        width: 200px;
+        .channel-user-name {
+          padding-bottom: 5%;
+          font-size: 18px;
+        }
+        .channel-country {
+          padding-bottom: 5%;
+          color: #aaaaaa;
+          font-size: 14px;
+        }
+        .channel-followers {
+          padding-right: 2%;
+          color: #aaaaaa;
+          font-size: 14px;
+        }
+        .channel-followers-count {
+          padding-right: 5%;
+        }
+        .channel-following {
+          padding-right: 2%;
+          color: #aaaaaa;
+          font-size: 14px;
+        }
+
+        .channel-following-count {
+        }
+        .channel-account-info-btn-wrapper {
+          margin-top: 10%;
+          .channel-account-info-btn {
+            padding: 4%;
+            background-color: #fff;
+            border: 1px solid #00d084;
+            border-radius: 3px;
+            font-size: 13px;
+            color: #00d084;
+          }
+        }
+      }
+      .channel-content-left-right {
+        width: 150px;
+        .channel-profile {
+          position: relative;
+          img {
+            width: 90px;
+          }
+        }
+      }
+    }
+    .channel-content-right-wrapper {
+      border-left: 1px solid #ececec;
+      background-color: #fff;
+      width: 1000px;
+      padding-top: 3%;
+      .channel-content-inner-right-wrapper {
+        max-width: 100%;
+        padding-left: 10%;
+        .channel-content-right-menu {
+          color: #00d084;
+        }
+        hr {
+          border: 0;
+          height: 0.25px;
+          background: #ececec;
+        }
+        .channel-feed-text {
+          color: #aaaaaa;
+          padding-top: 15%;
+          text-align: center;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
