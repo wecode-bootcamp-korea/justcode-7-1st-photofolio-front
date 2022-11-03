@@ -3,13 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import './AccountInfo.scss';
 
 const AccountInfo = () => {
-  // const login_id = useRef();
-  // const kor_name = useRef();
-  // const eng_name = useRef();
-  // const default_email = useRef();
-  // const nickName = useRef();
-  // const profile_image = useRef();
-
   const navigate = useNavigate();
   const [accountInfo, setAccountInfo] = useState({
     login_id: '',
@@ -19,7 +12,6 @@ const AccountInfo = () => {
     nickName: '',
     profile_image: '',
   });
-  console.log(accountInfo);
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -37,25 +29,22 @@ const AccountInfo = () => {
       });
   }, []);
 
-  // const saveAccountInfo = e => {
-  //   e.preventDefault();
-  //   fetch('http://localhost:8000/users/signin', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       login_id: login_id.current.value,
-  //       kor_name: kor_name.current.value,
-  //       eng_name: loeng_namegin_id.current.value,
-  //       default_email: default_email.current.value,
-  //       nickName: nickName.current.value,
-  //       profile_image: profile_image.current.value,
-  //     }),
-  //   })
-  //     .then(res => res.json())
-  //     .then(result => localStorage.setItem('token', result.token));
-  // };
+  // useEffect(() => {
+  //   const saveAccountInfo = e => {
+  //     e.preventDefault();
+  //     fetch('http://localhost:8000/users/signin', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         accountInfo,
+  //       }),
+  //     })
+  //       .then(res => res.json())
+  //       .then(res => localStorage.setItem('token', res.token));
+  //   };
+  // });
 
   return (
     <div>
