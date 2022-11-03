@@ -92,12 +92,17 @@ function Header() {
                 onMouseOver={handleMouseOver}
                 onMouseOut={handleMouseOut}
               >
-                <div className={css.headerProfileImg} />
+                <div
+                  className={css.headerProfileImg}
+                  onClick={() => {
+                    navigate('/myChannel');
+                  }}
+                />
                 <div className={isHovering ? css.headerProfileMenu : css.hide}>
                   <ul>
                     <li
                       onClick={() => {
-                        navigate('/myChannel');
+                        navigate('/accountInfo');
                       }}
                     >
                       포토폴리오 MY
