@@ -9,6 +9,8 @@ function Header() {
   //프로필 이미지 hover 여부 체크
   const [isHovering, setIsHovering] = useState(false);
 
+  // const [haveProfileImg, setHaveProfileImg] = useState(false);
+
   //localStorage에 token 유무 체크
   const token = localStorage.getItem('token');
   useEffect(() => {
@@ -20,6 +22,11 @@ function Header() {
       return;
     }
   }, [token]);
+
+  //localStorage에 프로필 이미지 유무 체크
+  const profileImg = localStorage.getItem('profile_image');
+  const defaultProfileImg =
+    'https://cdn-icons-png.flaticon.com/512/847/847969.png';
 
   //프로필 이미지 hover 함수
   const handleMouseOver = () => {
@@ -97,6 +104,13 @@ function Header() {
                   onClick={() => {
                     navigate('/myChannel');
                   }}
+                  style={
+                    profileImg
+                      ? {
+                          backgroundImage: `url(${profileImg})`,
+                        }
+                      : { backgroundImage: `url(${defaultProfileImg})` }
+                  }
                 />
                 <div className={isHovering ? css.headerProfileMenu : css.hide}>
                   <ul>
