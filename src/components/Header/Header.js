@@ -11,6 +11,9 @@ function Header() {
   //프로필 이미지 hover 여부 체크
   const [isHovering, setIsHovering] = useState(false);
 
+
+  // const [haveProfileImg, setHaveProfileImg] = useState(false);
+
   //login창 로직 추가 코드
   const [openLoginpage, setOpenLoginPage] = useState(false);
   const [openJoinPage, setJoinPage] = useState(false);
@@ -20,6 +23,7 @@ function Header() {
   function clickLoginBtn(event) {
     setOpenLoginPage(true);
   }
+
 
   //localStorage에 token 유무 체크
   const token = localStorage.getItem('token');
@@ -32,6 +36,11 @@ function Header() {
       return;
     }
   }, [token]);
+
+  //localStorage에 프로필 이미지 유무 체크
+  const profileImg = localStorage.getItem('profile_image');
+  const defaultProfileImg =
+    'https://cdn-icons-png.flaticon.com/512/847/847969.png';
 
   //프로필 이미지 hover 함수
   const handleMouseOver = () => {
@@ -110,12 +119,24 @@ function Header() {
                 onMouseOver={handleMouseOver}
                 onMouseOut={handleMouseOut}
               >
-                <div className={css.headerProfileImg} />
+                <div
+                  className={css.headerProfileImg}
+                  onClick={() => {
+                    navigate('/myChannel');
+                  }}
+                  style={
+                    profileImg
+                      ? {
+                          backgroundImage: `url(${profileImg})`,
+                        }
+                      : { backgroundImage: `url(${defaultProfileImg})` }
+                  }
+                />
                 <div className={isHovering ? css.headerProfileMenu : css.hide}>
                   <ul>
                     <li
                       onClick={() => {
-                        navigate('/myChannel');
+                        navigate('/accountInfo');
                       }}
                     >
                       포토폴리오 MY
