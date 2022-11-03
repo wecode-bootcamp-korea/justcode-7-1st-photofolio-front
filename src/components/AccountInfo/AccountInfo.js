@@ -5,13 +5,14 @@ import './AccountInfo.scss';
 const AccountInfo = () => {
   const navigate = useNavigate();
   const [accountInfo, setAccountInfo] = useState({
-    accountName: '',
-    userKoName: '',
-    userEnName: '',
-    email: '',
+    login_id: '',
+    kor_name: '',
+    eng_name: '',
+    default_email: '',
     nickName: '',
-    profileImg: '',
+    profile_image: '',
   });
+  console.log(accountInfo);
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -29,6 +30,21 @@ const AccountInfo = () => {
       });
   }, []);
 
+  // const saveAccountInfo = () => {
+  //   fetch('/data/accountInfoData.json'),
+  //     {
+  //       method: 'POST',
+  //       body: JSON.stringify({
+  //         login_id: '',
+  //         kor_name: '',
+  //         eng_name: '',
+  //         default_email: '',
+  //         nickName: '',
+  //         profile_image: '',
+  //       }),
+  //     };
+  // };
+
   return (
     <div>
       <div className="account-out-wrapper">
@@ -43,8 +59,8 @@ const AccountInfo = () => {
                   <tr>
                     <td>
                       <div className="account-info-title special">로그인ID</div>
-                      <div name="accountName" className="account-info-id">
-                        {accountInfo.accountName}
+                      <div name="login_id" className="account-info-id">
+                        {accountInfo.login_id}
                       </div>
                     </td>
                   </tr>
@@ -54,16 +70,14 @@ const AccountInfo = () => {
                     <td>
                       <div className="account-info-not-null">*</div>
                       <div className="account-info-title">이름</div>
-                      {accountInfo.userKoName ? (
-                        <input
-                          name="userKoName"
-                          type="text"
-                          onChange={onChange}
-                          value={accountInfo.userKoName || ''}
-                        />
-                      ) : (
-                        <input placeholder="이름을 입력해주세요." />
-                      )}
+                      <input
+                        name="kor_name"
+                        type="text"
+                        onChange={onChange}
+                        defaultValue={accountInfo?.kor_name}
+                        value={accountInfo?.kor_name}
+                        placeholder="이름을 입력해주세요."
+                      />
                     </td>
                   </tr>
                 </tbody>
@@ -72,16 +86,14 @@ const AccountInfo = () => {
                     <td>
                       <div className="account-info-not-null">*</div>
                       <div className="account-info-title ">영문이름</div>
-                      {accountInfo.userEnName ? (
-                        <input
-                          name="userEnName"
-                          type="text"
-                          onChange={onChange}
-                          value={accountInfo.userEnName || ''}
-                        />
-                      ) : (
-                        <input placeholder="영문 이름을 입력해주세요." />
-                      )}
+                      <input
+                        name="eng_name"
+                        type="text"
+                        onChange={onChange}
+                        defaultValue={accountInfo?.eng_name}
+                        value={accountInfo?.eng_name}
+                        placeholder="영문 이름을 입력해주세요."
+                      />
                     </td>
                   </tr>
                 </tbody>
@@ -90,16 +102,14 @@ const AccountInfo = () => {
                     <td>
                       <div className="account-info-not-null">*</div>
                       <div className="account-info-title">이메일</div>
-                      {accountInfo.email ? (
-                        <input
-                          name="email"
-                          type="text"
-                          onChange={onChange}
-                          value={accountInfo.email || ''}
-                        />
-                      ) : (
-                        <input placeholder="포토폴리오 소식을 받을 이메일을 입력해주세요." />
-                      )}
+                      <input
+                        name="default_email"
+                        type="text"
+                        onChange={onChange}
+                        defaultValue={accountInfo?.default_email}
+                        value={accountInfo?.default_email}
+                        placeholder="포토폴리오 소식을 받을 이메일을 입력해주세요."
+                      />
                     </td>
                   </tr>
                 </tbody>
@@ -109,16 +119,14 @@ const AccountInfo = () => {
                       <div className="account-info-title special only">
                         닉네임
                       </div>
-                      {accountInfo.nickName ? (
-                        <input
-                          name="nickName"
-                          type="text"
-                          onChange={onChange}
-                          value={accountInfo.nickName || ''}
-                        />
-                      ) : (
-                        <input placeholder="닉네임을 입력해주세요." />
-                      )}
+                      <input
+                        name="nickName"
+                        type="text"
+                        onChange={onChange}
+                        defaultValue={accountInfo?.nickName}
+                        value={accountInfo?.nickName}
+                        placeholder="닉네임을 입력해주세요."
+                      />
                     </td>
                   </tr>
                 </tbody>
@@ -129,8 +137,12 @@ const AccountInfo = () => {
                         프로필 이미지
                       </div>
                       <div className="account-info-img-wrapper">
-                        {accountInfo.profileImg ? (
-                          <img src={accountInfo.profileImg || ''} alt="" />
+                        {accountInfo.profile_image ? (
+                          <img
+                            name="profile_image"
+                            src={accountInfo.profile_image || ''}
+                            alt=""
+                          />
                         ) : (
                           <img
                             src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
