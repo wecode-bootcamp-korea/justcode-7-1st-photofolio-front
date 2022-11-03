@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import css from './Header.module.scss';
+import Login from '../Login/Login';
+import Join from '../Join/Join';
 
 function Header() {
   //로그인 여부 체크
@@ -8,6 +10,16 @@ function Header() {
 
   //프로필 이미지 hover 여부 체크
   const [isHovering, setIsHovering] = useState(false);
+
+  //login창 로직 추가 코드
+  const [openLoginpage, setOpenLoginPage] = useState(false);
+  const [openJoinPage, setJoinPage] = useState(false);
+  function closeLoginpage() {
+    setOpenLoginPage(false);
+  }
+  function clickLoginBtn(event) {
+    setOpenLoginPage(true);
+  }
 
   //localStorage에 token 유무 체크
   const token = localStorage.getItem('token');
@@ -34,6 +46,17 @@ function Header() {
 
   return (
     <header>
+      {/* login창 로직 추가 코드 */}
+      {openLoginpage && (
+        <Login
+          closeLoginpage={closeLoginpage}
+          setJoinPage={setJoinPage}
+          setOpenLoginPage={setOpenLoginPage}
+        />
+      )}
+      {openJoinPage && <Join setJoinPage={setJoinPage} />}
+      {/* login창 로직 추가 코드 종료*/}
+
       <div className={css.headerContainer}>
         <div className={css.headerMenu}>
           <span
@@ -69,12 +92,7 @@ function Header() {
         <div className={css.headerRight}>
           <input type="input" className={css.searchInput} />
           {isLogin === false ? (
-            <button
-              className={css.headerBtn}
-              onClick={() => {
-                navigate('/user/login');
-              }}
-            >
+            <button className={css.headerBtn} onClick={clickLoginBtn}>
               로그인
             </button>
           ) : (
