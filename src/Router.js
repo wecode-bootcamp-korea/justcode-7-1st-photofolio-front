@@ -7,6 +7,7 @@ import CardDetailContent from './components/CardDetailContent/CardDetailContent'
 import Channel from './components/Channel/Channel';
 import Join from './components/Join/Join';
 import Login from './components/Login/Login';
+import Test from './Test';
 
 const Router = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -37,8 +38,9 @@ const Router = () => {
         <Route path="/cardDetailContent" element={<CardDetailContent />} />
         <Route path="/feeds" element={<Feeds />} />
         <Route path="/myChannel" element={<Channel />} />
-        <Route path="/signup" element={<Join />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/user/signup" element={<Join />} />
+        <Route path="/user/login" element={<Login />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </BrowserRouter>
   );
