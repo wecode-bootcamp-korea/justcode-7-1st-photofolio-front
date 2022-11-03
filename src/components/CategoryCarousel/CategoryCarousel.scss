@@ -13,17 +13,53 @@
 .category-wrap {
   width: 1248px;
   margin: 0 auto;
+  margin-top: 50px;
   & h3 {
     margin-bottom: 15px;
     font : {
-      size: 1.5em;
+      size: 30px;
       weight: 700;
     }
   }
-
-  .thumbnail-list {
-    display: flex;
+  .carousel-div {
     overflow: hidden;
+    position: relative;
+    .category-btn {
+      position: absolute;
+      border: none;
+    }
+    .previous {
+      @include btn;
+      background-image: url('../../assets/image/right-arrow.png');
+      right: 0;
+      top: 85px;
+    }
+    .on {
+      opacity: 0.6;
+    }
+
+    .off {
+      opacity: 0;
+    }
+    & .next {
+      @include btn;
+      background-image: url('../../assets/image/left-arrow.png');
+      top: 85px;
+    }
+
+    .goToRight {
+      transform: translateX(-755px);
+      transition: transform 0.5s;
+    }
+
+    .goToLeft {
+      transform: translateX(0px);
+      transition: transform 0.5s;
+    }
+  }
+  .thumbnail-list {
+    width: 1248px;
+    display: flex;
     position: relative;
 
     & ul {
@@ -36,6 +72,7 @@
         height: 230px;
         overflow: hidden;
         position: relative;
+        cursor: pointer;
         & .categoryImg {
           width: 220px;
           height: 170px;
@@ -152,28 +189,6 @@
       & .helloartist {
         background-color: #84d05a;
       }
-    }
-    .category-btn {
-      position: absolute;
-      border: none;
-    }
-    .previous {
-      @include btn;
-      background-image: url('../../assets/image/right-arrow.png');
-      right: 0;
-      top: 85px;
-    }
-    .on {
-      opacity: 0.6;
-    }
-
-    .off {
-      opacity: 0;
-    }
-    & .next {
-      @include btn;
-      background-image: url('../../assets/image/left-arrow.png');
-      top: 85px;
     }
   }
 }

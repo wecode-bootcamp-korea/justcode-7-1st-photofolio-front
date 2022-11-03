@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './join.scss';
 
-function Join() {
+function Join({ setJoinPage }) {
   const [userData, setUserData] = useState();
 
   const userId = useRef();
@@ -24,6 +24,10 @@ function Join() {
   //     "profile_image":"http://profile1"
   // }
 
+  function closeJoinpage() {
+    setJoinPage(false);
+  }
+
   const clickJoin = function (event) {
     event.preventDefault();
     setUserData({
@@ -39,46 +43,59 @@ function Join() {
   };
 
   useEffect(() => {
-    // fetch("http://localhost:8000/signup", {
-    //   method: "POST",
-    //   body: JSON.stringify(userData),
-    // });
+    fetch('http://localhost:5000/user/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', // 헤더 없으면 에러남
+      },
+      body: JSON.stringify(userData),
+    })
+      .then(res => res.json())
+      .then(res => console.log(res));
 
     userData && console.log(userData);
   }, [userData]);
 
   return (
-    <div className="loginDiv">
-      <form className="loginForm">
-        <span className="loginBoxName">USER ID</span>
-        <input className="loginBoxInput" ref={userId}></input>
+    <>
+      <div className="clickArea" onClick={closeJoinpage}></div>
+      <div className="loginDiv">
+        <span className="titleLogo">PHOTOFOLIO</span>
+        <form className="loginForm">
+          <span className="loginBoxName">USER ID</span>
+          <input
+            className="loginBoxInput"
+            ref={userId}
+            placeholder="테스트"
+          ></input>
 
-        <span className="loginBoxName">PASSWORD</span>
-        <input className="loginBoxInput" ref={password}></input>
+          <span className="loginBoxName">PASSWORD</span>
+          <input className="loginBoxInput" ref={password}></input>
 
-        <span className="loginBoxName">PASSWORD CHECK</span>
-        <input className="loginBoxInput" ref={passwordCheck}></input>
+          <span className="loginBoxName">PASSWORD CHECK</span>
+          <input className="loginBoxInput" ref={passwordCheck}></input>
 
-        <span className="loginBoxName">USER NAME</span>
-        <input className="loginBoxInput" ref={userName}></input>
+          <span className="loginBoxName">USER NAME</span>
+          <input className="loginBoxInput" ref={userName}></input>
 
-        <span className="loginBoxName">ENGLISH USER NAME</span>
-        <input className="loginBoxInput" ref={EnglishName}></input>
+          <span className="loginBoxName">ENGLISH USER NAME</span>
+          <input className="loginBoxInput" ref={EnglishName}></input>
 
-        <span className="loginBoxName">NATIONALITY</span>
-        <input className="loginBoxInput" ref={nationality}></input>
+          <span className="loginBoxName">NATIONALITY</span>
+          <input className="loginBoxInput" ref={nationality}></input>
 
-        <span className="loginBoxName">USER EMAIL</span>
-        <input className="loginBoxInput" ref={userEmail}></input>
+          <span className="loginBoxName">USER EMAIL</span>
+          <input className="loginBoxInput" ref={userEmail}></input>
 
-        <span className="loginBoxName">IMAGE FILE</span>
-        <input className="loginBoxInput" ref={imageFile}></input>
+          <span className="loginBoxName">IMAGE FILE</span>
+          <input type="file" name="userfile" Ref={imageFile}></input>
 
-        <button className="loginBtn" onClick={clickJoin}>
-          JOIN
-        </button>
-      </form>
-    </div>
+          <button className="loginBtn" onClick={clickJoin}>
+            JOIN
+          </button>
+        </form>
+      </div>
+    </>
   );
 }
 
