@@ -5,7 +5,7 @@ import './cardList.scss';
 function CardList({ filter }) {
   const [data, setData] = useState([]);
 
-  fetch('/data/mockData.json')
+  fetch('/data/cardListData.json')
     .then(res => res.json())
     .then(data => setData(data.data));
 
