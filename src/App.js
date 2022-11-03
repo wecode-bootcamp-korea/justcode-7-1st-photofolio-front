@@ -1,7 +1,12 @@
 import React from 'react';
+import CategoryCarousel from './components/CategoryCarousel/CategoryCarousel';
 
 function App() {
-  return <div>router 를 연결해주세요.</div>;
+  return (
+    <div>
+      <CategoryCarousel />
+    </div>
+  );
 }
 
 export default App;

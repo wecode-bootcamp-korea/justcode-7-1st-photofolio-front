@@ -18,6 +18,7 @@ $header-width: 1248px;
 $header-height: 75px;
 
 header {
+  position: relative;
   box-sizing: border-box;
   width: 100%;
   border-bottom: 1px solid #ececec;
