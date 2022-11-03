@@ -1,8 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AccountInfo.scss';
 
 const AccountInfo = () => {
+  // const login_id = useRef();
+  // const kor_name = useRef();
+  // const eng_name = useRef();
+  // const default_email = useRef();
+  // const nickName = useRef();
+  // const profile_image = useRef();
+
   const navigate = useNavigate();
   const [accountInfo, setAccountInfo] = useState({
     login_id: '',
@@ -30,19 +37,24 @@ const AccountInfo = () => {
       });
   }, []);
 
-  // const saveAccountInfo = () => {
-  //   fetch('/data/accountInfoData.json'),
-  //     {
-  //       method: 'POST',
-  //       body: JSON.stringify({
-  //         login_id: '',
-  //         kor_name: '',
-  //         eng_name: '',
-  //         default_email: '',
-  //         nickName: '',
-  //         profile_image: '',
-  //       }),
-  //     };
+  // const saveAccountInfo = e => {
+  //   e.preventDefault();
+  //   fetch('http://localhost:8000/users/signin', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       login_id: login_id.current.value,
+  //       kor_name: kor_name.current.value,
+  //       eng_name: loeng_namegin_id.current.value,
+  //       default_email: default_email.current.value,
+  //       nickName: nickName.current.value,
+  //       profile_image: profile_image.current.value,
+  //     }),
+  //   })
+  //     .then(res => res.json())
+  //     .then(result => localStorage.setItem('token', result.token));
   // };
 
   return (
@@ -75,7 +87,6 @@ const AccountInfo = () => {
                         type="text"
                         onChange={onChange}
                         defaultValue={accountInfo?.kor_name}
-                        value={accountInfo?.kor_name}
                         placeholder="이름을 입력해주세요."
                       />
                     </td>
@@ -91,7 +102,6 @@ const AccountInfo = () => {
                         type="text"
                         onChange={onChange}
                         defaultValue={accountInfo?.eng_name}
-                        value={accountInfo?.eng_name}
                         placeholder="영문 이름을 입력해주세요."
                       />
                     </td>
@@ -107,7 +117,6 @@ const AccountInfo = () => {
                         type="text"
                         onChange={onChange}
                         defaultValue={accountInfo?.default_email}
-                        value={accountInfo?.default_email}
                         placeholder="포토폴리오 소식을 받을 이메일을 입력해주세요."
                       />
                     </td>
@@ -124,7 +133,6 @@ const AccountInfo = () => {
                         type="text"
                         onChange={onChange}
                         defaultValue={accountInfo?.nickName}
-                        value={accountInfo?.nickName}
                         placeholder="닉네임을 입력해주세요."
                       />
                     </td>
