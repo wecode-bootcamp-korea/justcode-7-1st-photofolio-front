@@ -1,6 +1,6 @@
 .account-out-wrapper {
-  background-color: rgb(244, 243, 243);
   width: 100%;
+  background-color: rgb(244, 243, 243);
   padding: 40px 0px;
   .account-header-wrapper {
     width: 1248px;
@@ -39,11 +39,15 @@
         .special {
           padding-left: 7.89px;
         }
+        .only {
+          margin-right: 7.89px;
+        }
         .account-info-id {
           display: inline;
           font-size: 12px;
           width: 428px;
           height: 42px;
+          margin-left: 5px;
         }
         input {
           display: inline;
@@ -51,16 +55,19 @@
           width: 430px;
           height: 40px;
           border: 1px solid #e7e7e7;
+          padding-left: 10px;
         }
         .account-info-img-part-wrapper {
           display: flex;
           margin-bottom: 20px;
           .account-info-img-wrapper {
             display: flex;
+            margin-left: 9px;
             img {
               width: 122px;
               height: 122px;
               margin-right: 20px;
+              border-radius: 50%;
             }
 
             .account-info-img-part2-wrapper {
@@ -92,6 +99,9 @@
           color: #aaaaaa;
           font-size: 12px;
           margin-bottom: 30px;
+        }
+        .btn {
+          cursor: pointer;
         }
         .account-info-btn-wrapper {
           width: 630px;
