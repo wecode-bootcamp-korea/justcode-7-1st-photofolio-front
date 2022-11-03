@@ -1,8 +1,36 @@
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './AccountInfo.scss';
 
 const AccountInfo = () => {
+  const navigate = useNavigate();
+  const [accountInfo, setAccountInfo] = useState({
+    accountName: '',
+    userKoName: '',
+    userEnName: '',
+    email: '',
+    nickName: '',
+    profileImg: '',
+  });
+
+  const onChange = e => {
+    const { name, value } = e.target;
+    setAccountInfo({
+      ...accountInfo,
+      [name]: value,
+    });
+  };
+
+  useEffect(() => {
+    fetch('/data/accountInfoData.json')
+      .then(res => res.json())
+      .then(res => {
+        setAccountInfo(res.data);
+      });
+  }, []);
+
   return (
-    <>
+    <div>
       <div className="account-out-wrapper">
         <div className="account-header-wrapper">
           <div className="account-header">계정정보</div>
@@ -10,62 +38,119 @@ const AccountInfo = () => {
         <div className="account-info-wrapper">
           <div className="account-info-form-wrapper">
             <form className="account-info-form">
-              <tr>
-                <td>
-                  <div className="account-info-title special">로그인ID</div>
-                  <div className="account-info-id">tbxl67</div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="account-info-not-null">*</div>
-                  <div className="account-info-title">이름</div>
-                  <input type="text" />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="account-info-not-null">*</div>
-                  <div className="account-info-title">영문이름</div>
-                  <input type="text" />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="account-info-not-null">*</div>
-                  <div className="account-info-title">이메일</div>
-                  <input type="text" />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="account-info-not-null">*</div>
-                  <div className="account-info-title">국적</div>
-                  <input type="text" />
-                </td>
-              </tr>
-              <tr>
-                <td className="account-info-img-part-wrapper">
-                  <div className="account-info-title special">
-                    프로필 이미지
-                  </div>
-                  <div className="account-info-img-wrapper">
-                    <img
-                      src="https://cdn-icons-png.flaticon.com/512/1246/1246351.png?w=740&t=st=1667231824~exp=1667232424~hmac=19ddad3472728fc0f58e61b40166e12088243b88bca1961ea21993f1930e0d92"
-                      alt=""
-                    />
-                    <div className="account-info-img-part2-wrapper">
-                      <div className="account-info-img-explain">
-                        프로필 이미지를 등록해 주세요. <br /> 180 x 180 픽셀
-                        크기의 이미지를 권장합니다.
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div className="account-info-title special">로그인ID</div>
+                      <div name="accountName" className="account-info-id">
+                        {accountInfo.accountName}
                       </div>
-                      <button className="account-info-img-upload-btn">
-                        이미지 업로드
-                      </button>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+                    </td>
+                  </tr>
+                </tbody>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div className="account-info-not-null">*</div>
+                      <div className="account-info-title">이름</div>
+                      {accountInfo.userKoName ? (
+                        <input
+                          name="userKoName"
+                          type="text"
+                          onChange={onChange}
+                          value={accountInfo.userKoName || ''}
+                        />
+                      ) : (
+                        <input placeholder="이름을 입력해주세요." />
+                      )}
+                    </td>
+                  </tr>
+                </tbody>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div className="account-info-not-null">*</div>
+                      <div className="account-info-title ">영문이름</div>
+                      {accountInfo.userEnName ? (
+                        <input
+                          name="userEnName"
+                          type="text"
+                          onChange={onChange}
+                          value={accountInfo.userEnName || ''}
+                        />
+                      ) : (
+                        <input placeholder="영문 이름을 입력해주세요." />
+                      )}
+                    </td>
+                  </tr>
+                </tbody>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div className="account-info-not-null">*</div>
+                      <div className="account-info-title">이메일</div>
+                      {accountInfo.email ? (
+                        <input
+                          name="email"
+                          type="text"
+                          onChange={onChange}
+                          value={accountInfo.email || ''}
+                        />
+                      ) : (
+                        <input placeholder="포토폴리오 소식을 받을 이메일을 입력해주세요." />
+                      )}
+                    </td>
+                  </tr>
+                </tbody>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div className="account-info-title special only">
+                        닉네임
+                      </div>
+                      {accountInfo.nickName ? (
+                        <input
+                          name="nickName"
+                          type="text"
+                          onChange={onChange}
+                          value={accountInfo.nickName || ''}
+                        />
+                      ) : (
+                        <input placeholder="닉네임을 입력해주세요." />
+                      )}
+                    </td>
+                  </tr>
+                </tbody>
+                <tbody>
+                  <tr>
+                    <td className="account-info-img-part-wrapper">
+                      <div className="account-info-title special">
+                        프로필 이미지
+                      </div>
+                      <div className="account-info-img-wrapper">
+                        {accountInfo.profileImg ? (
+                          <img src={accountInfo.profileImg || ''} alt="" />
+                        ) : (
+                          <img
+                            src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+                            alt=""
+                          />
+                        )}
+                        <div className="account-info-img-part2-wrapper">
+                          <div className="account-info-img-explain">
+                            프로필 이미지를 등록해 주세요. <br /> 180 x 180 픽셀
+                            크기의 이미지를 권장합니다.
+                          </div>
+                          <button className="btn account-info-img-upload-btn">
+                            이미지 업로드
+                          </button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
               <hr />
               <div className="account-info-contract">
                 이용자는 개인정보 수집 및 이용 동의를 거부할 권리가 있으나, 거부
@@ -76,15 +161,22 @@ const AccountInfo = () => {
                 <b> 네이버 회원 탈퇴 혹은 직접 삭제 전까지 보관됩니다.</b>
               </div>
               <div className="account-info-btn-wrapper">
-                <button className="account-info-save-btn">동의 및 저장</button>
-                <button className="account-info-reset-btn">취소</button>
-                <button className="account-info-wdraw-btn">채널삭제</button>
+                <button className="btn account-info-save-btn">
+                  동의 및 저장
+                </button>
+                <button
+                  className="btn account-info-reset-btn"
+                  onClick={() => navigate.goBack()}
+                >
+                  취소
+                </button>
+                <button className="btn account-info-wdraw-btn">채널삭제</button>
               </div>
             </form>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
