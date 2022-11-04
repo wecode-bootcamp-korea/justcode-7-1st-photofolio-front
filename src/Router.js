@@ -29,6 +29,7 @@ const Router = () => {
   ) {
     window.location.href = 'http://localhost:3000/feeds';
   }
+
   return (
     <BrowserRouter>
       <Routes>
