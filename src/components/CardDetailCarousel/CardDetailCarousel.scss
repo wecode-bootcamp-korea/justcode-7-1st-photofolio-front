@@ -1,0 +1,76 @@
+@mixin flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.cardDetailInfoCarousel {
+  width: 100%;
+  position: relative;
+  @include flex-align-center();
+  justify-content: center;
+
+  .writerInfo {
+    width: 896px;
+    height: 180px;
+    margin: 0 auto;
+    @include flex-align-center();
+    justify-content: space-between;
+    .writerInfoLeft {
+      @include flex-align-center();
+      .writerInfoImg {
+        & img {
+          width: 80px;
+          height: 80px;
+          object-fit: cover;
+          border-radius: 50%;
+          margin-right: 10px;
+        }
+      }
+      .writerInfoText {
+        & h3 {
+          font : {
+            size: 18px;
+            weight: 700;
+          }
+          margin-bottom: 10px;
+        }
+        & h3:first-child::after {
+          content: '⋅';
+          margin: 0 5px;
+        }
+        .writerInfoTextDiv {
+          font-size: 13px;
+          color: #adadad;
+          & .writersFollow:first-child {
+            margin-right: 12px;
+          }
+          & .writersFollow span {
+            color: #555555;
+            margin-left: 3px;
+          }
+        }
+      }
+    }
+    .followingBtn {
+      width: 104px;
+      height: 42px;
+      border-radius: 3px;
+      text-indent: 40px;
+      line-height: 42px;
+      cursor: pointer;
+      background : {
+        color: #00d084;
+        image: url('../../assets/image/following.png');
+        size: 18px;
+        repeat: no-repeat;
+        position: 20% 50%;
+      }
+      color: #fff;
+      font : {
+        size: 14px;
+        weight: 700;
+      }
+    }
+    border-bottom: 1px solid #ececec;
+  }
+}
