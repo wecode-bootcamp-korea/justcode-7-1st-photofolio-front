@@ -22,7 +22,7 @@ function Login({ closeLoginpage, setJoinPage, setOpenLoginPage }) {
   }
 
   useEffect(() => {
-    fetch('http://localhost:8000/user/login', {
+    fetch('http://localhost:4000/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json', // 헤더 없으면 에러남
