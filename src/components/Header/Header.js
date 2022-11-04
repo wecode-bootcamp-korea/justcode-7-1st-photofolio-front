@@ -11,7 +11,6 @@ function Header() {
   //프로필 이미지 hover 여부 체크
   const [isHovering, setIsHovering] = useState(false);
 
-
   // const [haveProfileImg, setHaveProfileImg] = useState(false);
 
   //login창 로직 추가 코드
@@ -23,7 +22,6 @@ function Header() {
   function clickLoginBtn(event) {
     setOpenLoginPage(true);
   }
-
 
   //localStorage에 token 유무 체크
   const token = localStorage.getItem('token');
