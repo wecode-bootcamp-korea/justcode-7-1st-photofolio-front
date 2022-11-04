@@ -81,7 +81,7 @@ function Join({ setJoinPage }) {
           <span className="loginBoxName">ENGLISH USER NAME</span>
           <input className="loginBoxInput" ref={EnglishName}></input>
 
-          <span className="loginBoxName">NATIONALITY</span>
+          <span className="loginBoxName">NICKNAME</span>
           <input className="loginBoxInput" ref={nationality}></input>
 
           <span className="loginBoxName">USER EMAIL</span>
