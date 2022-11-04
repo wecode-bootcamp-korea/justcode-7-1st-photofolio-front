@@ -1,26 +1,21 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AccountInfo.scss';
+import DeleteModal from './DeleteModal/DeleteModal';
 
 const AccountInfo = () => {
-  // const login_id = useRef();
-  // const kor_name = useRef();
-  // const eng_name = useRef();
-  // const default_email = useRef();
-  // const nickName = useRef();
-  // const profile_image = useRef();
-
   const navigate = useNavigate();
+  const [modalOpen, setModalOpen] = useState(false);
   const [accountInfo, setAccountInfo] = useState({
     login_id: '',
     kor_name: '',
     eng_name: '',
-    default_email: '',
-    nickName: '',
+    email: '',
+    nickname: '',
     profile_image: '',
   });
-  console.log(accountInfo);
 
+  //accountInfo에 변화가 생겼을 때(수정)
   const onChange = e => {
     const { name, value } = e.target;
     setAccountInfo({
@@ -29,33 +24,46 @@ const AccountInfo = () => {
     });
   };
 
+  //목데이터 fetch
+  // useEffect(() => {
+  //   fetch('data/accountInfoData.json')
+  //     .then(res => res.json())
+  //     .then(result => setAccountInfo(result.data));
+  // }, []);
+
+  //계정정보 fetch
   useEffect(() => {
-    fetch('/data/accountInfoData.json')
+    fetch('http://localhost:8000/user/accountInfo', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        token: localStorage.getItem('token'),
+      },
+    })
       .then(res => res.json())
-      .then(res => {
-        setAccountInfo(res.data);
-      });
+      .then(result => setAccountInfo(result.data));
   }, []);
 
-  // const saveAccountInfo = e => {
-  //   e.preventDefault();
-  //   fetch('http://localhost:8000/users/signin', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       login_id: login_id.current.value,
-  //       kor_name: kor_name.current.value,
-  //       eng_name: loeng_namegin_id.current.value,
-  //       default_email: default_email.current.value,
-  //       nickName: nickName.current.value,
-  //       profile_image: profile_image.current.value,
-  //     }),
-  //   })
-  //     .then(res => res.json())
-  //     .then(result => localStorage.setItem('token', result.token));
-  // };
+  // 삭제 모달창 노출
+  const showModal = e => {
+    e.preventDefault();
+    setModalOpen(true);
+  };
+
+  //수정된 계정정보 서버로 저장
+  const saveAccountInfo = e => {
+    e.preventDefault();
+    fetch('http://localhost:8000/user/accountInfo', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        token: localStorage.getItem('token'),
+      },
+      body: JSON.stringify(accountInfo),
+    })
+      .then(res => res.json())
+      .then(result => localStorage.setItem('token', result.token));
+  };
 
   return (
     <div>
@@ -113,10 +121,10 @@ const AccountInfo = () => {
                       <div className="account-info-not-null">*</div>
                       <div className="account-info-title">이메일</div>
                       <input
-                        name="default_email"
+                        name="email"
                         type="text"
                         onChange={onChange}
-                        defaultValue={accountInfo?.default_email}
+                        defaultValue={accountInfo?.email}
                         placeholder="포토폴리오 소식을 받을 이메일을 입력해주세요."
                       />
                     </td>
@@ -125,14 +133,13 @@ const AccountInfo = () => {
                 <tbody>
                   <tr>
                     <td>
-                      <div className="account-info-title special only">
-                        닉네임
-                      </div>
+                      <div className="account-info-not-null">*</div>
+                      <div className="account-info-title">닉네임</div>
                       <input
-                        name="nickName"
+                        name="nickname"
                         type="text"
                         onChange={onChange}
-                        defaultValue={accountInfo?.nickName}
+                        defaultValue={accountInfo?.nickname}
                         placeholder="닉네임을 입력해주세요."
                       />
                     </td>
@@ -181,7 +188,10 @@ const AccountInfo = () => {
                 <b> 네이버 회원 탈퇴 혹은 직접 삭제 전까지 보관됩니다.</b>
               </div>
               <div className="account-info-btn-wrapper">
-                <button className="btn account-info-save-btn">
+                <button
+                  className="btn account-info-save-btn"
+                  onClick={saveAccountInfo}
+                >
                   동의 및 저장
                 </button>
                 <button
@@ -190,7 +200,15 @@ const AccountInfo = () => {
                 >
                   취소
                 </button>
-                <button className="btn account-info-wdraw-btn">채널삭제</button>
+                <div>
+                  <button
+                    className="btn account-info-wdraw-btn"
+                    onClick={showModal}
+                  >
+                    채널삭제
+                  </button>
+                  {modalOpen && <DeleteModal setModalOpen={setModalOpen} />}
+                </div>
               </div>
             </form>
           </div>
