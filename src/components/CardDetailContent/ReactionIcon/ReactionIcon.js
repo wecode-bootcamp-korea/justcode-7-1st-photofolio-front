@@ -1,13 +1,16 @@
+import { useState } from 'react';
 import './ReactionIcon.scss';
 
 const ReactionIcon = ({ icon, emotion, count }) => {
+  let [emotionCount, setEmotionCount] = useState([0, 0, 0, 0]);
+
   return (
     <>
       <div className="detail-reaction-inner-wrapper">
         <div className="detail-reaction-icon-wrapper">
-          <div className="detail-icon">
+          <button className="detail-icon">
             <img src={icon} alt="" />
-          </div>
+          </button>
         </div>
         <div className="detail-reaction-icon-second-wrapper">
           <div className="detail-reaction-icon-title-wrapper">
