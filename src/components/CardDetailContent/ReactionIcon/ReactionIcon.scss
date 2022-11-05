@@ -4,9 +4,12 @@
   .detail-reaction-icon-wrapper {
     text-align: center;
     .detail-icon {
+      background-color: white;
       img {
         width: 38px;
         height: 38px;
+        cursor: pointer;
+        background-color: white;
       }
     }
   }
