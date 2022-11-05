@@ -8,6 +8,7 @@
   position: relative;
   @include flex-align-center();
   justify-content: center;
+  flex-direction: column;
 
   .writerInfo {
     width: 896px;
@@ -40,7 +41,7 @@
         }
         .writerInfoTextDiv {
           font-size: 13px;
-          color: #adadad;
+          color: #aaaaaa;
           & .writersFollow:first-child {
             margin-right: 12px;
           }
@@ -51,7 +52,7 @@
         }
       }
     }
-    .followingBtn {
+    .followBtn {
       width: 104px;
       height: 42px;
       border-radius: 3px;
@@ -71,6 +72,103 @@
         weight: 700;
       }
     }
+
+    .followingBtn {
+      width: 104px;
+      height: 42px;
+      border-radius: 3px;
+      text-indent: 40px;
+      line-height: 42px;
+      cursor: pointer;
+      background : {
+        color: #fff;
+        image: url('../../assets/image/check.png');
+        size: 18px;
+        repeat: no-repeat;
+        position: 20% 50%;
+      }
+      color: #00d084;
+      font : {
+        size: 14px;
+        weight: 700;
+      }
+      border: 1px solid #00d084;
+    }
     border-bottom: 1px solid #ececec;
+  }
+
+  .otherWorksCarousel {
+    width: 950px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    & h3 {
+      font : {
+        size: 16px;
+        weight: 700;
+      }
+      color: #555555;
+      margin: 10px 5px 20px 25px;
+    }
+    & span {
+      font-weight: 700;
+      color: #a1a1a1;
+    }
+
+    .otherWorkBtnContainer {
+      @include flex-align-center();
+      .otherWorksBtn {
+        @include flex-align-center();
+        justify-content: center;
+        width: 30px;
+        height: 166px;
+        margin-bottom: 47px;
+        cursor: pointer;
+      }
+      .otherWorksPrev {
+        background: {
+          image: url('../../assets/image/left-arrow.png');
+          size: 15px 15px;
+          position: 50% 50%;
+          repeat: no-repeat;
+        }
+      }
+      .otherWorksNext {
+        background: {
+          image: url('../../assets/image/right-arrow.png');
+          size: 15px 15px;
+          position: 50% 50%;
+          repeat: no-repeat;
+        }
+      }
+      .otherWorksCarouselContainer {
+        width: 896px;
+        height: 213px;
+        overflow: hidden;
+        position: relative;
+        margin: 0 auto;
+        & ul {
+          @include flex-align-center();
+          gap: 16px;
+        }
+        .otherWorksItem {
+          width: 166px;
+          height: 196px;
+          cursor: pointer;
+          .otherWorksImg {
+            & img {
+              width: 166px;
+              height: 166px;
+              object-fit: cover;
+            }
+          }
+          .otherWorksTitle {
+            font-size: 14px;
+            overflow: hidden;
+            max-height: 35px;
+          }
+        }
+      }
+    }
   }
 }
