@@ -3,6 +3,7 @@ import './join.scss';
 
 function Join({ setJoinPage }) {
   const [userData, setUserData] = useState();
+  const [files, setFiles] = useState();
 
   const userId = useRef();
   const password = useRef();
@@ -11,42 +12,48 @@ function Join({ setJoinPage }) {
   const EnglishName = useRef();
   const nationality = useRef();
   const userEmail = useRef();
-  const imageFile = useRef();
-
-  //   {
-  //     "login_id":"justcode6",
-  //     "password":"1234567891011",
-  //     "password_check":"1234567891011",
-  //     "kor_name":"김코드",
-  //     "eng_name":"kimcode",
-  //     "country":"미국",
-  //     "email":"kcd6@hanmail.net",
-  //     "profile_image":"http://profile1"
-  // }
 
   function closeJoinpage() {
     setJoinPage(false);
   }
 
+  function onLoadFile(event) {
+    setFiles(event.target.files);
+  }
+
   const clickJoin = function (event) {
     event.preventDefault();
+
+    const formdata = new FormData();
+    Object.values(files).map((elem, idx) => formdata.append(idx, elem));
+
+    // for (let key of formdata.keys()) {
+    //   console.log(key);
+    // }
+
+    // /* value 확인하기 */
+    // for (let value of formdata.values()) {
+    //   console.log(value);
+    // }
+
     setUserData({
       login_id: userId.current.value,
       password: password.current.value,
       password_check: passwordCheck.current.value,
       kor_name: userName.current.value,
       eng_name: EnglishName.current.value,
-      country: nationality.current.value,
+      nickname: nationality.current.value,
       email: userEmail.current.value,
-      profile_image: imageFile.current.value,
+      profile: formdata,
     });
   };
 
   useEffect(() => {
-    fetch('http://localhost:5000/user/signup', {
+    console.log(userData);
+    fetch('http://localhost:8000/user/signup', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json', // 헤더 없으면 에러남
+        'Content-Type': 'multipart-form-data', // 헤더 없으면 에러남
       },
       body: JSON.stringify(userData),
     })
@@ -88,7 +95,13 @@ function Join({ setJoinPage }) {
           <input className="loginBoxInput" ref={userEmail}></input>
 
           <span className="loginBoxName">IMAGE FILE</span>
-          <input type="file" name="userfile" Ref={imageFile}></input>
+          <input
+            type="file"
+            name="file"
+            accept="img/*"
+            onChange={onLoadFile}
+            multiple
+          ></input>
 
           <button className="loginBtn" onClick={clickJoin}>
             JOIN

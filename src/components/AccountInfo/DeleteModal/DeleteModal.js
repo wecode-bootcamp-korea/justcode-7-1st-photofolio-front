@@ -1,9 +1,30 @@
+import { useNavigate } from 'react-router-dom';
 import './DeleteModal.scss';
 
 const DeleteModal = ({ setModalOpen }) => {
+  const navigate = useNavigate();
+
   // 모달창 off
   const closeModal = () => {
     setModalOpen(false);
+  };
+
+  //데이터 삭제
+  const deleteAccount = e => {
+    e.preventDefault();
+    fetch('http://localhost:8000/user/accountInfo', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        token: localStorage.getItem('token'),
+      },
+    })
+      .then(res => res.json())
+      .then(result => localStorage.setItem('token', result.token));
+    if (!localStorage.getItem('token')) {
+      alert('채널이 삭제되었습니다.');
+      navigate('/works');
+    }
   };
 
   return (
@@ -38,7 +59,9 @@ const DeleteModal = ({ setModalOpen }) => {
           </div>
         </p>
         <div className="delete-modal-btn-wrapper">
-          <button className="delete-modal-delete-btn">채널 삭제</button>
+          <button className="delete-modal-delete-btn" onClick={deleteAccount}>
+            채널 삭제
+          </button>
           <button className="delete-modal-cancel-btn" onClick={closeModal}>
             취소
           </button>

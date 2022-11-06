@@ -19,6 +19,8 @@
       padding-right: 10px;
       border-right: 2px solid #dddddd;
       font-size: 14px;
+      background-color: #ffffff;
+      cursor: pointer;
     }
     .detail-date {
       padding: 0px 10px;
@@ -94,6 +96,22 @@
       margin-right: 5px;
     }
     .detail-reply-add-btn {
+      background-color: #ffffff;
+      .detail-reply-add-btn-down {
+        padding-left: 3px;
+        margin-bottom: 2px;
+        width: 13px;
+        height: 10px;
+        cursor: pointer;
+        background-color: #ffffff;
+      }
+      .detail-reply-add-btn-up {
+        padding-top: 2px;
+        width: 15px;
+        height: 15px;
+        cursor: pointer;
+        background-color: #ffffff;
+      }
     }
   }
 }
