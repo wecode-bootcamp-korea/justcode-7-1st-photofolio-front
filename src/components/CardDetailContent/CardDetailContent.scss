@@ -72,7 +72,8 @@
   }
 
   .detail-reply-wrapper {
-    margin: 25px 300px 0px;
+    display: flex;
+    justify-content: flex-start;
     .detail-reply-reaction-icon {
       vertical-align: middle;
       img {
