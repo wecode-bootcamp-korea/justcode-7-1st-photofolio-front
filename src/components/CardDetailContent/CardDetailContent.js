@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './CardDetailContent.scss';
-import Tag from './../Tag/Tag';
-import ReactionIcon from './../ReactionIcon/ReactionIcon';
+import Tag from './Tag/Tag';
+import ReactionIcon from './ReactionIcon/ReactionIcon';
 
 const CardDetailContent = () => {
   const [tagArray, setTagArray] = useState([]);
