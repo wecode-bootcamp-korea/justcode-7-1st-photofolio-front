@@ -2,13 +2,13 @@
   "data": [
     {
       "id": 1,
-      "name": "홍길동",
-      "nickname": "gildong001",
+      "kor_name": "홍길동",
+      "eng_name": "gildong001",
       "profile_img": "https://images.unsplash.com/photo-1495121553079-4c61bcce1894?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=681&q=80",
-      "followersCount": 2,
-      "followingsCount": 2,
-      "worksCount": 11,
-      "isFollow": true,
+      "followers_count": 2,
+      "followings_count": 2,
+      "works_count": 11,
+      "isFollow": false,
       "followers": [
         {
           "id": 15,
@@ -17,6 +17,7 @@
         },
         {
           "id": 23,
+
           "name": "둘리",
           "profile_img": "https://images.unsplash.com/photo-1560148271-00b5e5850812?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80"
         }

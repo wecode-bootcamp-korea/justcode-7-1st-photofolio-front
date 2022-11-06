@@ -1,18 +1,16 @@
 import React, { Fragment } from 'react';
-import CategoryCarousel from '../../components/CategoryCarousel/CategoryCarousel';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import Artwork from '../../components/Artwork/Artwork';
+import Channel from '../../components/Channel/Channel';
 
-const Work = () => {
+const ChannelPage = () => {
   return (
     <Fragment>
       <Header />
-      <CategoryCarousel />
-      <Artwork />
+      <Channel />
       <Footer />
     </Fragment>
   );
 };
 
-export default Work;
+export default ChannelPage;
