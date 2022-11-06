@@ -196,7 +196,7 @@ const AccountInfo = () => {
                 </button>
                 <button
                   className="btn account-info-reset-btn"
-                  onClick={() => navigate.goBack()}
+                  onClick={() => navigate('/works')}
                 >
                   취소
                 </button>
