@@ -120,7 +120,7 @@ function Header() {
                 <div
                   className={css.headerProfileImg}
                   onClick={() => {
-                    navigate('/myChannel');
+                    navigate('/channel');
                   }}
                   style={
                     profileImg

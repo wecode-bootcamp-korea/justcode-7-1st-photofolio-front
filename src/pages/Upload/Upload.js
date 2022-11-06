@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './upload.scss';
 import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 
 function App() {
   const [image, setImage] = useState();
@@ -59,6 +60,7 @@ function App() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

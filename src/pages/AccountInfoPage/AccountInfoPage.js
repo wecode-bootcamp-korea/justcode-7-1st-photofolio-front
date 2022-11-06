@@ -1,18 +1,16 @@
 import React, { Fragment } from 'react';
-import CategoryCarousel from '../../components/CategoryCarousel/CategoryCarousel';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import Artwork from '../../components/Artwork/Artwork';
+import AccountInfo from '../../components/AccountInfo/AccountInfo';
 
-const Work = () => {
+const AccountInfoPage = () => {
   return (
     <Fragment>
       <Header />
-      <CategoryCarousel />
-      <Artwork />
+      <AccountInfo />
       <Footer />
     </Fragment>
   );
 };
 
-export default Work;
+export default AccountInfoPage;

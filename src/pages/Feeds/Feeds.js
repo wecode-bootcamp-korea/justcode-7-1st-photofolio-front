@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
 import Header from '../../components/Header/Header';
-import Artwork from '../../components/Artwork/Artwork';
-import CategoryCarousel from '../../components/CategoryCarousel/CategoryCarousel';
+import CardList from '../../components/Artwork/CardList';
+import Footer from '../../components/Footer/Footer';
 const Feed = () => {
   return (
     <Fragment>
       <Header />
-      <CategoryCarousel />
-      <Artwork />
+      <CardList />
+      <Footer />
     </Fragment>
   );
 };
