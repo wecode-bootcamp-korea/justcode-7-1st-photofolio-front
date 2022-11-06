@@ -1,6 +1,7 @@
 .uploadComponent {
   width: 896px;
   border: 1px black solid;
+  margin: 200px auto;
 
   .typeSelectSpan {
   }
@@ -10,6 +11,8 @@
     height: 320px;
     border: 1px black solid;
     display: flex;
+    justify-content: space-around;
+    align-items: center;
 
     .selectBoxComponent {
       width: 138px;
