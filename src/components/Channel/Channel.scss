@@ -49,28 +49,36 @@
           margin-top: 10%;
           .channel-account-info-me-btn {
             padding: 4%;
-            background-color: #fff;
             border: 1px solid #00d084;
             border-radius: 3px;
             font-size: 13px;
             color: #00d084;
+            width: 130px;
             cursor: pointer;
+            text-indent: 20px;
+            background: {
+              image: url('https://cdn-icons-png.flaticon.com/512/5268/5268364.png');
+              size: 15px 14px;
+              repeat: no-repeat;
+              position: 10% 50%;
+              color: #fff;
+            }
           }
           .channel-account-info-artist-btn {
             position: relative;
             padding: 4%;
-            background-color: #00d084;
             border: 1px solid #00d084;
             width: 330px;
             border-radius: 3px;
             font-size: 13px;
             color: #ffffff;
             cursor: pointer;
-            & background {
-              image: url(./../../assets/image/following.png);
+            background: {
+              image: url('../../assets/image/following.png');
               size: 15px 14px;
-              position: 40px 20px;
               repeat: no-repeat;
+              position: 40% 50%;
+              color: #00d084;
             }
           }
         }
@@ -123,7 +131,14 @@
             height: 35px;
             width: 90px;
             margin-top: 10px;
+            text-indent: 5px;
             cursor: pointer;
+            background: {
+              image: url('../../assets/image/upload-black.png');
+              size: 15px 14px;
+              repeat: no-repeat;
+              position: 20% 50%;
+            }
           }
         }
       }
