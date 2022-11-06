@@ -1,0 +1,30 @@
+.uploadComponent {
+  width: 896px;
+  border: 1px black solid;
+
+  .typeSelectSpan {
+  }
+
+  .selectBox {
+    width: 896px;
+    height: 320px;
+    border: 1px black solid;
+    display: flex;
+
+    .selectBoxComponent {
+      width: 138px;
+      height: 138px;
+      border: 1px black solid;
+    }
+  }
+
+  .alertBox {
+    .alertImg {
+    }
+
+    .alertSpanBox {
+      .alertSpan {
+      }
+    }
+  }
+}

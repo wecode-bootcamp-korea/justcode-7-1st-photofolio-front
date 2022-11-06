@@ -10,15 +10,20 @@
       display: flex;
       padding-top: 3%;
       background-color: #fff;
+      margin-left: 50px;
 
       .channel-content-left-left {
         max-width: 100%;
         width: 200px;
-        .channel-user-name {
+        .channel-user-ko_name {
           padding-bottom: 5%;
           font-size: 18px;
         }
-        .channel-country {
+        .channel-user-eng_name {
+          padding-bottom: 5%;
+          font-size: 14px;
+        }
+        .channel-nickname {
           padding-bottom: 5%;
           color: #aaaaaa;
           font-size: 14px;
@@ -38,25 +43,48 @@
         }
 
         .channel-following-count {
+          cursor: pointer;
         }
         .channel-account-info-btn-wrapper {
           margin-top: 10%;
-          .channel-account-info-btn {
+          .channel-account-info-me-btn {
             padding: 4%;
             background-color: #fff;
             border: 1px solid #00d084;
             border-radius: 3px;
             font-size: 13px;
             color: #00d084;
+            cursor: pointer;
+          }
+          .channel-account-info-artist-btn {
+            position: relative;
+            padding: 4%;
+            background-color: #00d084;
+            border: 1px solid #00d084;
+            width: 330px;
+            border-radius: 3px;
+            font-size: 13px;
+            color: #ffffff;
+            cursor: pointer;
+            & background {
+              image: url(./../../assets/image/following.png);
+              size: 15px 14px;
+              position: 40px 20px;
+              repeat: no-repeat;
+            }
           }
         }
       }
       .channel-content-left-right {
         width: 150px;
+        margin-right: 40px;
         .channel-profile {
           position: relative;
           img {
-            width: 90px;
+            width: 88px;
+            height: 88px;
+            border-radius: 60%;
+            margin-left: 40px;
           }
         }
       }
@@ -64,24 +92,39 @@
     .channel-content-right-wrapper {
       border-left: 1px solid #ececec;
       background-color: #fff;
-      width: 1000px;
+      width: 1030px;
       padding-top: 3%;
       .channel-content-inner-right-wrapper {
         max-width: 100%;
+        min-height: 630px;
         padding-left: 10%;
         .channel-content-right-menu {
           color: #00d084;
+          font-weight: bold;
         }
         hr {
           border: 0;
           height: 0.25px;
           background: #ececec;
         }
+        .channel-feed-content {
+        }
         .channel-feed-text {
           color: #aaaaaa;
           padding-top: 15%;
           text-align: center;
           font-size: 14px;
+          .channel-feed-upload-btn {
+            color: #555555;
+            background-color: #ffffff;
+            font-size: 13px;
+            border: solid 1px #e4e4e4;
+            border-radius: 100px;
+            height: 35px;
+            width: 90px;
+            margin-top: 10px;
+            cursor: pointer;
+          }
         }
       }
     }

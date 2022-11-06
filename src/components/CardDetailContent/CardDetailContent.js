@@ -63,18 +63,18 @@ const CardDetailContent = () => {
         <div className="detail-reply-wrapper">
           <span className="detail-reply-reaction-icon">
             <img
-              src="https://images.unsplash.com/photo-1503939313441-d753b6c7eb91?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+              src="https://cdn-icons-png.flaticon.com/512/1062/1062573.png"
               alt=""
             />
             <img
-              src="https://images.unsplash.com/photo-1535056992305-dc3a53c22241?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
+              src="https://cdn-icons-png.flaticon.com/512/1694/1694963.png"
               alt=""
             />
           </span>
           <span className="detail-reply-reaction-count">28</span>
           <span className="detail-reply-icon">
             <img
-              src="https://images.unsplash.com/photo-1477005264461-b0e201668d92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              src="https://cdn-icons-png.flaticon.com/512/6460/6460733.png"
               alt=""
             />
           </span>
