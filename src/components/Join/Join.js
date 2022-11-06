@@ -36,9 +36,9 @@ function Join({ setJoinPage }) {
       password_check: passwordCheck.current.value,
       kor_name: userName.current.value,
       eng_name: EnglishName.current.value,
-      country: nationality.current.value,
+      nickname: nationality.current.value,
       email: userEmail.current.value,
-      profile_image: imageFile.current.value,
+      profile: imageFile.current.value,
     });
   };
 
@@ -88,7 +88,12 @@ function Join({ setJoinPage }) {
           <input className="loginBoxInput" ref={userEmail}></input>
 
           <span className="loginBoxName">IMAGE FILE</span>
-          <input type="file" name="userfile" Ref={imageFile}></input>
+          <input
+            type="file"
+            name="userfile"
+            accept="image/*"
+            Ref={imageFile}
+          ></input>
 
           <button className="loginBtn" onClick={clickJoin}>
             JOIN
