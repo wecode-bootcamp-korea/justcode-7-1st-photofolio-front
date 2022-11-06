@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import './CardDetailContent.scss';
 import Tag from './Tag/Tag';
 import ReactionIcon from './ReactionIcon/ReactionIcon';
+import { useNavigate } from 'react-router-dom';
 
 const CardDetailContents = () => {
+  const navigate = useNavigate();
   const [cardDetailContents, setcardDetailContents] = useState([]);
   const [tags, setTags] = useState([]);
   const [sympathys, setSympathys] = useState([]);
+  const [isClick, setIsClick] = useState(false);
 
   //데이터 fetch
   useEffect(() => {
@@ -19,6 +22,15 @@ const CardDetailContents = () => {
       });
   }, []);
 
+  //아이콘 변경
+  const iconChange = () => {
+    if (isClick === true) {
+      setIsClick(false);
+    } else {
+      setIsClick(true);
+    }
+  };
+
   return (
     <>
       <div className="detail-out-wrapper">
@@ -27,9 +39,11 @@ const CardDetailContents = () => {
             <h3 className="detail-title">{cardDetailContents.title}</h3>
           </div>
           <span className="detail-writer-by">by</span>
-          <span className="detail-writer-nickname">
+          <button
+            className="detail-writer-nickname" //onClick={navigate("/")}
+          >
             {cardDetailContents.kor_name}
-          </span>
+          </button>
           <span className="detail-date">{cardDetailContents.WPca}</span>
           <span className="detail-inquiry-count">
             조회수{cardDetailContents.view_count}
@@ -45,7 +59,7 @@ const CardDetailContents = () => {
             })}
           </div>
           <div className="detail-copy-right">
-            Copyright © azulado All Rights Reserved.
+            Copyright © {cardDetailContents.kor_name} All Rights Reserved.
           </div>
         </div>
         <div className="detail-reaction-wrapper">
@@ -84,7 +98,21 @@ const CardDetailContents = () => {
           <span className="detail-reply-count">
             {cardDetailContents.comments_count}
           </span>
-          <span className="detail-reply-add-btn">▽</span>
+          <button className="detail-reply-add-btn" onClick={iconChange}>
+            {isClick === true ? (
+              <img
+                className="detail-reply-add-btn-down"
+                src="https://cdn-icons-png.flaticon.com/512/130/130906.png"
+                alt=""
+              />
+            ) : (
+              <img
+                className="detail-reply-add-btn-up"
+                src="https://cdn-icons-png.flaticon.com/512/2985/2985150.png"
+                alt=""
+              />
+            )}
+          </button>
         </div>
       </div>
     </>
