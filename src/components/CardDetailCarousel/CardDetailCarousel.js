@@ -1,13 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import './CardDetailCarousel.scss';
+import Login from '../Login/Login';
+import Join from '../Join/Join';
 
 const CardDetailCarousel = () => {
   const [info, setInfo] = useState({});
   const [works, setWorks] = useState([]);
   const [followers, setFollowers] = useState([]);
 
-  //클릭 여부 확인
-  const [isClick, setIsClick] = useState(true);
+  //login창 로직 추가 코드
+  const [openLoginpage, setOpenLoginPage] = useState(false);
+  const [openJoinPage, setJoinPage] = useState(false);
+  function closeLoginpage() {
+    setOpenLoginPage(false);
+  }
+  function clickLoginBtn(event) {
+    alert('로그인한 다음 이용해 주세요.');
+    setOpenLoginPage(true);
+  }
 
   //로그인 여부 확인
   const [isLogin, setIsLogin] = useState(false);
@@ -41,38 +51,80 @@ const CardDetailCarousel = () => {
     setIsClick(false);
   };
 
+  //클릭 여부 확인
+  const isFollowNow = info.isFollow;
+  console.log(info);
+  console.log('info.isFollow : ', info.isFollow);
+  const [isClick, setIsClick] = useState(isFollowNow);
+
+  const changeFollowBtn = () => {
+    console.log('changeFollowBtn 실행!');
+    // 팔로잉 되어있는 상태
+    if (isClick === true) {
+      console.log('if문 안 isClick : ', isClick);
+      //isClick이 true면 하얀버튼 상태
+      setIsClick(false);
+      //fetch(백엔드에게 언팔로우 했다는 데이터 보내기) - DELETE / 작가id, 토큰
+      return;
+    } else {
+      //isClick이 false이면 초록버튼 상태
+      console.log('else문 안의 isClick : ', isClick);
+      setIsClick(true);
+      //fetch(백엔드에게 팔로우 했다는 데이터 보내기) - POST / 작가id, 토큰
+      return;
+    }
+  };
+  console.log('함수 밖에서 isClick================ : ', isClick);
+
   return (
     <div className="cardDetailInfoCarousel">
+      {/* login창 로직 추가 코드 */}
+      {openLoginpage && (
+        <Login
+          closeLoginpage={closeLoginpage}
+          setJoinPage={setJoinPage}
+          setOpenLoginPage={setOpenLoginPage}
+        />
+      )}
+      {openJoinPage && <Join setJoinPage={setJoinPage} />}
+      {/* login창 로직 추가 코드 종료*/}
       <div className="writerInfo">
         <div className="writerInfoLeft">
           <div className="writerInfoImg">
             <img src={info.profile_img} alt="작가프로필이미지" />
           </div>
           <div className="writerInfoText">
-            <h3>{info.name}</h3>
-            <h3>{info.nickname}</h3>
+            <h3>{info.kor_name}</h3>
+            <h3>{info.eng_name}</h3>
             <div className="writerInfoTextDiv">
               <span className="writersFollow">
-                팔로워<span>{info.followersCount}</span>
+                팔로워<span>{info.followers_count}</span>
               </span>
               <span className="writersFollow">
-                팔로잉<span>{info.followingsCount}</span>
+                팔로잉<span>{info.followings_count}</span>
               </span>
             </div>
           </div>
         </div>
-        <div className="followBtn">
-          {info.isFollow ? (
-            <div className="followingBtn">팔로잉</div>
+        <div className="followBtn" onClick={changeFollowBtn}>
+          {/* 로그인 한 상태이면서 팔로우한 상태에서만 팔로우 버튼 */}
+          {isLogin ? (
+            info.isFollow ? (
+              <div className="followingBtn">팔로잉</div>
+            ) : (
+              <div className="followBtn">팔로우</div>
+            )
           ) : (
-            <div className="followBtn">팔로우</div>
+            <div className="followBtn" onClick={clickLoginBtn}>
+              팔로우
+            </div>
           )}
         </div>
       </div>
       {/* Carousel */}
       <div className="otherWorksCarousel">
         <h3>이 크리에이터의 다른 작품</h3>
-        <span>{info.worksCount}</span>
+        <span>{info.works_count}</span>
         <div className="otherWorkBtnContainer">
           <div
             className="otherWorksBtn otherWorksPrev"
