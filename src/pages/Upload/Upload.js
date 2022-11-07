@@ -11,6 +11,7 @@ function App() {
     imgInputRef.current.click();
   }
   function onImgChange(event) {
+    console.log(Object.values(event.target.files));
     const formData = new FormData();
     formData.append('file', event.target.files[0]);
     console.log(formData);
@@ -18,9 +19,7 @@ function App() {
   }
   const imgInputRef = useRef();
 
-  useEffect(() => {
-    console.log('test');
-  }, [imgInputRef]);
+  useEffect(() => {}, [imgInputRef]);
 
   return (
     <>
@@ -34,10 +33,14 @@ function App() {
               <input
                 type="file"
                 name="userfile"
+                id="userfileInput"
                 accept="image/*"
                 ref={imgInputRef}
                 onChange={onImgChange}
+                multiple
+                style={{ display: 'none' }}
               ></input>
+              <label className="inpuLabel" for="userfileInput"></label>
             </form>
           </div>
           <div className="selectBoxComponent">사운드</div>
