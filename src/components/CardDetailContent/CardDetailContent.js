@@ -9,8 +9,8 @@ const CardDetailContents = () => {
   const [tags, setTags] = useState([]); //태크
   const [sympathys, setSympathys] = useState([]); //공감
   const [isClick, setIsClick] = useState(false); // 댓글꺽쇠
-  const [reply, setReply] = useState(''); //댓글
-  const [replyArray, setReplyArray] = useState([]); //댓글배열
+  let [reply, setReply] = useState(''); //댓글
+  let [replyArray, setReplyArray] = useState([]); //댓글배열
 
   //데이터 fetch
   useEffect(() => {
