@@ -1,14 +1,14 @@
 {
   "data": [
     {
-      "id": 1,
+      "id": 2,
       "kor_name": "홍길동",
       "eng_name": "gildong001",
       "profile_img": "https://images.unsplash.com/photo-1495121553079-4c61bcce1894?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=681&q=80",
       "followers_count": 2,
       "followings_count": 2,
       "works_count": 11,
-      "isFollow": false,
+      "isFollow": 1,
       "followers": [
         {
           "id": 15,
