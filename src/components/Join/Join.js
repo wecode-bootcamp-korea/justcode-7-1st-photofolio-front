@@ -25,42 +25,30 @@ function Join({ setJoinPage }) {
     event.preventDefault();
 
     const formdata = new FormData();
-    Object.values(files).map((elem, idx) => formdata.append(idx, elem));
+    // Object.values(files).map((elem, idx) => formdata.append(profile, elem));
 
-    // for (let key of formdata.keys()) {
-    //   console.log(key);
-    // }
+    formdata.append('login_id', userId.current.value);
+    formdata.append('password', password.current.value);
+    formdata.append('password_check', passwordCheck.current.value);
+    formdata.append('kor_name', userName.current.value);
+    formdata.append('eng_name', EnglishName.current.value);
+    formdata.append('nickname', nationality.current.value);
+    formdata.append('email', userEmail.current.value);
+    formdata.append('profile', files[0]);
 
-    // /* value 확인하기 */
-    // for (let value of formdata.values()) {
-    //   console.log(value);
-    // }
-
-    setUserData({
-      login_id: userId.current.value,
-      password: password.current.value,
-      password_check: passwordCheck.current.value,
-      kor_name: userName.current.value,
-      eng_name: EnglishName.current.value,
-      nickname: nationality.current.value,
-      email: userEmail.current.value,
-      profile: formdata,
-    });
+    setUserData(formdata);
   };
 
   useEffect(() => {
-    console.log(userData);
     fetch('http://localhost:8000/user/signup', {
       method: 'POST',
       headers: {
-        'Content-Type': 'multipart-form-data', // 헤더 없으면 에러남
+        // 'Content-Type': 'multipart/form-data', // 헤더 없으면 에러남
       },
-      body: JSON.stringify(userData),
+      body: userData,
     })
       .then(res => res.json())
       .then(res => console.log(res));
-
-    userData && console.log(userData);
   }, [userData]);
 
   return (
@@ -68,7 +56,7 @@ function Join({ setJoinPage }) {
       <div className="clickArea" onClick={closeJoinpage}></div>
       <div className="loginDiv">
         <span className="titleLogo">PHOTOFOLIO</span>
-        <form className="loginForm">
+        <form className="loginForm" encType="multipart/form-data">
           <span className="loginBoxName">USER ID</span>
           <input
             className="loginBoxInput"
@@ -100,7 +88,7 @@ function Join({ setJoinPage }) {
             name="file"
             accept="img/*"
             onChange={onLoadFile}
-            multiple
+            // multiple
           ></input>
 
           <button className="loginBtn" onClick={clickJoin}>
