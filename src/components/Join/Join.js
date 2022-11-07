@@ -53,7 +53,7 @@ function Join({ setJoinPage }) {
     fetch('http://localhost:8000/user/signup', {
       method: 'POST',
       headers: {
-        'Content-Type': 'multipart-form-data', // 헤더 없으면 에러남
+        'Content-Type': 'multipart/form-data', // 헤더 없으면 에러남
       },
       body: JSON.stringify(userData),
     })
