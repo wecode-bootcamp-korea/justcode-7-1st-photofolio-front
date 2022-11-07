@@ -20,7 +20,7 @@ const DeleteModal = ({ setModalOpen }) => {
       },
     })
       .then(res => res.json())
-      .then(result => localStorage.setItem('token', result.token));
+      .then(result => localStorage.removeItem('token', result.token));
     if (!localStorage.getItem('token')) {
       alert('채널이 삭제되었습니다.');
       navigate('/works');
