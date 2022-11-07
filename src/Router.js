@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Works from './pages/Works/Works';
 import Feeds from './pages/Feeds/Feeds';
-import CardDetailContent from './components/CardDetailContent/CardDetailContent';
-import Channel from './components/Channel/Channel';
 import Join from './components/Join/Join';
 import Login from './components/Login/Login';
 import Upload from './pages/Upload/Upload';

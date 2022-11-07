@@ -36,24 +36,32 @@
           "icon": "https://cdn-icons-png.flaticon.com/512/1062/1062573.png",
           "emotion": "좋아요",
           "count": "1"
+        }
+      ],
+      "Comment": [
+        {
+          "id": 1,
+          "writer": "김현우",
+          "content": "그림 대박",
+          "regidate": "2022-11-07"
         },
         {
           "id": 2,
-          "icon": "https://cdn-icons-png.flaticon.com/512/1694/1694963.png",
-          "emotion": "감동받았어요",
-          "count": "13"
+          "writer": "강동원",
+          "content": "오 진짜 대박이다",
+          "regidate": "2022-11-02"
         },
         {
           "id": 3,
-          "icon": "https://cdn-icons-png.flaticon.com/512/2944/2944140.png",
-          "emotion": "다음작품 원해요",
-          "count": "41"
+          "writer": "김범",
+          "content": "헐",
+          "regidate": "2022-11-01"
         },
         {
           "id": 4,
-          "icon": "https://cdn-icons-png.flaticon.com/512/1440/1440478.png",
-          "emotion": "사고싶어요",
-          "count": "9"
+          "writer": "서강준",
+          "content": "와 진짜 awsome",
+          "regidate": "2022-11-02"
         }
       ]
     }
