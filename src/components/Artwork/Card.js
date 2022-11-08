@@ -1,7 +1,7 @@
 import React from 'react';
 import './card.scss';
 
-function Card() {
+function Card({ id }) {
   return (
     <div className="card">
       <img className="cardImg" src="" alt="" />
@@ -19,6 +19,7 @@ function Card() {
         <span>댓글수</span>
         <img src="" alt="" />
         <span>조회수.</span>
+        <span>id {id}</span>
       </div>
     </div>
   );

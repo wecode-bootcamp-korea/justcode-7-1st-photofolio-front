@@ -2,18 +2,55 @@
   width: 896px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: 0 auto;
 
   .uploadWriteTitle {
+    width: 896px;
+    border: none;
+    margin: 40px 0 0 0;
+    font-size: 18px;
+  }
+
+  .divide {
+    width: 896px;
+    border-bottom: 1px solid gray;
+    margin: 5px;
   }
 
   .uploadWriteContent {
+    width: 896px;
     height: 500px;
+    margin: 10px;
+    border: none;
   }
 
   .uploadWriteTag {
+    width: 896px;
+    height: 20px;
+    margin: 10px;
+    border: none;
+    font-size: 15px;
+    z-index: 2;
+  }
+
+  .alertment {
+    width: 896px;
+    position: relative;
+
+    .alertmentSpan {
+      position: absolute;
+      left: 0;
+      color: red;
+      font-size: 13px;
+    }
   }
 
   .uploadBtn {
+    width: 100px;
+    height: 60px;
+    margin: 40px 0;
+    z-index: 1;
   }
 }

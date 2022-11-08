@@ -1,0 +1,58 @@
+import React, { useRef, useState, useEffect } from 'react';
+import './UploadWriteTagModal.scss';
+
+function App({
+  uploadTagData,
+  setUploadTagData,
+  updateTagMockDataFunc,
+  tagFieldRef,
+}) {
+  const [tagMockData, setTagMockData] = useState([]);
+
+  const removeTag = function (event) {
+    event.target.remove();
+  };
+
+  const clickTag = function (event) {
+    removeTag(event);
+    updateTagMockDataFunc(event);
+  };
+
+  const enterTagInput = function (event) {
+    if (event.keyCode === 13) {
+      setTagMockData([...tagMockData, event.target.value]);
+      event.target.value = '';
+    }
+  };
+
+  return (
+    <div className="tagModal">
+      <input
+        className="tagModalInput"
+        placeholder="태그를 입력해주세요"
+        onKeyDown={enterTagInput}
+      ></input>
+
+      <div className="tagField" ref={tagFieldRef}>
+        {tagMockData.map((elem, idx) => {
+          return (
+            <div
+              key={idx}
+              style={{
+                margin: '0 10px',
+                padding: '3px',
+                border: '1px solid black',
+                borderRadius: '10px',
+              }}
+              onClick={clickTag}
+            >
+              {elem}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+export default App;
