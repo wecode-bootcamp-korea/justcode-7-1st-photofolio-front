@@ -122,6 +122,7 @@ const CardDetailCarousel = () => {
 
   //클릭 시 1감소 (0보다 작아지지 않게 처리)
   //px +추가
+
   const controlCarouselUlPrev = () => {
     if (carouselIndex === 0) {
       setListLocation(0);
