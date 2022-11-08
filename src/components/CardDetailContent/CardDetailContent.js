@@ -9,7 +9,7 @@ const CardDetailContents = () => {
   const [tags, setTags] = useState([]); //태크
   let [sympathys, setSympathys] = useState([]); //공감배열
   let [replyArray, setReplyArray] = useState([]); //댓글배열
-  const value = useRef();
+  const value = useRef(); //현재 댓글의 value
   const params = useParams();
 
   //카드 상세페이지 정보 fetch
@@ -73,6 +73,18 @@ const CardDetailContents = () => {
     navigate('/works');
   };
 
+  //현재 좋아요 버튼의 상태
+  let [likeCnt, setLikeCnt] = useState(false);
+
+  //클릭시 좋아요 수 변화 함수
+  const changeLike = () => {
+    if (setLikeCnt(true)) {
+      sympathys.sympathy_cnt++;
+    } else {
+      sympathys.sympathy_cnt--;
+    }
+  };
+
   return (
     <>
       <div className="detail-out-wrapper">
@@ -107,7 +119,7 @@ const CardDetailContents = () => {
         <div className="detail-reaction-wrapper">
           <div className="detail-reaction-inner-wrapper">
             <div className="detail-reaction-icon-wrapper">
-              <button className="detail-icon">
+              <button className="detail-icon" onClick={changeLike}>
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/1062/1062573.png"
                   alt=""
