@@ -1,5 +1,4 @@
 {
-  // 게시글 내의 사진 배열
   "feedImgArr": [
     {
       "file_cnt": "1",
@@ -11,7 +10,6 @@
       ]
     }
   ],
-  //태그가 달린 게시글(별 의미없음)
   "feedWithTags": [
     {
       "id": 1,
@@ -43,7 +41,6 @@
       ]
     }
   ],
-  //게시글에 달린 댓글 정보
   "feedCommentInfo": [
     {
       "id": 1,
@@ -123,7 +120,6 @@
       "updated_at": "2022-11-08"
     }
   ],
-  //게시글 아래에 나오는 추가 게시글들
   "moreFeedinfo": [
     {
       "user_feed_cnt": {
@@ -158,13 +154,11 @@
       ]
     }
   ],
-  //팔로우 하고 있는 사람 체크
   "checkFollow": [
     {
       "success": "0"
     }
   ],
-  //팔로우 하고 있는 사람들에 대한 정보
   "followInfo": [
     {
       "id": null,
@@ -182,13 +176,11 @@
       }
     }
   ],
-  //총 공감 수
   "sympathyCount": [
     {
       "total_sympathy_cnt": "1"
     }
   ],
-  //공감 종류에 따른 갯수
   "sympathySortCount": [
     {
       "sympathy_sort": "Like",

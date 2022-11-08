@@ -9,9 +9,7 @@ const CardDetailContents = () => {
   const [tags, setTags] = useState([]); //태크
   let [sympathys, setSympathys] = useState([]); //공감배열
   let [replyArray, setReplyArray] = useState([]); //댓글배열
-  let [id, setId] = useState(1); //댓글의 id
   const value = useRef();
-  const navigate = useNavigate();
   const params = useParams();
 
   //카드 상세페이지 정보 fetch
@@ -31,10 +29,8 @@ const CardDetailContents = () => {
         setReplyArray(res.feedCommentInfo);
       });
   }, []);
-  console.log('cardDetailContents:', cardDetailContents);
-  console.log('sympathys:', sympathys);
-  console.log('tags:', tags);
-  console.log('replyArray:', replyArray);
+
+  let [id, setId] = useState(1); //댓글의 id
 
   //댓글 추가 함수
   const addReply = () => {
@@ -45,30 +41,30 @@ const CardDetailContents = () => {
     const newReply = {
       writer: localStorage.getItem('kor_name'),
       id: id,
-      content: value.current.value,
+      comment: value.current.value,
       regidate: date.toLocaleDateString('ko-kr'), //현재 날짜에서 연도 구하는 함수
     };
-    setReplyArray([...replyArray, newReply]);
+    // setReplyArray([...replyArray, newReply]);
     value = '';
   };
-  //새로운 배열에 reverse 배열 적용
-  // const reverseReplyArray = replyArray.reverse();
 
   //새로운 댓글 저장 fetch
   useEffect(() => {
-    fetch('http://localhost:8000/works/' + params.id + '/comment', {
+    fetch('http://localhost:8000/works/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         token: localStorage.getItem('token'),
       },
       body: {
-        comment: replyArray.lastIndexOf(),
+        comment: replyArray,
       },
     })
       .then(res => res.json())
       .then(res => setReplyArray(res.data));
   }, [replyArray]);
+
+  const navigate = useNavigate();
 
   //로그인하지 않았을 때 댓글창 누르면, 메인으로 이동
   const movePage = () => {
@@ -119,9 +115,7 @@ const CardDetailContents = () => {
             </div>
             <div className="detail-reaction-icon-second-wrapper">
               <div className="detail-reaction-icon-title-wrapper">
-                <div className="detail-icon-title">
-                  {sympathys.sympathy_sort}
-                </div>
+                <div className="detail-icon-title">좋아요</div>
               </div>
               <div className="detail-reaction-icon-count-wrapper">
                 <div className="detail-icon-count">
@@ -173,17 +167,20 @@ const CardDetailContents = () => {
             </div>
             <div className="detail-reply-list">
               {/* 댓글 컴포넌트 */}
-              {replyArray.map(comment => {
-                return (
-                  <Reply
-                    key={comment.id}
-                    user_id={comment.user_id}
-                    kor_name={comment.kor_name}
-                    comment={comment.comment}
-                    created_at={comment.created_at}
-                  />
-                );
-              })}
+              {replyArray &&
+                replyArray.map(reply => {
+                  return (
+                    <>
+                      <Reply
+                        key={reply.id}
+                        user_id={reply.user_id}
+                        kor_name={reply.kor_name}
+                        comment={reply.comment}
+                        created_at={reply.created_at}
+                      />
+                    </>
+                  );
+                })}
             </div>
           </div>
         </details>
