@@ -7,37 +7,31 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 const CardDetailContents = () => {
   const [cardDetailContents, setcardDetailContents] = useState([]);
   const [tags, setTags] = useState([]); //태크
-  const [sympathys, setSympathys] = useState([]); //공감
+  const [sympathys, setSympathys] = useState([]); //공감배열
   let [replyArray, setReplyArray] = useState([]); //댓글배열
   let [id, setId] = useState(1); //댓글의 id
   const value = useRef();
   const navigate = useNavigate();
   const params = useParams();
-  console.log('p', params.id);
-
-  //목데이터 fetch
-  // useEffect(() => {
-  //   fetch('/data/cardDetailContentData.json')
-  //     .then(res => res.json())
-  //     .then(res => {
-  //       setcardDetailContents(res.data[0]);
-  //       setTags(res.data[0].tag);
-  //       setSympathys(res.data[0].Sympathy[0]);
-  //       setReplyArray(res.data[0].Comment);
-  //     });
-  // }, []);
 
   //카드 상세페이지 정보 fetch
   useEffect(() => {
-    fetch('http://localhost:8000/user/accountInfo' + params.id)
+    fetch('http://localhost:8000/works/' + params.id, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        token: localStorage.getItem('token'),
+      },
+    })
       .then(res => res.json())
       .then(res => {
-        setcardDetailContents(res.data[0]);
-        setTags(res.data[0].tag);
-        setSympathys(res.data[0].Sympathy[0]);
-        setReplyArray(res.data[0].Comment);
+        setcardDetailContents(res.feedWithTags[0]);
+        setTags(res.feedWithTags[0].tagInfo);
+        setSympathys(res.sympathySortCount[0]);
+        setReplyArray(res.feedCommentInfo);
       });
-  }, [params.id]);
+  }, []);
+  console.log('d', replyArray);
 
   //댓글 추가 함수
   const addReply = () => {
@@ -46,7 +40,7 @@ const CardDetailContents = () => {
     //아이디 증가(겹치지 않게)
     setId(id + 1);
     const newReply = {
-      writer: '혜선', //localStorage.getItem('kor_name'),
+      writer: localStorage.getItem('kor_name'),
       id: id,
       content: value.current.value,
       regidate: date.toLocaleDateString('ko-kr'), //현재 날짜에서 연도 구하는 함수
@@ -59,11 +53,14 @@ const CardDetailContents = () => {
 
   //새로운 댓글 저장 fetch
   useEffect(() => {
-    fetch('http://localhost:8000/user/accountInfo', {
+    fetch('http://localhost:8000/works/' + params.id + '/comment', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        comment_id: replyArray.newReply(),
+        token: localStorage.getItem('token'),
+      },
+      body: {
+        comment: reverseReplyArray[0],
       },
     })
       .then(res => res.json())
@@ -87,19 +84,19 @@ const CardDetailContents = () => {
           <button className="detail-writer-nickname">
             <Link to="/channel">{cardDetailContents.kor_name}</Link>
           </button>
-          <span className="detail-date">{cardDetailContents.WPca}</span>
+          <span className="detail-date">{cardDetailContents.created_at}</span>
           <span className="detail-inquiry-count">
             조회수{cardDetailContents.view_count}
           </span>
         </div>
         <div className="detail-content-wrapper">
           <div className="detail-content-pictures">
-            <img src={cardDetailContents.upload_url} alt="" />
+            <img src={cardDetailContents.profile_image} alt="" />
           </div>
           {/* 태그 컴포넌트 */}
           <div className="detail-tag-wrapper">
             {tags.map(tag => {
-              return <Tag key={tag.id} tagName={tag.tagName} />;
+              return <Tag key={tag.id} tagName={tag.tag_name} />;
             })}
           </div>
           <div className="detail-copy-right">
@@ -111,15 +108,20 @@ const CardDetailContents = () => {
           <div className="detail-reaction-inner-wrapper">
             <div className="detail-reaction-icon-wrapper">
               <button className="detail-icon">
+                {/* 좋아요 아이콘 변경 */}
                 <img src={sympathys.icon} alt="" />
               </button>
             </div>
             <div className="detail-reaction-icon-second-wrapper">
               <div className="detail-reaction-icon-title-wrapper">
-                <div className="detail-icon-title">{sympathys.emotion}</div>
+                <div className="detail-icon-title">
+                  {sympathys.sympathy_sort}
+                </div>
               </div>
               <div className="detail-reaction-icon-count-wrapper">
-                <div className="detail-icon-count">{sympathys.count}</div>
+                <div className="detail-icon-count">
+                  {sympathys.sympathy_cnt}
+                </div>
               </div>
             </div>
           </div>
@@ -134,6 +136,7 @@ const CardDetailContents = () => {
               />
             </span>
             <span className="detail-reply-count">
+              {/* 댓글 총 카운트 추가 */}
               {cardDetailContents.replyArray_count}
             </span>
           </div>
@@ -144,8 +147,7 @@ const CardDetailContents = () => {
             <div className="detail-reply-input-wrapper">
               <div className="detail-reply-input-inner-wrapper">
                 <div className="detail-reply-title">
-                  혜선
-                  {/* {localStorage.getItem('kor_name')} */}
+                  {localStorage.getItem('kor_name')}
                 </div>
                 <div className="detail-reply-text-area-wrapper">
                   {localStorage.getItem('token') ? (
@@ -174,9 +176,11 @@ const CardDetailContents = () => {
                 return (
                   <Reply
                     key={comment.id}
+                    user_id={comment.user_id}
+                    // 작성자 이름 추가
                     writer={comment.writer}
-                    content={comment.content}
-                    regidate={comment.regidate}
+                    comment={comment.comment}
+                    created_at={comment.created_at}
                   />
                 );
               })}
