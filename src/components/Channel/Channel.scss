@@ -10,7 +10,6 @@
       display: flex;
       padding-top: 3%;
       background-color: #fff;
-      margin-left: 50px;
 
       .channel-content-left-left {
         max-width: 100%;
@@ -104,7 +103,7 @@
       }
       .channel-content-left-right {
         width: 150px;
-        margin-right: 40px;
+        margin-right: 10px;
         .channel-profile {
           position: relative;
           img {
@@ -119,7 +118,7 @@
     .channel-content-right-wrapper {
       border-left: 1px solid #ececec;
       background-color: #fff;
-      width: 1030px;
+      width: 814px;
       height: 100%;
       padding-top: 3%;
       .channel-content-inner-right-wrapper {

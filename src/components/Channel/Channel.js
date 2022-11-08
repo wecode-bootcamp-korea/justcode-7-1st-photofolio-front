@@ -14,6 +14,16 @@ const Channel = () => {
   const [openLoginpage, setOpenLoginPage] = useState(false);
   const [openJoinPage, setJoinPage] = useState(false);
 
+  //목데이터 fetch
+  useEffect(() => {
+    fetch('data/channelInfoData.json')
+      .then(res => res.json())
+      .then(result => {
+        setChannelInfo(result.data[0]);
+        setIsFollow(result.data[0].isFollow);
+      });
+  }, []);
+
   //로그인 모달창 닫기
   function closeLoginpage() {
     setOpenLoginPage(false);
@@ -76,14 +86,7 @@ const Channel = () => {
         .then(json => {});
     }
   };
-
-  //목데이터 fetch
-  useEffect(() => {
-    fetch('data/channelInfoData.json')
-      .then(res => res.json())
-      .then(result => setChannelInfo(result.data[0]));
-  }, []);
-
+  console.log(isFollow);
   return (
     <>
       {openLoginpage && (
@@ -115,6 +118,7 @@ const Channel = () => {
               <span className="channel-following-count">
                 {channelInfo.following_count}
               </span>
+
               <div className="channel-account-info-btn-wrapper">
                 {localStorage.getItem('id') === channelInfo.user_id ? (
                   <button className="channel-account-info-me-btn">
