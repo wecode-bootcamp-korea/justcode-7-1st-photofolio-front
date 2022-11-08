@@ -1,13 +1,15 @@
 {
-  "data": {
-    "id": 1,
-    "type": "me",
-    "kor_name": "김철수",
-    "eng_name": "Dunc Abrahamowitcz",
-    "profile_image": "https://images.unsplash.com/photo-1666904366306-c8aab5d1006f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8dG93SlpGc2twR2d8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=60",
-    "nickname": "코난",
-    "followers_count": 4,
-    "following_count": 2,
-    "photos_count": 2
-  }
+  "data": [
+    {
+      "id": 1,
+      "type": "me",
+      "kor_name": "김철수",
+      "eng_name": "Dunc Abrahamowitcz",
+      "profile_image": "https://images.unsplash.com/photo-1666904366306-c8aab5d1006f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8dG93SlpGc2twR2d8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=60",
+      "nickname": "코난",
+      "followers_count": 4,
+      "following_count": 2,
+      "photos_count": 2
+    }
+  ]
 }

@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import CardList from '../Artwork/CardList';
 import './Channel.scss';
 
 const Channel = () => {
-  const [channelInfo, setChannelInfo] = useState('');
+  const [channelInfo, setChannelInfo] = useState(''); //계정정보
 
   //목데이터 fetch
   useEffect(() => {
     fetch('data/channelInfoData.json')
       .then(res => res.json())
-      .then(result => setChannelInfo(result.data));
+      .then(result => setChannelInfo(result.data[0]));
   }, []);
-  console.log(channelInfo);
-  console.log(channelInfo.type);
 
   return (
     <>
@@ -38,9 +37,11 @@ const Channel = () => {
                 {channelInfo.following_count}
               </span>
               <div className="channel-account-info-btn-wrapper">
-                {channelInfo.type === 'me' ? (
+                {localStorage.getItem('id') === channelInfo.user_id ? (
                   <button className="channel-account-info-me-btn">
-                    계정정보 수정
+                    <Link to="/accountInfo" style={{ color: '#00d084' }}>
+                      계정정보 수정
+                    </Link>
                   </button>
                 ) : (
                   <button className="channel-account-info-artist-btn">
@@ -72,19 +73,17 @@ const Channel = () => {
                 작품 {channelInfo.photos_count}
               </div>
               <hr />
-              {/* {<CardList /> ? (
-                <div className="channel-feed-content">
-                  <CardList />
+              {<CardList/> ? <div className="channel-feed-text"><CardList/></div> : 
+              ({localStorage.getItem('id') === channelInfo.user_id ? (
+                <div className="channel-feed-text">
+                  등록된 작품이 없습니다. <br />
+                  <button className="channel-feed-upload-btn">
+                    <Link to="/upload">업로드 </Link>
+                  </button>
                 </div>
-              ) : ( */}
-              <div className="channel-feed-text">
-                등록된 작품이 없습니다. <br />
-                <button className="channel-feed-upload-btn">
-                  <img src="./../../../public/images/upload.png" alt="" />{' '}
-                  업로드
-                </button>
-              </div>
-              {/* )} */}
+              ) : (
+                <div className="channel-feed-text">등록된 작품이 없습니다.</div>
+              )})};
             </div>
           </div>
         </div>
