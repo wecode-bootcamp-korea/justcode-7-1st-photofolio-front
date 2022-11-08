@@ -7,9 +7,9 @@
     width: 1248px;
     height: 67px;
     margin: 0 auto;
-    & input {
-      width: 1248px;
-      border: none;
+    & .searchLogoImg {
+      width: 18px;
+      height: 18px;
       background: {
         image: url('../../assets/image/search.png');
         size: 18px 18px;
@@ -17,11 +17,20 @@
       }
       text-indent: 30px;
     }
-    & input:focus {
+    & .inputDiv {
+      height: 20px;
+      margin-left: 30px;
+      cursor: text;
+    }
+    & .inputDiv:focus {
       outline: none;
     }
-    & input ::before {
+    & .inputDiv ::before {
       content: 'X';
+    }
+    & .inputDiv:empty::before {
+      content: attr(placeholder);
+      color: gray;
     }
   }
 }
