@@ -12,7 +12,7 @@ function CardList({ filter }) {
   return (
     <div className="cardList">
       {data.map((elem, idx) => {
-        return <Card key={idx} />;
+        return <Card key={idx} id={elem.id} />;
       })}
     </div>
   );
