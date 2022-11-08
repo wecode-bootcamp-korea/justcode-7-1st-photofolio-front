@@ -33,36 +33,37 @@ const CardDetailContents = () => {
   let [id, setId] = useState(1); //댓글의 id
 
   //댓글 추가 함수
-  const addReply = () => {
-    //현재날짜
-    const date = new Date();
-    //아이디 증가(겹치지 않게)
-    setId(id + 1);
-    const newReply = {
-      writer: localStorage.getItem('kor_name'),
-      id: id,
-      comment: value.current.value,
-      regidate: date.toLocaleDateString('ko-kr'), //현재 날짜에서 연도 구하는 함수
-    };
-    // setReplyArray([...replyArray, newReply]);
-    value = '';
-  };
+  // const addReply = () => {
+  //   //현재날짜
+  //   const date = new Date();
+  //   //아이디 증가(겹치지 않게)
+  //   setId(id + 1);
+  //   const newReply = {
+  //     writer: localStorage.getItem('kor_name'),
+  //     id: id,
+  //     comment: value.current.value,
+  //     regidate: date.toLocaleDateString('ko-kr'), //현재 날짜에서 연도 구하는 함수
+  //   };
+  //   // setReplyArray([...replyArray, newReply]);
+  //   value = '';
+  //   console.log(newReply);
+  // };
 
   //새로운 댓글 저장 fetch
-  useEffect(() => {
-    fetch('http://localhost:8000/works/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        token: localStorage.getItem('token'),
-      },
-      body: {
-        comment: replyArray,
-      },
-    })
-      .then(res => res.json())
-      .then(res => setReplyArray(res.data));
-  }, [replyArray]);
+  // useEffect(() => {
+  //   fetch('http://localhost:8000/works/', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       token: localStorage.getItem('token'),
+  //     },
+  //     body: {
+  //       comment: newReply,
+  //     },
+  //   })
+  //     .then(res => res.json())
+  //     .then(res => setReplyArray(res.data));
+  // }, [replyArray]);
 
   const navigate = useNavigate();
 
