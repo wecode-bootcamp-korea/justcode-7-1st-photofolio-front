@@ -7,6 +7,7 @@ const CardDetailCarousel = () => {
   const [info, setInfo] = useState({});
   const [works, setWorks] = useState([]);
   const [isFollow, setIsFollow] = useState(0);
+  const [writerInfo, setWriterInfo] = useState([]);
 
   //login창 로직 추가 코드
   const [openLoginpage, setOpenLoginPage] = useState(false);
@@ -36,14 +37,22 @@ const CardDetailCarousel = () => {
 
   //페이지 첫 렌더링 시 데이터 불러오기
   useEffect(() => {
-    fetch('/data/cardDetailWriterInfo.json')
+    fetch('http://localhost:8000/works/4', {
+      headers: {
+        'Content-Type': 'application/json',
+        token: localStorage.getItem('token'),
+      },
+    })
       .then(res => res.json())
       .then(json => {
-        setInfo(json.data[0]);
-        setWorks(json.data[0].works);
-        setIsFollow(json.data[0].isFollow);
+        console.log('res : ', json);
+        setInfo(json.moreFeedinfo[0]);
+        setWorks(json.moreFeedinfo[0].more_feed);
+        setIsFollow(json.checkFollow[0].success);
+        setWriterInfo(json.writerInfo[0]);
       });
   }, []);
+  console.log('info : ', info);
 
   //클릭 여부 확인
   const [isClick, setIsClick] = useState(isFollow);
@@ -143,17 +152,18 @@ const CardDetailCarousel = () => {
         <div className="writerInfo">
           <div className="writerInfoLeft">
             <div className="writerInfoImg">
-              <img src={info.profile_img} alt="작가프로필이미지" />
+              <img src={writerInfo.profile_image} alt="작가프로필이미지" />
             </div>
             <div className="writerInfoText">
-              <h3>{info.kor_name}</h3>
-              <h3>{info.eng_name}</h3>
+              <h3>{writerInfo.kor_name}</h3>
+              <h3>{writerInfo.eng_name}</h3>
               <div className="writerInfoTextDiv">
                 <span className="writersFollow">
-                  팔로워<span>{info.followers_count}</span>
+                  팔로워<span>{writerInfo.follower_cnt}</span>
                 </span>
                 <span className="writersFollow">
-                  팔로잉<span>{info.followings_count}</span>
+                  팔로잉
+                  {/* <span>{writerInfo.followings_count}</span> */}
                 </span>
               </div>
             </div>
@@ -190,7 +200,7 @@ const CardDetailCarousel = () => {
         {/* Carousel */}
         <div className="otherWorksCarousel">
           <h3>이 크리에이터의 다른 작품</h3>
-          <span>{info.works_count}</span>
+          <span>{info.user_feed_cnt}</span>
           <div className="otherWorkBtnContainer">
             <div
               className="otherWorksBtn otherWorksPrev"
@@ -203,7 +213,7 @@ const CardDetailCarousel = () => {
                     return (
                       <li className="otherWorksItem" key={work.id}>
                         <div className="otherWorksImg">
-                          <img src={work.image} alt={work.title} />
+                          <img src={work.img_url} alt={work.title} />
                         </div>
                         <div className="otherWorksTitle">{work.title}</div>
                       </li>
