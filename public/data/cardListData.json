@@ -46,24 +46,6 @@
       "totalView": "value"
     },
     {
-      "id": 5,
-      "mainImg": "value1",
-      "title": "value2",
-      "nickName": "value2",
-      "totalLike": "value",
-      "totalComment": "value",
-      "totalView": "value"
-    },
-    {
-      "id": 5,
-      "mainImg": "value1",
-      "title": "value2",
-      "nickName": "value2",
-      "totalLike": "value",
-      "totalComment": "value",
-      "totalView": "value"
-    },
-    {
       "id": 6,
       "mainImg": "value1",
       "title": "value2",
@@ -101,6 +83,24 @@
     },
     {
       "id": 10,
+      "mainImg": "value1",
+      "title": "value2",
+      "nickName": "value2",
+      "totalLike": "value",
+      "totalComment": "value",
+      "totalView": "value"
+    },
+    {
+      "id": 11,
+      "mainImg": "value1",
+      "title": "value2",
+      "nickName": "value2",
+      "totalLike": "value",
+      "totalComment": "value",
+      "totalView": "value"
+    },
+    {
+      "id": 12,
       "mainImg": "value1",
       "title": "value2",
       "nickName": "value2",
