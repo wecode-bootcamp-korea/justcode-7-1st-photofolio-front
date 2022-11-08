@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import './CardDetailCarousel.scss';
 import Login from '../Login/Login';
 import Join from '../Join/Join';
@@ -6,7 +6,6 @@ import Join from '../Join/Join';
 const CardDetailCarousel = () => {
   const [info, setInfo] = useState({});
   const [works, setWorks] = useState([]);
-  const [followers, setFollowers] = useState([]);
   const [isFollow, setIsFollow] = useState(0);
 
   //login창 로직 추가 코드
@@ -42,7 +41,6 @@ const CardDetailCarousel = () => {
       .then(json => {
         setInfo(json.data[0]);
         setWorks(json.data[0].works);
-        setFollowers(json.data[0].followers);
         setIsFollow(json.data[0].isFollow);
       });
   }, []);
@@ -99,8 +97,6 @@ const CardDetailCarousel = () => {
   const controlCarouselUlNext = () => {
     if (works.length % 5 !== 0) {
       let maxPage = Math.floor(works.length / 5);
-      console.log('maxPage : ', maxPage);
-
       if (carouselIndex === maxPage) {
         return;
       } else {
@@ -132,7 +128,7 @@ const CardDetailCarousel = () => {
   let transCarousel = { transform: trans };
   return (
     <>
-      <div className="wideBorder"></div>
+      <div className="wideBorder" />
       <div className="cardDetailInfoCarousel">
         {/* login창 로직 추가 코드 */}
         {openLoginpage && (
