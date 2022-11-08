@@ -2,38 +2,22 @@ import React, { useEffect, useRef, useState } from 'react';
 import './CardDetailContent.scss';
 import Tag from './Tag/Tag';
 import Reply from './Reply/Reply';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const CardDetailContents = () => {
   const [cardDetailContents, setcardDetailContents] = useState([]);
   const [tags, setTags] = useState([]); //태크
   const [sympathys, setSympathys] = useState([]); //공감
-  const [isClick, setIsClick] = useState(false); // 댓글꺽쇠
   let [replyArray, setReplyArray] = useState([]); //댓글배열
   let [id, setId] = useState(1); //댓글의 id
   const value = useRef();
   const navigate = useNavigate();
+  const params = useParams();
+  console.log('p', params.id);
 
-  //데이터 fetch
-  useEffect(() => {
-    fetch('/data/cardDetailContentData.json')
-      .then(res => res.json())
-      .then(res => {
-        setcardDetailContents(res.data[0]);
-        setTags(res.data[0].tag);
-        setSympathys(res.data[0].Sympathy[0]);
-        setReplyArray(res.data[0].Comment);
-      });
-  }, []);
-
-  //카드 상세페이지 정보 fetch
+  //목데이터 fetch
   // useEffect(() => {
-  //   fetch('http://localhost:8000/user/accountInfo', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
+  //   fetch('/data/cardDetailContentData.json')
   //     .then(res => res.json())
   //     .then(res => {
   //       setcardDetailContents(res.data[0]);
@@ -42,6 +26,18 @@ const CardDetailContents = () => {
   //       setReplyArray(res.data[0].Comment);
   //     });
   // }, []);
+
+  //카드 상세페이지 정보 fetch
+  useEffect(() => {
+    fetch('http://localhost:8000/user/accountInfo' + params.id)
+      .then(res => res.json())
+      .then(res => {
+        setcardDetailContents(res.data[0]);
+        setTags(res.data[0].tag);
+        setSympathys(res.data[0].Sympathy[0]);
+        setReplyArray(res.data[0].Comment);
+      });
+  }, [params.id]);
 
   //댓글 추가 함수
   const addReply = () => {
@@ -62,17 +58,17 @@ const CardDetailContents = () => {
   const reverseReplyArray = replyArray.reverse();
 
   //새로운 댓글 저장 fetch
-  // useEffect(() => {
-  //   fetch('http://localhost:8000/user/accountInfo', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       newReply: replyArray.newReply(),
-  //     },
-  //   })
-  //     .then(res => res.json())
-  //     .then(res => setReplyArray(res.data));
-  // }, [replyArray]);
+  useEffect(() => {
+    fetch('http://localhost:8000/user/accountInfo', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        comment_id: replyArray.newReply(),
+      },
+    })
+      .then(res => res.json())
+      .then(res => setReplyArray(res.data));
+  }, [replyArray]);
 
   //로그인하지 않았을 때 댓글창 누르면, 메인으로 이동
   const movePage = () => {
