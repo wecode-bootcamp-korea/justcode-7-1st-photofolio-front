@@ -1,0 +1,27 @@
+.searchKeyWordBar {
+  width: 100%;
+  border-bottom: 1px solid #ececec;
+  .searchKeyWord {
+    display: flex;
+    align-items: center;
+    width: 1248px;
+    height: 67px;
+    margin: 0 auto;
+    & input {
+      width: 1248px;
+      border: none;
+      background: {
+        image: url('../../assets/image/search.png');
+        size: 18px 18px;
+        repeat: no-repeat;
+      }
+      text-indent: 30px;
+    }
+    & input:focus {
+      outline: none;
+    }
+    & input ::before {
+      content: 'X';
+    }
+  }
+}
