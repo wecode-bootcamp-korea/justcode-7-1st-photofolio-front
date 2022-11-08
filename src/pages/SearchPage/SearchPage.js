@@ -9,7 +9,7 @@ const SearchPage = () => {
   const location = useLocation();
   return (
     <Fragment>
-      <Header pathname={useLocation.pathname} />
+      <Header pathname={location.pathname} />
       <SearchBar />
       <SearchFilter />
       <CardList />

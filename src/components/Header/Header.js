@@ -4,7 +4,7 @@ import css from './Header.module.scss';
 import Login from '../Login/Login';
 import Join from '../Join/Join';
 
-function Header() {
+function Header({ pathname }) {
   //로그인 여부 체크
   const [isLogin, setIsLogin] = useState(false);
 
@@ -97,7 +97,12 @@ function Header() {
           </ul>
         </div>
         <div className={css.headerRight}>
-          <input type="input" className={css.searchInput} />
+          {pathname ? (
+            <div></div>
+          ) : (
+            <input type="input" className={css.searchInput} />
+          )}
+
           {isLogin === false ? (
             <button className={css.headerBtn} onClick={clickLoginBtn}>
               로그인
