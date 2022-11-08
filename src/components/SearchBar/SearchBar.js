@@ -12,6 +12,7 @@ const SearchBar = () => {
       console.log('content : ', content);
     }
   };
+  const resetInput = () => {};
   return (
     <Fragment>
       <div className="searchKeyWordBar">
@@ -24,6 +25,10 @@ const SearchBar = () => {
             ref={nowContent}
             onKeyUp={handleKeyUp}
           ></div>
+          <button className="inputResetBtn" onClick={resetInput}>
+            {/* ::before 들어갈 부분 */}
+            <div></div>
+          </button>
         </div>
       </div>
     </Fragment>

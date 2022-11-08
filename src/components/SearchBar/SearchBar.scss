@@ -4,6 +4,7 @@
   .searchKeyWord {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     width: 1248px;
     height: 67px;
     margin: 0 auto;
@@ -19,18 +20,40 @@
     }
     & .inputDiv {
       height: 20px;
-      margin-left: 30px;
+      margin-left: 25px;
       cursor: text;
+      font-size: 13px;
     }
     & .inputDiv:focus {
       outline: none;
     }
-    & .inputDiv ::before {
-      content: 'X';
+
+    // image sprite 사용
+    //-15px 0은 검은색 x, 0은 회색 x
+    & .inputResetBtn ::before {
+      content: '';
+      background : {
+        image: url('../../assets/image/close.png');
+        position: -15px 0;
+      }
+    }
+    & .inputResetBtn ::before :hover {
+      content: '';
+      background : {
+        image: url('../../assets/image/close.png');
+        position: 0;
+      }
     }
     & .inputDiv:empty::before {
       content: attr(placeholder);
       color: gray;
+    }
+
+    .inputResetBtn {
+      width: 67px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
