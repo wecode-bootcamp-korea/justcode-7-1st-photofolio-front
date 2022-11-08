@@ -7,7 +7,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 const CardDetailContents = () => {
   const [cardDetailContents, setcardDetailContents] = useState([]);
   const [tags, setTags] = useState([]); //태크
-  const [sympathys, setSympathys] = useState([]); //공감배열
+  let [sympathys, setSympathys] = useState([]); //공감배열
   let [replyArray, setReplyArray] = useState([]); //댓글배열
   let [id, setId] = useState(1); //댓글의 id
   const value = useRef();
@@ -31,7 +31,10 @@ const CardDetailContents = () => {
         setReplyArray(res.feedCommentInfo);
       });
   }, []);
-  console.log('d', replyArray);
+  console.log('cardDetailContents:', cardDetailContents);
+  console.log('sympathys:', sympathys);
+  console.log('tags:', tags);
+  console.log('replyArray:', replyArray);
 
   //댓글 추가 함수
   const addReply = () => {
@@ -49,7 +52,7 @@ const CardDetailContents = () => {
     value = '';
   };
   //새로운 배열에 reverse 배열 적용
-  const reverseReplyArray = replyArray.reverse();
+  // const reverseReplyArray = replyArray.reverse();
 
   //새로운 댓글 저장 fetch
   useEffect(() => {
@@ -60,7 +63,7 @@ const CardDetailContents = () => {
         token: localStorage.getItem('token'),
       },
       body: {
-        comment: reverseReplyArray[0],
+        comment: replyArray.lastIndexOf(),
       },
     })
       .then(res => res.json())
@@ -108,8 +111,10 @@ const CardDetailContents = () => {
           <div className="detail-reaction-inner-wrapper">
             <div className="detail-reaction-icon-wrapper">
               <button className="detail-icon">
-                {/* 좋아요 아이콘 변경 */}
-                <img src={sympathys.icon} alt="" />
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/1062/1062573.png"
+                  alt=""
+                />
               </button>
             </div>
             <div className="detail-reaction-icon-second-wrapper">
@@ -134,10 +139,6 @@ const CardDetailContents = () => {
                 src="https://cdn-icons-png.flaticon.com/512/6460/6460733.png"
                 alt=""
               />
-            </span>
-            <span className="detail-reply-count">
-              {/* 댓글 총 카운트 추가 */}
-              {cardDetailContents.replyArray_count}
             </span>
           </div>
         </div>
@@ -172,13 +173,12 @@ const CardDetailContents = () => {
             </div>
             <div className="detail-reply-list">
               {/* 댓글 컴포넌트 */}
-              {reverseReplyArray.map(comment => {
+              {replyArray.map(comment => {
                 return (
                   <Reply
                     key={comment.id}
                     user_id={comment.user_id}
-                    // 작성자 이름 추가
-                    writer={comment.writer}
+                    kor_name={comment.kor_name}
                     comment={comment.comment}
                     created_at={comment.created_at}
                   />
