@@ -6,7 +6,7 @@ const SearchBar = ({ resultCount }) => {
   const [content, setContent] = useState('');
   const navigate = useNavigate();
 
-  //엔터키 눌렀을 때 검색기능 실행
+  //엔터키 눌렀을 때 검색페이지로 재 이동(url의 쿼리파라미터 변경)
   const search = e => {
     if (e.key === 'Enter') {
       let url = '/searchlist?query=' + content;
