@@ -176,7 +176,7 @@ const CardDetailContents = () => {
                 <div className="detail-reply-text-limit">최대 1000자</div>
               </div>
               <div className="detail-reply-apload-btn">
-                <button onClick={saveReply}>등록</button>
+                {/* <button onClick={saveReply}>등록</button> */}
               </div>
             </div>
             <div className="detail-reply-list">
