@@ -19,9 +19,6 @@ const SearchBar = ({ resultCount }) => {
   //x버튼 클릭 시 input내용 reset
   const resetInput = e => {
     setContent('');
-    // if (content === query) {
-    //   console.log('same!!!!!!!');
-    // }
   };
 
   //url에서
