@@ -1,0 +1,64 @@
+.uploadModalMain {
+  width: 446px;
+  height: 719px;
+  border: 1px solid black;
+  position: absolute;
+  background-color: white;
+  z-index: 2;
+
+  .uploadModalMainMaiginDiv {
+    margin: 13px;
+
+    .ModalSelectDiv {
+      .modalOpenBox {
+        width: 379px;
+        height: 36px;
+        border: 1px black solid;
+      }
+      .categorySelect {
+        margin: 20px;
+      }
+      .colabolateSelect {
+        margin: 20px;
+      }
+
+      .lisenceSelect {
+        margin: 20px;
+      }
+    }
+
+    .radioSelectDiv {
+      .commentRadioDiv {
+        margin: 20px;
+      }
+
+      .openRadioDiv {
+        margin: 20px;
+      }
+    }
+
+    .btnDiv {
+      position: absolute;
+      bottom: 0;
+      margin: 0 0 80px 50px;
+
+      .btnDivFlex {
+        width: 300px;
+        display: flex;
+        justify-content: center;
+
+        .cencelBtn {
+          width: 130px;
+          height: 40px;
+          margin: 0 20px;
+        }
+
+        .finalUploadBtn {
+          width: 130px;
+          height: 40px;
+          margin: 0 20px;
+        }
+      }
+    }
+  }
+}
