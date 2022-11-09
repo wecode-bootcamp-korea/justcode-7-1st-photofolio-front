@@ -28,7 +28,6 @@ const CardDetailContents = () => {
         setReplyArray(res.feedCommentInfo);
       });
   }, [id]);
-  console.log(id);
 
   const reply = useRef(); //현재 댓글의 value
   const [replyArray, setReplyArray] = useState([]); //댓글배열
@@ -55,17 +54,28 @@ const CardDetailContents = () => {
     navigate('/works');
   };
 
-  //현재 좋아요 버튼의 상태
-  const [likeBtn, setLikeBtn] = useState(false);
+  //현재 좋아요 갯수 상태
+  const [likeCnt, setLikeCnt] = useState('');
 
-  //클릭시 좋아요 수 변화 함수
-  const changeLike = () => {
-    if (likeBtn === true) {
-      sympathys.sympathy_cnt++;
-    } else {
-      sympathys.sympathy_cnt--;
-    }
+  //좋아요 누르면 실행되는 로직
+  const clickLike = () => {
+    fetch('http://localhost:8000/works/sympathy', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        token: localStorage.getItem('token'),
+      },
+      body: {
+        posting_id: id,
+        sympathy_id: 1,
+      },
+    })
+      .then(res => res.json())
+      .then(res => {
+        setLikeCnt(res.data);
+      });
   };
+  console.log('좋아요수', likeCnt);
 
   return (
     <div>
@@ -101,7 +111,7 @@ const CardDetailContents = () => {
         <div className="detail-reaction-wrapper">
           <div className="detail-reaction-inner-wrapper">
             <div className="detail-reaction-icon-wrapper">
-              <button className="detail-icon" onClick={changeLike}>
+              <button className="detail-icon" onClick={clickLike}>
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/1062/1062573.png"
                   alt=""
@@ -114,7 +124,8 @@ const CardDetailContents = () => {
               </div>
               <div className="detail-reaction-icon-count-wrapper">
                 <div className="detail-icon-count">
-                  {sympathys.sympathy_cnt}
+                  {likeCnt}
+                  {/* {sympathys.sympathy_cnt} */}
                 </div>
               </div>
             </div>
