@@ -179,12 +179,12 @@ const Channel = () => {
               {/* 작품 데이터가 있다면 */}
               {<ChanelCardList /> ? (
                 // 작품 리스트를 보여줌
-                <div className="channel-feed-text">
+                <div className="feed-channel-feed-div">
                   <ChanelCardList />
                 </div>
               ) : // 작품 데이터가 없다면, 현재 로그인 한 사람과 같은지 다른 사람인지 체크
               result ? (
-                <div className="channel-feed-text">
+                <div className="feed-channel-feed-div channel-feed-text">
                   등록된 작품이 없습니다. <br />
                   <button className="channel-feed-upload-btn">
                     <Link to="/upload">업로드 </Link>
