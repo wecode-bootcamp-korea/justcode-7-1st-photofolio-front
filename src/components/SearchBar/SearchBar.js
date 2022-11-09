@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './SearchBar.scss';
 
@@ -17,20 +17,26 @@ const SearchBar = ({ resultCount }) => {
   };
 
   //x버튼 클릭 시 input내용 reset
-  const resetInput = () => {
+  const resetInput = e => {
     setContent('');
+    // if (content === query) {
+    //   console.log('same!!!!!!!');
+    // }
   };
 
   //url에서
-  const location = useLocation();
-  let params = new URLSearchParams(location.search);
+  let location = useLocation();
+  let params = new URLSearchParams(location.search); //?query=구름
   let query = params.get('query'); //구름
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setContent(query);
+  }, []);
   return (
     <Fragment>
       <div className="searchKeyWordBar">
         <div className="searchKeyWord">
           <div className="searchLogoImg" />
+
           <input
             className="searchinput"
             placeholder="검색어를 입력해주세요."
