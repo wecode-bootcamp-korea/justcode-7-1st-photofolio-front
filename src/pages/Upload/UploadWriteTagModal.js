@@ -1,12 +1,7 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './UploadWriteTagModal.scss';
 
-function App({
-  uploadTagData,
-  setUploadTagData,
-  updateTagMockDataFunc,
-  tagFieldRef,
-}) {
+function App({ updateTagMockDataFunc, tagFieldRef }) {
   const [tagMockData, setTagMockData] = useState([]);
 
   const removeTag = function (event) {
@@ -39,7 +34,7 @@ function App({
             <div
               key={idx}
               style={{
-                margin: '0 10px',
+                margin: '20px',
                 padding: '3px',
                 border: '1px solid black',
                 borderRadius: '10px',

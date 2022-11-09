@@ -3,28 +3,35 @@ import './uploadWrite.scss';
 import TagModal from './UploadWriteTagModal';
 import UploadModal from './UploadModal';
 
-function App() {
-  const [tagModalState, setTagModalState] = useState(false);
-  const [uploadModalState, setuploadModalState] = useState(false);
+function App({
+  setTitle,
+  setContent,
+  setTag,
+  setCategory_name,
+  setPublic_status,
+  startFetch,
+}) {
+  const [tagModalState, setTagModalState] = useState(false); // 태그 추가창 열고 닫기
+  const [uploadModalState, setuploadModalState] = useState(false); // ㄹ
   const [uploadTagData, setUploadTagData] = useState([]);
   const titleValue = useRef();
   const contentValue = useRef();
   const tagFieldRef = useRef();
 
+  function clickUploadBtn(event) {
+    updateTagMockDataFunc();
+    setuploadModalState(true);
+  }
+
   function updateTagMockDataFunc(event) {
     const updateTagMockData = [];
     if (tagFieldRef.current) {
       tagFieldRef.current.childNodes.forEach(element => {
+        // 고차함수 사용이 안돼서 forEach를 사용했던 것 같다
         updateTagMockData.push(element.innerText);
       });
     }
-
     setUploadTagData(updateTagMockData);
-  }
-
-  function clickUploadBtn(event) {
-    updateTagMockDataFunc();
-    setuploadModalState(true);
   }
 
   function addTag(event) {
@@ -33,9 +40,12 @@ function App() {
   }
 
   useEffect(() => {
-    console.log(titleValue.current.value);
-    console.log(contentValue.current.value);
-    console.log(uploadTagData);
+    let temp = '';
+    uploadTagData.map(elem => (temp += elem + ','));
+
+    setTitle(titleValue.current.value);
+    setContent(contentValue.current.value);
+    setTag(temp);
   }, [uploadTagData]);
 
   return (
@@ -58,13 +68,18 @@ function App() {
         </div>
         {tagModalState && (
           <TagModal
-            uploadTagData={uploadTagData}
-            setUploadTagData={setUploadTagData}
             updateTagMockDataFunc={updateTagMockDataFunc}
             tagFieldRef={tagFieldRef}
           />
         )}
-        {uploadModalState && <UploadModal />}
+        {uploadModalState && (
+          <UploadModal
+            setuploadModalState={setuploadModalState}
+            setCategory_name={setCategory_name}
+            setPublic_status={setPublic_status}
+            startFetch={startFetch}
+          />
+        )}
         <div className="divide"></div>
         <div className="alertment">
           <span className="alertmentSpan">
