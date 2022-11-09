@@ -33,7 +33,9 @@ function Login({ closeLoginpage, setJoinPage, setOpenLoginPage }) {
       .then(res => res.json())
       .then(res => {
         localStorage.setItem('token', res.token);
-        localStorage.setItem('imgURL', res.profile);
+        localStorage.setItem('profile_image', res.profile);
+        localStorage.setItem('id', res.id);
+        localStorage.setItem('kor_name', res.name);
       });
   }, [resObj]);
 
