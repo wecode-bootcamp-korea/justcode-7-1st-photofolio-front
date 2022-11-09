@@ -9,6 +9,7 @@ const CardDetailContents = () => {
   const [tags, setTags] = useState([]); //태크
   let [sympathys, setSympathys] = useState([]); //공감배열
   let [replyArray, setReplyArray] = useState([]); //댓글배열
+  let [id, setId] = useState(1); //댓글의 id
   const value = useRef(); //현재 댓글의 value
   const params = useParams();
 
@@ -30,10 +31,8 @@ const CardDetailContents = () => {
       });
   }, []);
 
-  let [id, setId] = useState(1); //댓글의 id
-
   //댓글 추가 함수
-  // const addReply = () => {
+  // useEffect(() => {
   //   //현재날짜
   //   const date = new Date();
   //   //아이디 증가(겹치지 않게)
@@ -47,22 +46,24 @@ const CardDetailContents = () => {
   //   // setReplyArray([...replyArray, newReply]);
   //   value = '';
   //   console.log(newReply);
-  // };
+  // }, []);
 
   //새로운 댓글 저장 fetch
   // useEffect(() => {
-  //   fetch('http://localhost:8000/works/', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       token: localStorage.getItem('token'),
-  //     },
-  //     body: {
-  //       comment: newReply,
-  //     },
-  //   })
-  //     .then(res => res.json())
-  //     .then(res => setReplyArray(res.data));
+  //   const saveReply = () => {
+  //     fetch('http://localhost:8000/works/', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         token: localStorage.getItem('token'),
+  //       },
+  //       body: {
+  //         comment: newReply,
+  //       },
+  //     })
+  //       .then(res => res.json())
+  //       .then(res => setReplyArray(res.data));
+  //   };
   // }, [replyArray]);
 
   const navigate = useNavigate();
@@ -74,11 +75,11 @@ const CardDetailContents = () => {
   };
 
   //현재 좋아요 버튼의 상태
-  let [likeCnt, setLikeCnt] = useState(false);
+  let [likeBtn, setLikeBtn] = useState(false);
 
   //클릭시 좋아요 수 변화 함수
   const changeLike = () => {
-    if (setLikeCnt(true)) {
+    if (likeBtn === true) {
       sympathys.sympathy_cnt++;
     } else {
       sympathys.sympathy_cnt--;
@@ -175,7 +176,7 @@ const CardDetailContents = () => {
                 <div className="detail-reply-text-limit">최대 1000자</div>
               </div>
               <div className="detail-reply-apload-btn">
-                <button onClick={addReply}>등록</button>
+                <button onClick={saveReply}>등록</button>
               </div>
             </div>
             <div className="detail-reply-list">
