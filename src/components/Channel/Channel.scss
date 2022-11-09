@@ -10,7 +10,6 @@
       display: flex;
       padding-top: 3%;
       background-color: #fff;
-      margin-left: 50px;
 
       .channel-content-left-left {
         max-width: 100%;
@@ -52,7 +51,7 @@
             border: 1px solid #00d084;
             border-radius: 3px;
             font-size: 13px;
-            color: #00d084;
+            font-weight: bold;
             width: 130px;
             cursor: pointer;
             text-indent: 20px;
@@ -64,7 +63,7 @@
               color: #fff;
             }
           }
-          .channel-account-info-artist-btn {
+          .followBtn {
             position: relative;
             padding: 4%;
             border: 1px solid #00d084;
@@ -72,6 +71,7 @@
             border-radius: 3px;
             font-size: 13px;
             color: #ffffff;
+            text-align: center;
             cursor: pointer;
             background: {
               image: url('../../assets/image/following.png');
@@ -81,11 +81,29 @@
               color: #00d084;
             }
           }
+          .followingBtn {
+            position: relative;
+            padding: 4%;
+            border: 1px solid #00d084;
+            width: 330px;
+            border-radius: 3px;
+            font-size: 13px;
+            color: #00d084;
+            text-align: center;
+            cursor: pointer;
+            background: {
+              image: url('../../assets/image/check.png');
+              size: 15px 14px;
+              repeat: no-repeat;
+              position: 40% 50%;
+              color: #fff;
+            }
+          }
         }
       }
       .channel-content-left-right {
         width: 150px;
-        margin-right: 40px;
+        margin-right: 10px;
         .channel-profile {
           position: relative;
           img {
@@ -100,26 +118,28 @@
     .channel-content-right-wrapper {
       border-left: 1px solid #ececec;
       background-color: #fff;
-      width: 1030px;
+      width: 814px;
+      height: 100%;
       padding-top: 3%;
       .channel-content-inner-right-wrapper {
         max-width: 100%;
-        min-height: 630px;
         padding-left: 10%;
+        width: 814px;
         .channel-content-right-menu {
           color: #00d084;
           font-weight: bold;
-        }
-        hr {
-          border: 0;
-          height: 0.25px;
-          background: #ececec;
-        }
-        .channel-feed-content {
+          width: 814px;
+          hr {
+            border: 0;
+            height: 0.25px;
+            background: #ececec;
+          }
         }
         .channel-feed-text {
+          width: 814px;
+          height: 100%;
+          min-height: 845px;
           color: #aaaaaa;
-          padding-top: 15%;
           text-align: center;
           font-size: 14px;
           .channel-feed-upload-btn {
@@ -131,13 +151,31 @@
             height: 35px;
             width: 90px;
             margin-top: 10px;
-            text-indent: 5px;
+            text-indent: 15px;
             cursor: pointer;
             background: {
               image: url('../../assets/image/upload-black.png');
               size: 15px 14px;
               repeat: no-repeat;
               position: 20% 50%;
+            }
+          }
+        }
+      }
+      .footerContainer {
+        padding: 20px;
+        width: 57vw;
+        border-top: 1px solid #ececec;
+        .footerAlign {
+          width: 880px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: flex-end;
+          .footerText {
+            & span {
+              color: #777777;
+              font-size: 14px;
+              margin-right: 10px;
             }
           }
         }
