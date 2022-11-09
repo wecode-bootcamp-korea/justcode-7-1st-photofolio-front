@@ -36,6 +36,8 @@ function Login({ closeLoginpage, setJoinPage, setOpenLoginPage }) {
         localStorage.setItem('profile_image', res.profile);
         localStorage.setItem('id', res.id);
         localStorage.setItem('kor_name', res.name);
+
+        if (res.token) window.location.href = 'http://localhost:3000/feeds';
       });
   }, [resObj]);
 
@@ -49,7 +51,7 @@ function Login({ closeLoginpage, setJoinPage, setOpenLoginPage }) {
           <input className="loginInput" ref={id}></input>
 
           <span className="loginSpan">PASSWORD</span>
-          <input className="loginInput" ref={password}></input>
+          <input className="loginInput" type="password" ref={password}></input>
 
           <div className="buttonDiv">
             <button className="loginBtn" onClick={clickLoginBtn}>

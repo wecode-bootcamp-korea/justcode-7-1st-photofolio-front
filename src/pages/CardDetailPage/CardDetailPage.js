@@ -9,7 +9,7 @@ const CardDetailPage = () => {
     <Fragment>
       <Header />
       <CardDetailContent />
-      <CardDetailCarousel />
+      {/* <CardDetailCarousel /> */}
       <Footer />
     </Fragment>
   );

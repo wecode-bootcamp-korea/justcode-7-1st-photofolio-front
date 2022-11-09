@@ -135,10 +135,13 @@
             background: #ececec;
           }
         }
-        .channel-feed-text {
+        .feed-channel-feed-div {
           width: 814px;
           height: 100%;
           min-height: 845px;
+        }
+        .channel-feed-text {
+          margin-top: 157px;
           color: #aaaaaa;
           text-align: center;
           font-size: 14px;
