@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CardDetailCarousel.scss';
 import Login from '../Login/Login';
 import Join from '../Join/Join';
@@ -134,6 +135,8 @@ const CardDetailCarousel = () => {
 
   let trans = 'translateX(' + listLocation + 'px)';
   let transCarousel = { transform: trans };
+
+  const navigate = useNavigate();
   return (
     <>
       <div className="wideBorder" />
@@ -210,7 +213,13 @@ const CardDetailCarousel = () => {
                 <div className="liList" style={transCarousel}>
                   {works.map(work => {
                     return (
-                      <li className="otherWorksItem" key={work.id}>
+                      <li
+                        className="otherWorksItem"
+                        key={work.id}
+                        onClick={() => {
+                          navigate(`/works/${work.id}`);
+                        }}
+                      >
                         <div className="otherWorksImg">
                           <img src={work.img_url} alt={work.title} />
                         </div>
