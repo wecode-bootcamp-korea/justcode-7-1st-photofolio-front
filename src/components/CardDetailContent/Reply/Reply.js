@@ -1,12 +1,12 @@
 import './Reply.scss';
 
-const Reply = ({ writer, content, regidate }) => {
+const Reply = ({ user_id, kor_name, comment, created_at }) => {
   return (
     <>
       <div className="detail-reply-card">
-        <div className="detail-reply-writer">{writer}</div>
-        <div className="detail-reply-content">{content}</div>
-        <div className="detail-reply-date">{regidate}</div>
+        <div className="detail-reply-writer">{kor_name}</div>
+        <div className="detail-reply-content">{comment}</div>
+        <div className="detail-reply-date">{created_at}</div>
       </div>
     </>
   );
