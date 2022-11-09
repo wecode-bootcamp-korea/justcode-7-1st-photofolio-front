@@ -3,16 +3,16 @@ import './chanelCard.scss';
 
 function Card() {
   return (
-    <div className="card">
-      <img className="cardImg" src="" alt="" />
-      <div className="cardTitle">
-        <span className="cardTitleSpan">제목</span>
+    <div className="chanelcard">
+      <img className="chanelcardImg" src="" alt="" />
+      <div className="chanelcardTitle">
+        <span className="chanelcardTitleSpan">제목</span>
         <div>
           <img />
           <span>아이디</span>
         </div>
       </div>
-      <div className="cardValue">
+      <div className="chanelcardValue">
         <img src="" alt="" />
         <span>좋아요수</span>
         <img src="" alt="" />

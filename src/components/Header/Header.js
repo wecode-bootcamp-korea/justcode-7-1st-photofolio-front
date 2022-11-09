@@ -163,7 +163,7 @@ function Header({ pathname }) {
                     </li>
                     <li
                       onClick={() => {
-                        localStorage.removeItem('token');
+                        localStorage.clear();
                         window.location.href = 'http://localhost:3000/works';
                       }}
                     >
