@@ -41,8 +41,7 @@ const Router = () => {
         <Route path="/user/login" element={<Login />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/accountInfo" element={<AccountInfoPage />} />
-        <Route path="/channel" element={<ChannelPage />} />
-        {/* <Route path="/channel/:id" element={<ChannelPage />} /> */}
+        <Route path="/channel/:id" element={<ChannelPage />} />
         <Route path="/works/:id" element={<CardDetailPage />} />
         <Route path="/searchList" element={<SearchPage />} />
       </Routes>

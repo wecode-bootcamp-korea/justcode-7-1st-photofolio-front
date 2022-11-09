@@ -45,14 +45,12 @@ const CardDetailCarousel = () => {
     })
       .then(res => res.json())
       .then(json => {
-        console.log('res : ', json);
         setInfo(json.moreFeedinfo[0]);
         setWorks(json.moreFeedinfo[0].more_feed);
         setIsFollow(json.checkFollow[0].success);
         setWriterInfo(json.writerInfo[0]);
       });
   }, []);
-  console.log('info : ', info);
 
   //클릭 여부 확인
   const [isClick, setIsClick] = useState(isFollow);
