@@ -44,6 +44,14 @@ const AccountInfo = () => {
     setModalOpen(true);
   };
 
+  //이미지 수정
+  function ImgChange(e) {
+    console.log(e.target.files);
+    setAccountInfo([...e.target.files]);
+    // setUploadCheck(false);
+  }
+  console.log(accountInfo.profile_image);
+
   //수정된 계정정보 서버로 저장
   const saveAccountInfo = e => {
     e.preventDefault();
@@ -161,9 +169,19 @@ const AccountInfo = () => {
                             프로필 이미지를 등록해 주세요. <br /> 180 x 180 픽셀
                             크기의 이미지를 권장합니다.
                           </div>
-                          <button className="btn account-info-img-upload-btn">
-                            이미지 업로드
-                          </button>
+                          <form>
+                            <label
+                              className="dd"
+                              for="btn account-info-img-upload-btn"
+                            >
+                              이미지 업로드
+                            </label>
+                            <input
+                              type="file"
+                              className="btn account-info-img-upload-btn"
+                              style={{ display: 'none' }}
+                            />
+                          </form>
                         </div>
                       </div>
                     </td>

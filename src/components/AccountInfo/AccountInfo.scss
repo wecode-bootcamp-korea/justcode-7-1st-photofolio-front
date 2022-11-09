@@ -74,13 +74,23 @@
                 font-size: 12px;
                 padding: 20px 0px 8px;
               }
-              .account-info-img-upload-btn {
-                padding: 7px 15px;
-                background-color: #ffffff;
-                border: 1px solid #e7e7e7;
-                border-radius: 3px;
-                font-size: 12px;
-                color: #1a1a1a;
+              form {
+                .dd {
+                  display: inline-block;
+                  width: 118px;
+                  height: 35px;
+                  color: #1a1a1a;
+                  font-size: 13px;
+                  padding: 7px 0px;
+                  text-align: center;
+                  line-height: normal;
+                  vertical-align: middle;
+                  background-color: #fdfdfd;
+                  cursor: pointer;
+                  border: 1px solid #ddd;
+                  border-bottom-color: #e2e2e2;
+                  border-radius: 0.25em;
+                }
               }
             }
           }
