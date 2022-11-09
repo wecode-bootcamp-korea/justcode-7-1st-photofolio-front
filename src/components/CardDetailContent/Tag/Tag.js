@@ -1,9 +1,9 @@
 import './Tag.scss';
 
-const Tag = ({ tagName }) => {
+const Tag = ({ tag_name }) => {
   return (
     <>
-      <span className="detail-tag">#{tagName}</span>
+      <span className="detail-tag">#{tag_name}</span>
     </>
   );
 };

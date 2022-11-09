@@ -9,11 +9,11 @@ const CardDetailContents = () => {
   const [tags, setTags] = useState([]); //태그
   let [sympathys, setSympathys] = useState([]); //공감배열
 
-  const params = useParams();
+  const { id } = useParams();
 
   //카드 상세페이지 정보 fetch
   useEffect(() => {
-    fetch('http://localhost:8000/works/' + params.id, {
+    fetch('http://localhost:8000/works/' + id, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -27,10 +27,11 @@ const CardDetailContents = () => {
         setSympathys(res.sympathySortCount[0]);
         setReplyArray(res.feedCommentInfo);
       });
-  }, []);
+  }, [id]);
+  console.log(id);
 
-  let reply = useRef(); //현재 댓글의 value
-  let [replyArray, setReplyArray] = useState([]); //댓글배열
+  const reply = useRef(); //현재 댓글의 value
+  const [replyArray, setReplyArray] = useState([]); //댓글배열
 
   //새로운 댓글 저장 fetch
   const saveReply = () => {
@@ -40,7 +41,7 @@ const CardDetailContents = () => {
         'Content-Type': 'application/json',
         token: localStorage.getItem('token'),
       },
-      body: JSON.stringify({ id: params.id, comment: reply.current.value }),
+      body: JSON.stringify({ id: id, comment: reply.current.value }),
     })
       .then(res => res.json())
       .then(res => setReplyArray(res.data));
@@ -55,7 +56,7 @@ const CardDetailContents = () => {
   };
 
   //현재 좋아요 버튼의 상태
-  let [likeBtn, setLikeBtn] = useState(false);
+  const [likeBtn, setLikeBtn] = useState(false);
 
   //클릭시 좋아요 수 변화 함수
   const changeLike = () => {
@@ -66,11 +67,8 @@ const CardDetailContents = () => {
     }
   };
 
-  console.log(replyArray);
-  console.log(tags);
-
   return (
-    <>
+    <div>
       <div className="detail-out-wrapper">
         <div className="detail-header-wrapper">
           <div className="detail-title-wrapper">
@@ -91,10 +89,9 @@ const CardDetailContents = () => {
           </div>
           {/* 태그 컴포넌트 */}
           <div className="detail-tag-wrapper">
-            {tags &&
-              tags.map(tag => {
-                return <Tag key={tag.id} tagName={tag.tag_name} />;
-              })}
+            {tags.map((tag, index) => {
+              return <Tag key={index} tag_name={tag.tag_name} />;
+            })}
           </div>
           <div className="detail-copy-right">
             Copyright © {cardDetailContents.kor_name} All Rights Reserved.
@@ -135,7 +132,7 @@ const CardDetailContents = () => {
           </div>
         </div>
         <details>
-          <summary></summary>
+          <summary />
           <div className="detail-reply-input-out-wrapper">
             <div className="detail-reply-input-wrapper">
               <div className="detail-reply-input-inner-wrapper">
@@ -165,25 +162,22 @@ const CardDetailContents = () => {
             </div>
             <div className="detail-reply-list">
               {/* 댓글 컴포넌트 */}
-              {replyArray &&
-                replyArray.map(reply => {
-                  return (
-                    <>
-                      <Reply
-                        key={reply.id}
-                        user_id={reply.user_id}
-                        kor_name={reply.kor_name}
-                        comment={reply.comment}
-                        created_at={reply.created_at}
-                      />
-                    </>
-                  );
-                })}
+              {replyArray.map(reply => {
+                return (
+                  <Reply
+                    key={reply.id}
+                    user_id={reply.user_id}
+                    kor_name={reply.kor_name}
+                    comment={reply.comment}
+                    created_at={reply.created_at}
+                  />
+                );
+              })}
             </div>
           </div>
         </details>
       </div>
-    </>
+    </div>
   );
 };
 
