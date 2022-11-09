@@ -162,7 +162,7 @@ const CardDetailCarousel = () => {
                 </span>
                 <span className="writersFollow">
                   팔로잉
-                  {/* <span>{writerInfo.followings_count}</span> */}
+                  <span>{writerInfo.following_cnt}</span>
                 </span>
               </div>
             </div>
