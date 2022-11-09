@@ -24,13 +24,6 @@ const AccountInfo = () => {
     });
   };
 
-  //목데이터 fetch
-  // useEffect(() => {
-  //   fetch('data/accountInfoData.json')
-  //     .then(res => res.json())
-  //     .then(result => setAccountInfo(result.data));
-  // }, []);
-
   //계정정보 fetch
   useEffect(() => {
     fetch('http://localhost:8000/user/accountInfo', {
@@ -43,6 +36,7 @@ const AccountInfo = () => {
       .then(res => res.json())
       .then(result => setAccountInfo(result.data));
   }, []);
+  console.log(accountInfo);
 
   // 삭제 모달창 노출
   const showModal = e => {
@@ -60,9 +54,7 @@ const AccountInfo = () => {
         token: localStorage.getItem('token'),
       },
       body: JSON.stringify(accountInfo),
-    })
-      .then(res => res.json())
-      .then(result => localStorage.setItem('token', result.token));
+    }).then(res => res.json());
   };
 
   return (
