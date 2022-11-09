@@ -6,11 +6,9 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const CardDetailContents = () => {
   const [cardDetailContents, setcardDetailContents] = useState([]);
-  const [tags, setTags] = useState([]); //태크
+  const [tags, setTags] = useState([]); //태그
   let [sympathys, setSympathys] = useState([]); //공감배열
-  let [replyArray, setReplyArray] = useState([]); //댓글배열
-  let [id, setId] = useState(1); //댓글의 id
-  const value = useRef(); //현재 댓글의 value
+
   const params = useParams();
 
   //카드 상세페이지 정보 fetch
@@ -31,40 +29,24 @@ const CardDetailContents = () => {
       });
   }, []);
 
-  //댓글 추가 함수
-  // useEffect(() => {
-  //   //현재날짜
-  //   const date = new Date();
-  //   //아이디 증가(겹치지 않게)
-  //   setId(id + 1);
-  //   const newReply = {
-  //     writer: localStorage.getItem('kor_name'),
-  //     id: id,
-  //     comment: value.current.value,
-  //     regidate: date.toLocaleDateString('ko-kr'), //현재 날짜에서 연도 구하는 함수
-  //   };
-  //   // setReplyArray([...replyArray, newReply]);
-  //   value = '';
-  //   console.log(newReply);
-  // }, []);
+  let reply = useRef(); //현재 댓글의 value
+  let [replyArray, setReplyArray] = useState([]); //댓글배열
 
   //새로운 댓글 저장 fetch
-  // useEffect(() => {
-  //   const saveReply = () => {
-  //     fetch('http://localhost:8000/works/', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         token: localStorage.getItem('token'),
-  //       },
-  //       body: {
-  //         comment: newReply,
-  //       },
-  //     })
-  //       .then(res => res.json())
-  //       .then(res => setReplyArray(res.data));
-  //   };
-  // }, [replyArray]);
+  const saveReply = () => {
+    fetch('http://localhost:8000/comments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        token: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({ id: params.id, comment: reply.current.value }),
+    })
+      .then(res => res.json())
+      .then(res => setReplyArray(res.data));
+    // console.log('p', params.id);
+    // console.log('c', newReply);
+  };
 
   const navigate = useNavigate();
 
@@ -108,9 +90,10 @@ const CardDetailContents = () => {
           </div>
           {/* 태그 컴포넌트 */}
           <div className="detail-tag-wrapper">
-            {tags.map(tag => {
-              return <Tag key={tag.id} tagName={tag.tag_name} />;
-            })}
+            {tags &&
+              tags.map(tag => {
+                return <Tag key={tag.id} tagName={tag.tag_name} />;
+              })}
           </div>
           <div className="detail-copy-right">
             Copyright © {cardDetailContents.kor_name} All Rights Reserved.
@@ -163,7 +146,7 @@ const CardDetailContents = () => {
                     <textarea
                       type="text"
                       placeholder="주제와 무관한 댓글, 악플은 삭제될 수 있습니다."
-                      ref={value}
+                      ref={reply}
                     />
                   ) : (
                     <textarea
