@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from './Card';
 import './cardList.scss';
 
 function CardList({ filter }) {
   const [data, setData] = useState([]);
 
-  fetch('/data/cardListData.json')
-    .then(res => res.json())
-    .then(data => setData(data.data));
+  useEffect(() => {
+    fetch('/data/cardListData.json')
+      .then(res => res.json())
+      .then(data => setData(data.data));
+  }, []);
 
   return (
     <div className="cardList">
