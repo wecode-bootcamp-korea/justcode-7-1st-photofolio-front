@@ -2,7 +2,15 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './card.scss';
 
-function Card({ id }) {
+function Card({
+  id,
+  nickname,
+  profile_image,
+  img_url,
+  title,
+  view_count,
+  created_at,
+}) {
   const navigate = useNavigate();
 
   return (
@@ -12,9 +20,10 @@ function Card({ id }) {
         navigate(`/works/${id}`);
       }}
     >
-      <img className="cardImg" src="" alt="" />
+      {/* style={{ backgroundImage: `url(${img_url})` }} */}
+      <div className="cardImg" />
       <div className="cardTitle">
-        <span className="cardTitleSpan">제목</span>
+        <span className="cardTitleSpan">{title}</span>
         <div>
           <img />
           <span>아이디</span>
@@ -26,7 +35,7 @@ function Card({ id }) {
         <img src="" alt="" />
         <span>댓글수</span>
         <img src="" alt="" />
-        <span>조회수.</span>
+        <span>{view_count}</span>
         <span>id {id}</span>
       </div>
     </div>
