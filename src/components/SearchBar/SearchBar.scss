@@ -30,14 +30,14 @@
 
     // image sprite 사용
     //-15px 0은 검은색 x, 0은 회색 x
-    & .inputResetBtn ::before {
+    & .beforeMark ::before {
       content: '';
       background : {
         image: url('../../assets/image/close.png');
         position: -15px 0;
       }
     }
-    & .inputResetBtn ::before :hover {
+    & .beforeMark ::before :hover {
       content: '';
       background : {
         image: url('../../assets/image/close.png');

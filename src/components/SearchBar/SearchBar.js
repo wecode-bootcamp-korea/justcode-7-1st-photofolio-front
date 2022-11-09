@@ -38,7 +38,7 @@ const SearchBar = () => {
           ></div>
           <button className="inputResetBtn" onClick={resetInput}>
             {/* ::before 들어갈 부분 */}
-            <div className=""></div>
+            <div className="beforeMark" />
           </button>
         </div>
       </div>
