@@ -44,8 +44,6 @@ const CardDetailContents = () => {
     })
       .then(res => res.json())
       .then(res => setReplyArray(res.data));
-    // console.log('p', params.id);
-    // console.log('c', newReply);
   };
 
   const navigate = useNavigate();
@@ -68,6 +66,9 @@ const CardDetailContents = () => {
     }
   };
 
+  console.log(replyArray);
+  console.log(tags);
+
   return (
     <>
       <div className="detail-out-wrapper">
@@ -77,7 +78,7 @@ const CardDetailContents = () => {
           </div>
           <span className="detail-writer-by">by</span>
           <button className="detail-writer-nickname">
-            <Link to="/channel">{cardDetailContents.kor_name}</Link>
+            <Link to="/channel:id">{cardDetailContents.kor_name}</Link>
           </button>
           <span className="detail-date">{cardDetailContents.created_at}</span>
           <span className="detail-inquiry-count">
