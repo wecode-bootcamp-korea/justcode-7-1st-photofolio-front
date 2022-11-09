@@ -1,0 +1,17 @@
+.tagModal {
+  width: 898px;
+  height: 100px;
+  border: 1px black solid;
+  background-color: white;
+
+  .tagField {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .tagModalInput {
+    width: 898px;
+    height: 30px;
+    border: none;
+  }
+}
