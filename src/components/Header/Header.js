@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import css from './Header.module.scss';
 import Login from '../Login/Login';
@@ -51,6 +51,18 @@ function Header({ pathname }) {
   //메뉴 클릭 시 페이지 이동을 위한 useNavigate
   const navigate = useNavigate();
 
+  //검색페이지 이동
+  const [content, setContent] = useState();
+  const nowContent = useRef();
+  const goToSearhPage = e => {
+    if (e.key === 'Enter') {
+      let url = '/searchlist?query=' + content;
+      navigate(url);
+    } else {
+      setContent(nowContent.current.value);
+    }
+  };
+
   return (
     <header>
       {/* login창 로직 추가 코드 */}
@@ -100,7 +112,12 @@ function Header({ pathname }) {
           {pathname ? (
             <div></div>
           ) : (
-            <input type="input" className={css.searchInput} />
+            <input
+              type="input"
+              className={css.searchInput}
+              ref={nowContent}
+              onKeyUp={goToSearhPage}
+            />
           )}
 
           {isLogin === false ? (
