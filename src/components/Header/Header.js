@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import css from './Header.module.scss';
 import Login from '../Login/Login';
 import Join from '../Join/Join';
 
-function Header() {
+function Header({ pathname }) {
   //로그인 여부 체크
   const [isLogin, setIsLogin] = useState(false);
 
@@ -50,6 +50,18 @@ function Header() {
 
   //메뉴 클릭 시 페이지 이동을 위한 useNavigate
   const navigate = useNavigate();
+
+  //검색페이지 이동
+  const [content, setContent] = useState();
+  const nowContent = useRef();
+  const goToSearhPage = e => {
+    if (e.key === 'Enter') {
+      let url = '/searchlist?query=' + content;
+      navigate(url);
+    } else {
+      setContent(nowContent.current.value);
+    }
+  };
 
   return (
     <header>
@@ -97,7 +109,17 @@ function Header() {
           </ul>
         </div>
         <div className={css.headerRight}>
-          <input type="input" className={css.searchInput} />
+          {pathname ? (
+            <div></div>
+          ) : (
+            <input
+              type="input"
+              className={css.searchInput}
+              ref={nowContent}
+              onKeyUp={goToSearhPage}
+            />
+          )}
+
           {isLogin === false ? (
             <button className={css.headerBtn} onClick={clickLoginBtn}>
               로그인
