@@ -12,7 +12,7 @@ function CardList({ filter }) {
   }, []);
 
   useEffect(() => {
-    console.log(Object.keys(data));
+    console.log(data);
   }, [data]);
 
   return (

@@ -20,23 +20,31 @@ function Card({
         navigate(`/works/${id}`);
       }}
     >
-      {/* style={{ backgroundImage: `url(${img_url})` }} */}
-      <div className="cardImg" />
+      <div
+        className="cardImg"
+        style={{ backgroundImage: `url(${img_url})`, backgroundSize: 'cover' }}
+      />
       <div className="cardTitle">
         <span className="cardTitleSpan">{title}</span>
-        <div>
-          <img />
-          <span>아이디</span>
+        <div className="cardProfileDiv">
+          <span>{nickname}</span>
         </div>
       </div>
       <div className="cardValue">
-        <img src="" alt="" />
-        <span>좋아요수</span>
-        <img src="" alt="" />
-        <span>댓글수</span>
-        <img src="" alt="" />
-        <span>{view_count}</span>
-        <span>id {id}</span>
+        <div className="cardValueMargin">
+          <div>
+            <img src="" alt="" />
+            <span>좋아요수</span>
+          </div>
+          <div>
+            <img src="" alt="" />
+            <span>댓글수</span>
+          </div>
+          <div>
+            <img src="" alt="" />
+            <span>{view_count}</span>
+          </div>
+        </div>
       </div>
     </div>
   );

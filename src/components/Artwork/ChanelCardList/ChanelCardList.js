@@ -10,7 +10,7 @@ function CardList({ filter }) {
     .then(data => setData(data.data));
 
   return (
-    <div className="cardList">
+    <div className="chanelcardList">
       {data.map((elem, idx) => {
         return <Card key={idx} />;
       })}
