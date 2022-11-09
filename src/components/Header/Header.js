@@ -1,10 +1,16 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import css from './Header.module.scss';
 import Login from '../Login/Login';
 import Join from '../Join/Join';
 
 function Header({ pathname }) {
+  //on 클래스가 있으면 color가 초록색
+  //on 클래스가 없으면 color가 회색
+  const location = useLocation();
+  let nowPage = location.pathname;
+  console.log(nowPage);
+
   //로그인 여부 체크
   const [isLogin, setIsLogin] = useState(false);
 
@@ -92,6 +98,7 @@ function Header({ pathname }) {
                 onClick={() => {
                   navigate('/feeds');
                 }}
+                className={nowPage === '/feeds' ? css.on : ''}
               >
                 피드
               </li>
@@ -100,6 +107,7 @@ function Header({ pathname }) {
               onClick={() => {
                 navigate('/works');
               }}
+              className={nowPage === '/works' ? css.on : ''}
             >
               작품
             </li>
