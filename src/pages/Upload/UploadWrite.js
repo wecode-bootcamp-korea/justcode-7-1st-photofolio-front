@@ -64,7 +64,10 @@ function App({
           className="uploadWriteContent"
         ></textarea>
         <div className="uploadWriteTag" onClick={addTag}>
-          #어울리는 태그를 입력해주세요.(최대 5개)
+          <span className="uploadWriteTagSpan1">태그 </span>
+          <span className="uploadWriteTagSpan2">
+            # 어울리는 태그를 입력해주세요.(최대 5개)
+          </span>
         </div>
         {tagModalState && (
           <TagModal

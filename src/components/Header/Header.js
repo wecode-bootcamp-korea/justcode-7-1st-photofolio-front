@@ -5,11 +5,9 @@ import Login from '../Login/Login';
 import Join from '../Join/Join';
 
 function Header({ pathname }) {
-  //on 클래스가 있으면 color가 초록색
-  //on 클래스가 없으면 color가 회색
   const location = useLocation();
   let nowPage = location.pathname;
-  console.log(nowPage);
+  const id = localStorage.getItem('id');
 
   //로그인 여부 체크
   const [isLogin, setIsLogin] = useState(false);
@@ -73,13 +71,23 @@ function Header({ pathname }) {
     <header>
       {/* login창 로직 추가 코드 */}
       {openLoginpage && (
-        <Login
-          closeLoginpage={closeLoginpage}
-          setJoinPage={setJoinPage}
-          setOpenLoginPage={setOpenLoginPage}
-        />
+        <div
+          style={{ boxShadow: 'rgba(0, 0, 0, 0.5) 0 0 0 9999px', zIndex: '3' }}
+        >
+          <Login
+            closeLoginpage={closeLoginpage}
+            setJoinPage={setJoinPage}
+            setOpenLoginPage={setOpenLoginPage}
+          />
+        </div>
       )}
-      {openJoinPage && <Join setJoinPage={setJoinPage} />}
+      {openJoinPage && (
+        <div
+          style={{ boxShadow: 'rgba(0, 0, 0, 0.5) 0 0 0 9999px', zIndex: '3' }}
+        >
+          <Join setJoinPage={setJoinPage} />
+        </div>
+      )}
       {/* login창 로직 추가 코드 종료*/}
 
       <div className={css.headerContainer}>
@@ -150,7 +158,8 @@ function Header({ pathname }) {
                 <div
                   className={css.headerProfileImg}
                   onClick={() => {
-                    navigate('/channel');
+                    navigate(`/channel/${id}`);
+                    window.location.reload();
                   }}
                   style={
                     profileImg
