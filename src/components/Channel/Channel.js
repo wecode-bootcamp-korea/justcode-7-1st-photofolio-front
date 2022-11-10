@@ -1,28 +1,45 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ChanelCardList from '../Artwork/ChanelCardList/ChanelCardList';
 import Join from '../Join/Join';
 import Login from '../Login/Login';
 import './Channel.scss';
 
 const Channel = () => {
-  const [channelInfo, setChannelInfo] = useState(''); //계정정보
   const [isFollow, setIsFollow] = useState(0); //팔로잉 상태관리
-  const result = localStorage.getItem('id') === channelInfo.id;
 
   //login창 로직 추가 코드
   const [openLoginpage, setOpenLoginPage] = useState(false);
   const [openJoinPage, setJoinPage] = useState(false);
+  //로그인 여부 확인
+  const [isLogin, setIsLogin] = useState(false);
 
-  //목데이터 fetch
+  const [userInfo, setUserInfo] = useState([]); //유저정보
+  const [postArray, setPostArray] = useState([]); //카드정보 데이터
+  const [followingInfo, setFollowingInfo] = useState([]); //팔로잉정보 데이터
+  const [followerInfo, setFollowerInfo] = useState([]); //팔로워정보 데이터
+
+  //클릭 여부 확인
+  const [isClick, setIsClick] = useState(isFollow);
+  const { user_id } = useParams();
+
+  //데이터 fetch
   useEffect(() => {
-    fetch('data/channelInfoData.json')
+    fetch('http://localhost:8000/user/channel/' + user_id, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
       .then(res => res.json())
       .then(result => {
-        setChannelInfo(result.data[0]);
-        setIsFollow(result.data[0].isFollow);
+        setUserInfo(result.userInfo[0]);
+        setPostArray(result.usersPosts);
+        setFollowingInfo(result.userFollowingInfo[0]);
+        setFollowerInfo(result.userFollowerInfo[0]);
       });
   }, []);
+  console.log(userInfo);
 
   //로그인 모달창 닫기
   function closeLoginpage() {
@@ -33,8 +50,6 @@ const Channel = () => {
     alert('로그인한 다음 이용해 주세요.');
     setOpenLoginPage(true);
   }
-  //로그인 여부 확인
-  const [isLogin, setIsLogin] = useState(false);
 
   //localStorage에 token 유무 체크
   const token = localStorage.getItem('token');
@@ -48,8 +63,6 @@ const Channel = () => {
     }
   }, [token]);
 
-  //클릭 여부 확인
-  const [isClick, setIsClick] = useState(isFollow);
   const handleToggle = () => {
     setIsClick(!isClick);
   };
@@ -65,7 +78,7 @@ const Channel = () => {
           token: localStorage.getItem('token'),
         },
         body: JSON.stringify({
-          following_id: channelInfo.id,
+          following_id: postArray.user_id,
         }),
       })
         .then(res => res.json())
@@ -79,14 +92,14 @@ const Channel = () => {
           token: localStorage.getItem('token'),
         },
         body: JSON.stringify({
-          following_id: channelInfo.id,
+          following_id: postArray.user_id,
         }),
       })
         .then(res => res.json())
         .then(json => {});
     }
   };
-  console.log(isFollow);
+
   return (
     <>
       {openLoginpage && (
@@ -101,26 +114,26 @@ const Channel = () => {
         <div className="channel-content-wrapper">
           <div className="channel-content-left-wrapper">
             <div className="channel-content-left-left">
-              <div className="channel-user-ko_name">{channelInfo.kor_name}</div>
-              {channelInfo.eng_name ? (
+              <div className="channel-user-ko_name">{userInfo.kor_name}</div>
+              {userInfo.eng_name ? (
                 <div className="channel-user-eng_name">
-                  ({channelInfo.eng_name})
+                  ({userInfo.eng_name})
                 </div>
               ) : (
                 ''
               )}
-              <div className="channel-nickname">{channelInfo.nickname}</div>
+              <div className="channel-nickname">{userInfo.nickname}</div>
               <span className="channel-followers">팔로워</span>
               <span className="channel-followers-count">
-                {channelInfo.followers_count}
+                {followerInfo.follower_cnt}
               </span>
               <span className="channel-following">팔로잉</span>
               <span className="channel-following-count">
-                {channelInfo.following_count}
+                {followingInfo.following_cnt}
               </span>
 
               <div className="channel-account-info-btn-wrapper">
-                {localStorage.getItem('id') === channelInfo.user_id ? (
+                {localStorage.getItem('id') === userInfo.user_id ? (
                   <button className="channel-account-info-me-btn">
                     <Link to="/accountInfo" style={{ color: '#00d084' }}>
                       계정정보 수정
@@ -155,10 +168,10 @@ const Channel = () => {
             </div>
             <div className="channel-content-left-right">
               <div className="channel-profile">
-                {channelInfo.profile_image ? (
+                {userInfo.profile_image ? (
                   <img
                     name="profile_image"
-                    src={channelInfo.profile_image}
+                    src={userInfo.profile_image}
                     alt=""
                   />
                 ) : (
@@ -173,17 +186,32 @@ const Channel = () => {
           <div className="channel-content-right-wrapper">
             <div className="channel-content-inner-right-wrapper">
               <div className="channel-content-right-menu">
-                작품 {channelInfo.photos_count}
+                {/* 수정해야됨 */}
+                {/* 작품 {channelInfoArray.photos_count} */}
                 <hr />
               </div>
               {/* 작품 데이터가 있다면 */}
-              {<ChanelCardList /> ? (
+              {postArray ? (
                 // 작품 리스트를 보여줌
                 <div className="feed-channel-feed-div">
-                  <ChanelCardList />
+                  {postArray.map((post, index) => {
+                    return (
+                      <ChanelCardList
+                        key={index}
+                        user_id={post.user_id}
+                        profile_image={post.profile_image}
+                        img_url={post.img_url}
+                        comment_cnt={post.comment_cnt}
+                        sympathy_cnt={post.sympathy_cnt}
+                        // img_url={post.img_url}
+                        view_count={post.view_count}
+                        created_at={post.created_at}
+                      />
+                    );
+                  })}
                 </div>
               ) : // 작품 데이터가 없다면, 현재 로그인 한 사람과 같은지 다른 사람인지 체크
-              result ? (
+              localStorage.getItem('id') === userInfo.user_id ? (
                 <div className="feed-channel-feed-div channel-feed-text">
                   등록된 작품이 없습니다. <br />
                   <button className="channel-feed-upload-btn">
