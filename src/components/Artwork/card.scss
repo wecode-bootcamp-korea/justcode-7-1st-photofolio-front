@@ -26,13 +26,32 @@
     border: 1px rgba(128, 128, 128, 0.33) solid;
     width: 300px;
     height: 50px;
+    display: flex;
+    align-items: center;
+    position: relative;
 
     .cardValueMargin {
       margin: 6px;
       display: flex;
 
+      #viewCount {
+        position: absolute;
+        right: 20px;
+      }
+
       & div {
         margin: 0 20px 0 0;
+      }
+
+      .cardValueMargin2 {
+        margin: 0 0px;
+        i {
+          margin: 0 4px;
+        }
+
+        .cardValueSpanMargin {
+          margin: 0 5px;
+        }
       }
     }
   }

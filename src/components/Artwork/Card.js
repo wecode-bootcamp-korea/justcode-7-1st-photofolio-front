@@ -32,17 +32,17 @@ function Card({
       </div>
       <div className="cardValue">
         <div className="cardValueMargin">
-          <div>
-            <img src="" alt="" />
-            <span>좋아요수</span>
+          <div className="cardValueMargin2">
+            <i class="fa-regular fa-face-smile"></i>
+            <span className="cardValueSpanMargin">좋아요수</span>
           </div>
-          <div>
-            <img src="" alt="" />
-            <span>댓글수</span>
+          <div className="cardValueMargin2">
+            <i class="fa-regular fa-comment"></i>
+            <span className="cardValueSpanMargin">댓글수</span>
           </div>
-          <div>
-            <img src="" alt="" />
-            <span>{view_count}</span>
+          <div className="cardValueMargin2" id="viewCount">
+            <i class="fa-regular fa-eye"></i>
+            <span className="cardValueSpanMargin">{view_count}</span>
           </div>
         </div>
       </div>
