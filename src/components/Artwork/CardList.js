@@ -21,16 +21,18 @@ function CardList({ filter }) {
     <div className="cardList">
       {data.map((elem, idx) => {
         return (
-          <Card
-            key={idx}
-            id={elem.id}
-            nickname={elem.nickname}
-            profile_image={elem.profile_image}
-            img_url={elem.img_url}
-            title={elem.title}
-            view_count={elem.view_count}
-            created_at={elem.created_at}
-          />
+          <div style={{ cursor: 'pointer' }}>
+            <Card
+              key={idx}
+              id={elem.id}
+              nickname={elem.nickname}
+              profile_image={elem.profile_image}
+              img_url={elem.img_url}
+              title={elem.title}
+              view_count={elem.view_count}
+              created_at={elem.created_at}
+            />
+          </div>
         );
       })}
     </div>
