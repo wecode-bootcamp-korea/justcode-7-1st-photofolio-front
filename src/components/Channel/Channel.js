@@ -39,6 +39,9 @@ const Channel = () => {
       });
   }, []);
 
+  console.log(followingInfo);
+  console.log(followerInfo);
+
   //로그인 모달창 닫기
   function closeLoginpage() {
     setOpenLoginPage(false);
@@ -69,28 +72,28 @@ const Channel = () => {
   const sendResult = e => {
     if (e.target.className === 'followBtn') {
       //POST 작가id, 토큰
-      fetch('http://localhost:8000/works/following', {
+      fetch('http://localhost:8000/follow', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           token: localStorage.getItem('token'),
         },
         body: JSON.stringify({
-          following_id: postArray.user_id,
+          following_id: userInfo.user_id,
         }),
       })
         .then(res => res.json())
         .then(json => {});
     } else if (e.target.className === 'followingBtn') {
       //DELETE 작가id, 토큰
-      fetch('http://localhost:8000/works/following-cancel', {
+      fetch('http://localhost:8000/follow', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
           token: localStorage.getItem('token'),
         },
         body: JSON.stringify({
-          following_id: postArray.user_id,
+          following_id: userInfo.user_id,
         }),
       })
         .then(res => res.json())
