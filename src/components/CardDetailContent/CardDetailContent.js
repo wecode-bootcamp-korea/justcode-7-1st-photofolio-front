@@ -58,9 +58,6 @@ const CardDetailContents = () => {
     navigate('/works');
   };
 
-  //현재 좋아요 버튼의 상태
-  // const [likeBtn, setLikeBtn] = useState(false);
-
   // //클릭시 좋아요 수 변화 함수
   // const changeLike = () => {
   //   if (likeBtn === true) {
@@ -68,6 +65,23 @@ const CardDetailContents = () => {
   //   } else {
   //     sympathys.sympathy_cnt--;
   //   }
+  // };
+
+  //현재 좋아요 버튼의 상태
+  // const [likeBtn, setLikeBtn] = useState(false);
+
+  //좋아요 기능
+  // const LikeCnt = () => {
+  //   fetch('http://localhost:8000/sympathy', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       token: localStorage.getItem('token'),
+  //     },
+  //     body: JSON.stringify({ posting_id: id, sympathy_id: 1 }),
+  //   })
+  //     .then(res => res.json())
+  //     .then(res => setLikeBtn(res.data));
   // };
 
   return (
