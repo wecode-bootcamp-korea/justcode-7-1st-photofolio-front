@@ -22,6 +22,7 @@ const Channel = () => {
   //클릭 여부 확인
   const [isClick, setIsClick] = useState(isFollow);
   const { user_id } = useParams();
+  const params = useParams();
 
   //데이터 fetch
   useEffect(() => {
@@ -36,6 +37,17 @@ const Channel = () => {
         setPostArray(result.usersPosts);
         setFollowingInfo(result.userFollowingInfo[0]);
         setFollowerInfo(result.userFollowerInfo[0]);
+      });
+    //팔로우 버튼
+    fetch('http://localhost:8000/works/' + params.id + '/followcheck', {
+      headers: {
+        'Content-Type': 'application/json',
+        token: localStorage.getItem('token'),
+      },
+    })
+      .then(res => res.json())
+      .then(json => {
+        setIsFollow(json.checkFollow[0].success);
       });
   }, []);
 
