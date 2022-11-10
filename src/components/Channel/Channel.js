@@ -25,8 +25,7 @@ const Channel = () => {
 
   //데이터 fetch
   useEffect(() => {
-    fetch('http://localhost:8000/user/channel/' + user_id, {
-      method: 'GET',
+    fetch('http://localhost:8000/channel/' + user_id, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -39,7 +38,6 @@ const Channel = () => {
         setFollowerInfo(result.userFollowerInfo[0]);
       });
   }, []);
-  console.log(userInfo);
 
   //로그인 모달창 닫기
   function closeLoginpage() {
@@ -131,9 +129,8 @@ const Channel = () => {
               <span className="channel-following-count">
                 {followingInfo.following_cnt}
               </span>
-
               <div className="channel-account-info-btn-wrapper">
-                {localStorage.getItem('id') === userInfo.user_id ? (
+                {localStorage.getItem('id') == userInfo.user_id ? (
                   <button className="channel-account-info-me-btn">
                     <Link to="/accountInfo" style={{ color: '#00d084' }}>
                       계정정보 수정
@@ -187,11 +184,12 @@ const Channel = () => {
             <div className="channel-content-inner-right-wrapper">
               <div className="channel-content-right-menu">
                 {/* 수정해야됨 */}
-                {/* 작품 {channelInfoArray.photos_count} */}
+                작품
+                {/* {channelInfoArray.photos_count} */}
                 <hr />
               </div>
               {/* 작품 데이터가 있다면 */}
-              {postArray ? (
+              {postArray.length !== 0 ? (
                 // 작품 리스트를 보여줌
                 <div className="feed-channel-feed-div">
                   {postArray.map((post, index) => {
@@ -203,7 +201,6 @@ const Channel = () => {
                         img_url={post.img_url}
                         comment_cnt={post.comment_cnt}
                         sympathy_cnt={post.sympathy_cnt}
-                        // img_url={post.img_url}
                         view_count={post.view_count}
                         created_at={post.created_at}
                       />
@@ -211,7 +208,7 @@ const Channel = () => {
                   })}
                 </div>
               ) : // 작품 데이터가 없다면, 현재 로그인 한 사람과 같은지 다른 사람인지 체크
-              localStorage.getItem('id') === userInfo.user_id ? (
+              localStorage.getItem('id') == userInfo.user_id ? (
                 <div className="feed-channel-feed-div channel-feed-text">
                   등록된 작품이 없습니다. <br />
                   <button className="channel-feed-upload-btn">

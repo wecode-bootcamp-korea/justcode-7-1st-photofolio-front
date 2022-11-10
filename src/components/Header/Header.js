@@ -145,6 +145,7 @@ function Header({ pathname }) {
                   className={css.headerProfileImg}
                   onClick={() => {
                     navigate(`/channel/${id}`);
+                    window.location.reload();
                   }}
                   style={
                     profileImg
