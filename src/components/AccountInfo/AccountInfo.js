@@ -36,7 +36,6 @@ const AccountInfo = () => {
       .then(res => res.json())
       .then(result => setAccountInfo(result.data));
   }, []);
-  console.log(accountInfo);
 
   // 삭제 모달창 노출
   const showModal = e => {
@@ -45,12 +44,11 @@ const AccountInfo = () => {
   };
 
   //이미지 수정
-  function ImgChange(e) {
-    console.log(e.target.files);
-    setAccountInfo([...e.target.files]);
-    // setUploadCheck(false);
-  }
-  console.log(accountInfo.profile_image);
+  // function ImgChange(e) {
+  //   console.log(e.target.files);
+  //   setAccountInfo([...e.target.files]);
+  //   // setUploadCheck(false);
+  // }
 
   //수정된 계정정보 서버로 저장
   const saveAccountInfo = e => {
