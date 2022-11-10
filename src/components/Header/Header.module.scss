@@ -45,6 +45,9 @@ header {
       & li {
         cursor: pointer;
       }
+      .on {
+        color: #00d084;
+      }
     }
     .titleLogo {
       @include main-logo;

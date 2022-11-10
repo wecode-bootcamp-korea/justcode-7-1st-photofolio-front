@@ -9,6 +9,7 @@ import AccountInfoPage from './pages/AccountInfoPage/AccountInfoPage';
 import ChannelPage from './pages/ChannelPage/ChannelPage';
 import CardDetailPage from './pages/CardDetailPage/CardDetailPage';
 import SearchPage from './pages/SearchPage/SearchPage';
+import Category from './pages/Category/Category';
 
 const Router = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -41,9 +42,10 @@ const Router = () => {
         <Route path="/user/login" element={<Login />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/accountInfo" element={<AccountInfoPage />} />
-        <Route path="/channel/:id" element={<ChannelPage />} />
+        <Route path="/channel/:user_id" element={<ChannelPage />} />
         <Route path="/works/:id" element={<CardDetailPage />} />
         <Route path="/searchList" element={<SearchPage />} />
+        <Route path="/category/:id" element={<Category />} />
       </Routes>
     </BrowserRouter>
   );

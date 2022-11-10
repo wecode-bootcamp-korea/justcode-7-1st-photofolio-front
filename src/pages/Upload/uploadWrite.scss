@@ -12,6 +12,10 @@
     border: none;
     margin: 40px 0 0 0;
     font-size: 18px;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   .divide {
@@ -23,8 +27,14 @@
   .uploadWriteContent {
     width: 896px;
     height: 500px;
-    margin: 10px;
+    margin: 20px 10px;
     border: none;
+
+    &:focus {
+      outline: none;
+      border-color: rgb(95, 205, 138);
+      box-shadow: 0 0 5px rgb(95, 205, 138);
+    }
   }
 
   .uploadWriteTag {
@@ -34,6 +44,12 @@
     border: none;
     font-size: 15px;
     z-index: 2;
+
+    .uploadWriteTagSpan1 {
+    }
+    .uploadWriteTagSpan2 {
+      color: rgba(128, 128, 128, 0.596);
+    }
   }
 
   .alertment {
@@ -44,14 +60,21 @@
       position: absolute;
       left: 0;
       color: red;
-      font-size: 13px;
+      font-size: 11px;
     }
   }
 
   .uploadBtn {
-    width: 100px;
-    height: 60px;
+    width: 138px;
+    height: 34px;
+    background-color: rgb(95, 205, 138);
+    border-radius: 3px;
+    color: white;
     margin: 40px 0;
     z-index: 1;
+
+    &:hover {
+      background-color: rgb(137, 226, 171);
+    }
   }
 }
