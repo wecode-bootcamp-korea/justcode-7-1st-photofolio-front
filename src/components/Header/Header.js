@@ -8,7 +8,6 @@ function Header({ pathname }) {
   const id = localStorage.getItem('id');
   const location = useLocation();
   let nowPage = location.pathname;
-  const id = localStorage.getItem('id');
 
   //로그인 여부 체크
   const [isLogin, setIsLogin] = useState(false);
