@@ -6,9 +6,11 @@ function CardList({ filter }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/feeds/list')
-      .then(res => res.json())
-      .then(data => setData(data.feedsList));
+    if (document.location.href === 'http://localhost:3000/works') {
+      fetch('/data/props2.json')
+        .then(res => res.json())
+        .then(data => setData(data.worksFeedList));
+    }
   }, []);
 
   useEffect(() => {
