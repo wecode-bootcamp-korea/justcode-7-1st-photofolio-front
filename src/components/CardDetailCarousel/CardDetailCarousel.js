@@ -50,7 +50,6 @@ const CardDetailCarousel = () => {
       .then(json => {
         setInfo(json.moreFeedinfo[0]);
         setWorks(json.moreFeedinfo[0].more_feed);
-        // setIsFollow(json.checkFollow[0].success);
         setWriterInfo(json.writerInfo[0]);
       });
 
@@ -120,7 +119,8 @@ const CardDetailCarousel = () => {
   console.log('최대페이지', Math.floor(works.length / 5));
   console.log('나머지 : ', works.length / 5); //0.8
   const controlCarouselUlNext = () => {
-    if (works.length % 5 > 1) {
+    //작품 갯수 / 5의 나머지가 1보다 크다면
+    if (works.length % 5 >= 1) {
       let maxPage = Math.floor(works.length / 5);
       if (carouselIndex === maxPage) {
         return;
@@ -261,6 +261,7 @@ const CardDetailCarousel = () => {
                           key={work.id}
                           onClick={() => {
                             navigate(`/works/${work.id}`);
+                            window.location.reload();
                           }}
                         >
                           <div className="otherWorksImg">
