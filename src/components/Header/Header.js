@@ -69,13 +69,23 @@ function Header({ pathname }) {
     <header>
       {/* login창 로직 추가 코드 */}
       {openLoginpage && (
-        <Login
-          closeLoginpage={closeLoginpage}
-          setJoinPage={setJoinPage}
-          setOpenLoginPage={setOpenLoginPage}
-        />
+        <div
+          style={{ boxShadow: 'rgba(0, 0, 0, 0.5) 0 0 0 9999px', zIndex: '3' }}
+        >
+          <Login
+            closeLoginpage={closeLoginpage}
+            setJoinPage={setJoinPage}
+            setOpenLoginPage={setOpenLoginPage}
+          />
+        </div>
       )}
-      {openJoinPage && <Join setJoinPage={setJoinPage} />}
+      {openJoinPage && (
+        <div
+          style={{ boxShadow: 'rgba(0, 0, 0, 0.5) 0 0 0 9999px', zIndex: '3' }}
+        >
+          <Join setJoinPage={setJoinPage} />
+        </div>
+      )}
       {/* login창 로직 추가 코드 종료*/}
 
       <div className={css.headerContainer}>
