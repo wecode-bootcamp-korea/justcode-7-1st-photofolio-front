@@ -36,7 +36,6 @@ const AccountInfo = () => {
       .then(res => res.json())
       .then(result => setAccountInfo(result.data));
   }, []);
-  console.log(accountInfo);
 
   // 삭제 모달창 노출
   const showModal = e => {

@@ -7,7 +7,9 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 const CardDetailContents = () => {
   const [cardDetailContents, setcardDetailContents] = useState([]);
   const [tags, setTags] = useState([]); //태그
+  const [feedImg, setFeedImg] = useState([]);
   let [sympathys, setSympathys] = useState([]); //공감배열
+  const [userId, setUserId] = useState([]); //user_id
 
   const { id } = useParams();
 
@@ -23,12 +25,13 @@ const CardDetailContents = () => {
       .then(res => res.json())
       .then(res => {
         setcardDetailContents(res.feedWithTags[0]);
+        setUserId(res.feedWithTags[0].user_id);
         setTags(res.feedWithTags[0].tagInfo);
         setSympathys(res.sympathySortCount[0]);
         setReplyArray(res.feedCommentInfo);
+        setFeedImg(res.feedImgArr[0].fileInfo[0]);
       });
   }, [id]);
-  console.log(id);
 
   const reply = useRef(); //현재 댓글의 value
   const [replyArray, setReplyArray] = useState([]); //댓글배열
@@ -55,18 +58,6 @@ const CardDetailContents = () => {
     navigate('/works');
   };
 
-  //현재 좋아요 버튼의 상태
-  const [likeBtn, setLikeBtn] = useState(false);
-
-  //클릭시 좋아요 수 변화 함수
-  const changeLike = () => {
-    if (likeBtn === true) {
-      sympathys.sympathy_cnt++;
-    } else {
-      sympathys.sympathy_cnt--;
-    }
-  };
-
   return (
     <div>
       <div className="detail-out-wrapper">
@@ -75,8 +66,11 @@ const CardDetailContents = () => {
             <h3 className="detail-title">{cardDetailContents.title}</h3>
           </div>
           <span className="detail-writer-by">by</span>
-          <button className="detail-writer-nickname">
-            <Link to="/channel:id">{cardDetailContents.kor_name}</Link>
+          <button
+            className="detail-writer-nickname"
+            onClick={() => navigate(`/channel/${userId}`)}
+          >
+            {cardDetailContents.kor_name}
           </button>
           <span className="detail-date">{cardDetailContents.created_at}</span>
           <span className="detail-inquiry-count">
@@ -85,7 +79,7 @@ const CardDetailContents = () => {
         </div>
         <div className="detail-content-wrapper">
           <div className="detail-content-pictures">
-            <img src={cardDetailContents.profile_image} alt="" />
+            <img src={feedImg.img_url} alt="" />
           </div>
           {/* 태그 컴포넌트 */}
           <div className="detail-tag-wrapper">
@@ -101,7 +95,7 @@ const CardDetailContents = () => {
         <div className="detail-reaction-wrapper">
           <div className="detail-reaction-inner-wrapper">
             <div className="detail-reaction-icon-wrapper">
-              <button className="detail-icon" onClick={changeLike}>
+              <button className="detail-icon">
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/1062/1062573.png"
                   alt=""
@@ -157,7 +151,7 @@ const CardDetailContents = () => {
                 <div className="detail-reply-text-limit">최대 1000자</div>
               </div>
               <div className="detail-reply-apload-btn">
-                {/* <button onClick={saveReply}>등록</button> */}
+                <button onClick={saveReply}>등록</button>
               </div>
             </div>
             <div className="detail-reply-list">

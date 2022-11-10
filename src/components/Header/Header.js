@@ -5,6 +5,8 @@ import Login from '../Login/Login';
 import Join from '../Join/Join';
 
 function Header({ pathname }) {
+  const id = localStorage.getItem('id');
+
   //로그인 여부 체크
   const [isLogin, setIsLogin] = useState(false);
 
@@ -142,7 +144,8 @@ function Header({ pathname }) {
                 <div
                   className={css.headerProfileImg}
                   onClick={() => {
-                    navigate('/channel');
+                    navigate(`/channel/${id}`);
+                    window.location.reload();
                   }}
                   style={
                     profileImg
