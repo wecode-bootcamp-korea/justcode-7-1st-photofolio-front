@@ -14,10 +14,10 @@ const CategoryCarousel = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('/data/categories.json')
+    fetch('http://localhost:8000/works')
       .then(res => res.json())
       .then(json => {
-        setCategories(json.categories);
+        setCategories(json.categorySortCountList);
       });
   }, []);
 
@@ -59,16 +59,18 @@ const CategoryCarousel = () => {
                   className="item"
                   key={category.id}
                   onClick={() => {
-                    navigate('/category/' + category.eng_category);
+                    navigate('/category/' + category.eng_category_name);
                   }}
                 >
                   <div
-                    className={'categoryImg ' + category.eng_category + 'Img'}
+                    className={
+                      'categoryImg ' + category.eng_category_name + 'Img'
+                    }
                   />
-                  <div className={'category ' + category.eng_category}>
+                  <div className={'category ' + category.eng_category_name}>
                     <div className="title">
-                      <span>{category.category}</span>
-                      <span>{category.category_count}</span>
+                      <span>{category.category_name}</span>
+                      <span>{category.category_cnt}</span>
                     </div>
                   </div>
                 </li>

@@ -17,6 +17,7 @@
         .channel-user-ko_name {
           padding-bottom: 5%;
           font-size: 18px;
+          font-weight: bold;
         }
         .channel-user-eng_name {
           padding-bottom: 5%;
@@ -41,9 +42,6 @@
           font-size: 14px;
         }
 
-        .channel-following-count {
-          cursor: pointer;
-        }
         .channel-account-info-btn-wrapper {
           margin-top: 10%;
           .channel-account-info-me-btn {
@@ -135,16 +133,18 @@
             background: #ececec;
           }
         }
-        .feed-channel-feed-div {
-          width: 814px;
-          height: 100%;
-          min-height: 845px;
-        }
+        // .feed-channel-feed-div {
+        //   margin-top: 157px;
+        //   width: 814px;
+        //   height: 100%;
+        //   min-height: 845px;
+
+        // }
         .channel-feed-text {
-          margin-top: 157px;
           color: #aaaaaa;
           text-align: center;
           font-size: 14px;
+          min-height: 600px;
           .channel-feed-upload-btn {
             color: #555555;
             background-color: #ffffff;

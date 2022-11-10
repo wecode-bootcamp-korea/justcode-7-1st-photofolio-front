@@ -33,13 +33,9 @@ function App({ updateTagMockDataFunc, tagFieldRef }) {
           return (
             <div
               key={idx}
-              style={{
-                margin: '20px',
-                padding: '3px',
-                border: '1px solid black',
-                borderRadius: '10px',
-              }}
+              style={{}}
               onClick={clickTag}
+              className="uploadModalTag"
             >
               {elem}
             </div>
