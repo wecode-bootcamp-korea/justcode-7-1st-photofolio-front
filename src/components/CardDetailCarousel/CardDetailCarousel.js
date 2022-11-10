@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './CardDetailCarousel.scss';
 import Login from '../Login/Login';
 import Join from '../Join/Join';
@@ -7,7 +7,7 @@ import Join from '../Join/Join';
 const CardDetailCarousel = () => {
   const [info, setInfo] = useState({});
   const [works, setWorks] = useState([]);
-  const [isFollow, setIsFollow] = useState(1);
+  const [isFollow, setIsFollow] = useState(0);
   const [writerInfo, setWriterInfo] = useState([]);
 
   //login창 로직 추가 코드
@@ -64,7 +64,7 @@ const CardDetailCarousel = () => {
       .then(json => {
         setIsFollow(json.checkFollow[0].success);
       });
-  }, []);
+  }, [params.id]);
 
   //클릭 여부 확인
   const [isClick, setIsClick] = useState(isFollow);
@@ -76,28 +76,28 @@ const CardDetailCarousel = () => {
   const sendResult = e => {
     if (e.target.className === 'followBtn') {
       //POST 작가id, 토큰
-      fetch('http://localhost:8000/works/following', {
+      fetch('http://localhost:8000/follow', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           token: localStorage.getItem('token'),
         },
         body: JSON.stringify({
-          following_id: info.id,
+          following_id: writerInfo.id,
         }),
       })
         .then(res => res.json())
         .then(json => {});
     } else if (e.target.className === 'followingBtn') {
       //DELETE 작가id, 토큰
-      fetch('http://localhost:8000/works/following-cancel', {
+      fetch('http://localhost:8000/follow', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
           token: localStorage.getItem('token'),
         },
         body: JSON.stringify({
-          following_id: info.id,
+          following_id: writerInfo.id,
         }),
       })
         .then(res => res.json())
@@ -116,8 +116,6 @@ const CardDetailCarousel = () => {
   //클릭 시 1추가, px -추가
   //최대 페이지 : 작품 갯수로 판단
   //works.length = 4
-  console.log('최대페이지', Math.floor(works.length / 5));
-  console.log('나머지 : ', works.length / 5); //0.8
   const controlCarouselUlNext = () => {
     //작품 갯수 / 5의 나머지가 1보다 크다면
     if (works.length % 5 >= 1) {
@@ -241,7 +239,7 @@ const CardDetailCarousel = () => {
         </div>
         {/* Carousel */}
         {works === null ? (
-          <div></div>
+          <div />
         ) : (
           <div className="otherWorksCarousel">
             <h3>이 크리에이터의 다른 작품</h3>

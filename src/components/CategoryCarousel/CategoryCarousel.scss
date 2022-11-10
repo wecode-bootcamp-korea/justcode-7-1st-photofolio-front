@@ -108,7 +108,7 @@
             size: cover;
           }
         }
-        .animationImg {
+        .annimationImg {
           background : {
             image: url('https://images.unsplash.com/photo-1439436556258-1f7fab1bfd4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
             repeat: no-repeat;
@@ -122,7 +122,7 @@
             size: cover;
           }
         }
-        .craftImg {
+        .calligraphyImg {
           background : {
             image: url('https://images.unsplash.com/photo-1452860606245-08befc0ff44b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
             repeat: no-repeat;
@@ -136,7 +136,7 @@
             size: cover;
           }
         }
-        .helloartistImg {
+        .helloArtistImg {
           background : {
             image: url('https://images.unsplash.com/photo-1517697471339-4aa32003c11a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80');
             repeat: no-repeat;
@@ -177,16 +177,16 @@
       & .animal {
         background-color: #147a63;
       }
-      & .animation {
+      & .annimation {
         background-color: #d4da50;
       }
       & .sound {
         background-color: #efddac;
       }
-      & .craft {
+      & .calligraphy {
         background-color: #e6e6e6;
       }
-      & .helloartist {
+      & .helloArtist {
         background-color: #84d05a;
       }
     }
