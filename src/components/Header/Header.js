@@ -110,7 +110,7 @@ function Header({ pathname }) {
         </div>
         <div className={css.headerRight}>
           {pathname ? (
-            <div></div>
+            <div />
           ) : (
             <input
               type="input"

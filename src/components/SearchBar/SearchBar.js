@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './SearchBar.scss';
 
@@ -29,7 +29,7 @@ const SearchBar = ({ resultCount }) => {
   let query = params.get('query'); //구름
   useEffect(() => {
     setContent(query);
-  }, []);
+  }, [query]);
   return (
     <Fragment>
       <div className="searchKeyWordBar">
