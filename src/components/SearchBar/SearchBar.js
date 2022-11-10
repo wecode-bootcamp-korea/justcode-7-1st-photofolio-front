@@ -11,6 +11,7 @@ const SearchBar = ({ resultCount }) => {
     if (e.key === 'Enter') {
       let url = '/searchlist?query=' + content;
       navigate(url);
+      console.log('페이지이동!');
     } else {
       setContent(e.target.value);
     }
@@ -19,9 +20,6 @@ const SearchBar = ({ resultCount }) => {
   //x버튼 클릭 시 input내용 reset
   const resetInput = e => {
     setContent('');
-    // if (content === query) {
-    //   console.log('same!!!!!!!');
-    // }
   };
 
   //url에서

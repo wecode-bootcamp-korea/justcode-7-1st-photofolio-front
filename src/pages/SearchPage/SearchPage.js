@@ -9,18 +9,21 @@ import './SearchPage.scss';
 const SearchPage = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [resultCount, setResultCount] = useState([]);
-  const location = useLocation();
+  const [content, setContent] = useState('');
+  let location = useLocation();
+  let params = new URLSearchParams(location.search); //?query=구름
+  let query = params.get('query');
 
   //검색 페이지 데이터 불러오기
-  // useEffect(() => {
-  //   setContent(query);
-  //   fetch('http://localhost:8000/searchlist' + location.search)
-  //     .then(res => res.json())
-  //     .then(json => {
-  //       setResultCount(json.resultCount[0].result_cnt);
-  //       setSearchResult(json.searchResult);
-  //     });
-  // }, []);
+  useEffect(() => {
+    setContent(query);
+    fetch('http://localhost:8000/searchlist' + location.search)
+      .then(res => res.json())
+      .then(json => {
+        setResultCount(json.resultCount[0].result_cnt);
+        setSearchResult(json.searchResult);
+      });
+  }, []);
 
   return (
     <Fragment>
