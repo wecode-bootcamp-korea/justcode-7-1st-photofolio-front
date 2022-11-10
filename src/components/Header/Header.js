@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import css from './Header.module.scss';
 import Login from '../Login/Login';
 import Join from '../Join/Join';
 
 function Header({ pathname }) {
+  const location = useLocation();
+  let nowPage = location.pathname;
   const id = localStorage.getItem('id');
 
   //로그인 여부 체크
@@ -104,6 +106,7 @@ function Header({ pathname }) {
                 onClick={() => {
                   navigate('/feeds');
                 }}
+                className={nowPage === '/feeds' ? css.on : ''}
               >
                 피드
               </li>
@@ -112,6 +115,7 @@ function Header({ pathname }) {
               onClick={() => {
                 navigate('/works');
               }}
+              className={nowPage === '/works' ? css.on : ''}
             >
               작품
             </li>
