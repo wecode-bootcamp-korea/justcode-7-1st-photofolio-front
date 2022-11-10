@@ -11,6 +11,7 @@ const SearchBar = ({ resultCount }) => {
     if (e.key === 'Enter') {
       let url = '/searchlist?query=' + content;
       navigate(url);
+      console.log('페이지이동!');
     } else {
       setContent(e.target.value);
     }
