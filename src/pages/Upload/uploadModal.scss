@@ -1,7 +1,8 @@
 .uploadModalMain {
   width: 446px;
   height: 719px;
-  border: 1px solid black;
+  border: 1px solid rgba(128, 128, 128, 0.629);
+  border-radius: 5px;
   position: absolute;
   background-color: white;
   z-index: 2;
@@ -10,10 +11,16 @@
     margin: 13px;
 
     .ModalSelectDiv {
+      .ModalSelectDivName {
+        font-size: 13px;
+        font-weight: 600;
+        margin: 50px 0;
+      }
       .modalOpenBox {
         width: 379px;
         height: 36px;
         border: 1px black solid;
+        margin: 8px 0 0 0;
       }
       .categorySelect {
         margin: 20px;
@@ -28,6 +35,18 @@
     }
 
     .radioSelectDiv {
+      .radioSelectDivLabel {
+        margin: 5px 10px 0 0;
+        font-size: 12px;
+      }
+      .radioSelectDivInput {
+        margin: 0 5px 0 0;
+      }
+      .ModalSelectDivName {
+        font-size: 13px;
+        font-weight: 600;
+        margin: 50px 0;
+      }
       .commentRadioDiv {
         margin: 20px;
       }
@@ -40,7 +59,7 @@
     .btnDiv {
       position: absolute;
       bottom: 0;
-      margin: 0 0 80px 50px;
+      margin: 0 0 60px 60px;
 
       .btnDivFlex {
         width: 300px;
@@ -49,14 +68,20 @@
 
         .cencelBtn {
           width: 130px;
-          height: 40px;
-          margin: 0 20px;
+          height: 38px;
+          margin: 0 5px;
         }
 
         .finalUploadBtn {
           width: 130px;
-          height: 40px;
-          margin: 0 20px;
+          height: 38px;
+          margin: 0 5px;
+          color: white;
+          background-color: rgb(95, 205, 138);
+
+          &:hover {
+            background-color: rgb(126, 220, 162);
+          }
         }
       }
     }

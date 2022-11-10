@@ -2,14 +2,18 @@ import React, { useRef, useState, useEffect } from 'react';
 import './uploadMain.scss';
 
 function App({ onImgChange }) {
+  function replaceBtn(event) {
+    event.preventDefault();
+    document.querySelector('#userfileInput').click();
+  }
   return (
     <div className="uploadComponent">
       <span className="typeSelectSpan">업로드 타입을 선택해주세요 :)</span>
       <div className="selectBox">
         <div className="selectBoxComponent">
-          이미지
           <form>
             <input
+              className="inputFile"
               type="file"
               name="userfile"
               id="userfileInput"
@@ -17,12 +21,23 @@ function App({ onImgChange }) {
               onChange={onImgChange}
               multiple
             ></input>
+            <button className="replaceBtn" onClick={replaceBtn}>
+              이미지
+            </button>
           </form>
         </div>
-        <div className="selectBoxComponent">사운드</div>
-        <div className="selectBoxComponent">동영상</div>
-        <div className="selectBoxComponent">그림책</div>
-        <div className="selectBoxComponent">배경화면</div>
+        <div className="selectBoxComponent">
+          <button className="replaceBtn">사운드</button>
+        </div>
+        <div className="selectBoxComponent">
+          <button className="replaceBtn">동영상</button>
+        </div>
+        <div className="selectBoxComponent">
+          <button className="replaceBtn">그림책</button>
+        </div>
+        <div className="selectBoxComponent">
+          <button className="replaceBtn">배경화면</button>
+        </div>
       </div>
       <div className="alertBox">
         <img className="alertImg" src="" alt="" />
