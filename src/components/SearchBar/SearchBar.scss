@@ -19,7 +19,8 @@
       text-indent: 30px;
     }
     & .searchinput {
-      height: 20px;
+      width: 150px;
+      height: 40px;
       margin-left: 25px;
       cursor: text;
       font-size: 13px;
@@ -29,31 +30,31 @@
       outline: none;
     }
 
-    .inputResetBtn {
-      width: 15px;
-      height: 15px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: {
-        image: url(../../assets/image/close.png);
-        size: 29px 15px;
-        position: 0.5px 0;
-      }
-    }
-    .inputResetBtn:hover {
-      cursor: pointer;
-      background: {
-        image: url(../../assets/image/close.png);
-        size: 29px 15px;
-        position: -14px 0;
-      }
-    }
+    // .inputResetBtn {
+    //   width: 15px;
+    //   height: 15px;
+    //   display: flex;
+    //   justify-content: center;
+    //   align-items: center;
+    //   background: {
+    //     image: url(../../assets/image/close.png);
+    //     size: 29px 15px;
+    //     position: 0.5px 0;
+    //   }
+    // }
+    // .inputResetBtn:hover {
+    //   cursor: pointer;
+    //   background: {
+    //     image: url(../../assets/image/close.png);
+    //     size: 29px 15px;
+    //     position: -14px 0;
+    //   }
+    // }
 
-    .blind {
-      width: 0;
-      height: 0;
-    }
+    // .blind {
+    //   width: 0;
+    //   height: 0;
+    // }
   }
 }
 
@@ -65,4 +66,7 @@
   height: 67px;
   margin: 0 auto;
   font-size: 13px;
+  .workCnt {
+    margin-left: 5px;
+  }
 }
