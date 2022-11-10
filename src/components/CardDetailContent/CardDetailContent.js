@@ -27,7 +27,7 @@ const CardDetailContents = () => {
         setcardDetailContents(res.feedWithTags[0]);
         setUserId(res.feedWithTags[0].user_id);
         setTags(res.feedWithTags[0].tagInfo);
-        setSympathys(res.sympathySortCount[0]);
+        setSympathys(res.sympathySortCount);
         setReplyArray(res.feedCommentInfo);
         setFeedImg(res.feedImgArr[0].fileInfo[0]);
       });
@@ -57,6 +57,28 @@ const CardDetailContents = () => {
     alert('로그인한 다음 이용해 주세요.');
     navigate('/works');
   };
+
+  //현재 좋아요 갯수 상태
+  // const [likeCnt, setLikeCnt] = useState('');
+
+  // //좋아요 누르면 실행되는 로직
+  // const clickLike = () => {
+  //   fetch('http://localhost:8000/works/sympathy', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       token: localStorage.getItem('token'),
+  //     },
+  //     body: {
+  //       posting_id: id,
+  //       sympathy_id: 1,
+  //     },
+  //   })
+  //     .then(res => res.json())
+  //     .then(res => {
+  //       setLikeCnt(res.data);
+  //     });
+  // };
 
   return (
     <div>
@@ -108,7 +130,8 @@ const CardDetailContents = () => {
               </div>
               <div className="detail-reaction-icon-count-wrapper">
                 <div className="detail-icon-count">
-                  {sympathys.sympathy_cnt}
+                  {/* {likeCnt} */}
+                  {/* {sympathys.sympathy_cnt} */}
                 </div>
               </div>
             </div>
