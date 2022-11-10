@@ -33,7 +33,7 @@ function App({
       <div className="uploadModalMainMaiginDiv">
         <div className="ModalSelectDiv">
           <div className="categorySelect">
-            <span>분야</span>
+            <span className="ModalSelectDivName">분야</span>
             <div className="modalOpenBox" onClick={clickCategoryModal}></div>
             {categoryState && (
               <CategoryModal
@@ -43,41 +43,66 @@ function App({
             )}
           </div>
           <div className="colabolateSelect">
-            <span>콜라보레이션(선택)</span>
+            <span className="ModalSelectDivName">콜라보레이션(선택)</span>
             <div className="modalOpenBox"></div>
           </div>
           <div className="lisenceSelect">
-            <span>CC라이선스</span>
+            <span className="ModalSelectDivName">CC라이선스</span>
             <div className="modalOpenBox"></div>
           </div>
         </div>
         <div className="radioSelectDiv">
           <div className="commentRadioDiv">
-            <span>댓글</span>
+            <span className="ModalSelectDivName">댓글</span>
             <div className="commentRadioDivInput" onChange={checkComment}>
-              <ladel>
-                <input name="comment" type="radio" value="허용"></input>
+              <ladel className="radioSelectDivLabel">
+                <input
+                  name="comment"
+                  type="radio"
+                  value="허용"
+                  className="radioSelectDivInput"
+                ></input>
                 허용
               </ladel>
-              <ladel>
-                <input name="comment" type="radio" value="비허용"></input>
+              <ladel className="radioSelectDivLabel">
+                <input
+                  name="comment"
+                  type="radio"
+                  value="비허용"
+                  className="radioSelectDivInput"
+                ></input>
                 비허용
               </ladel>
             </div>
           </div>
           <div className="openRadioDiv" onChange={checkOpen}>
-            <span>공개설정</span>
+            <span className="ModalSelectDivName">공개설정</span>
             <div className="openRadioDivInput">
-              <ladel>
-                <input name="open" type="radio" value="public" />
+              <ladel className="radioSelectDivLabel">
+                <input
+                  name="open"
+                  type="radio"
+                  value="public"
+                  className="radioSelectDivInput"
+                />
                 공개
               </ladel>
-              <ladel>
-                <input name="open" type="radio" value="private" />
+              <ladel className="radioSelectDivLabel">
+                <input
+                  name="open"
+                  type="radio"
+                  value="private"
+                  className="radioSelectDivInput"
+                />
                 비공개
               </ladel>
-              <ladel>
-                <input name="open" type="radio" value="reservation" />
+              <ladel className="radioSelectDivLabel">
+                <input
+                  name="open"
+                  type="radio"
+                  value="reservation"
+                  className="radioSelectDivInput"
+                />
                 예약
               </ladel>
             </div>
