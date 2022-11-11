@@ -7,7 +7,7 @@ function CardList({ filter }) {
 
   useEffect(() => {
     if (document.location.href === 'http://localhost:3000/works') {
-      fetch('/data/props2.json')
+      fetch('http://localhost:8000/works')
         .then(res => res.json())
         .then(data => setData(data.worksFeedList));
     }
