@@ -16,15 +16,15 @@ function App() {
     if (event.target.innerText === '패션')
       window.location.href = 'http://localhost:3000/category/fashion';
     if (event.target.innerText === '패턴&질감')
-      window.location.href = 'http://localhost:3000/category/fashion';
-    if (event.target.innerText === '여행')
       window.location.href = 'http://localhost:3000/category/pattern';
-    if (event.target.innerText === '동물')
+    if (event.target.innerText === '여행')
       window.location.href = 'http://localhost:3000/category/travel';
-    if (event.target.innerText === '애니메이션')
+    if (event.target.innerText === '동물')
       window.location.href = 'http://localhost:3000/category/animal';
-    if (event.target.innerText === '디자인')
+    if (event.target.innerText === '애니메이션')
       window.location.href = 'http://localhost:3000/category/animation';
+    if (event.target.innerText === '디자인')
+      window.location.href = 'http://localhost:3000/category/design';
     if (event.target.innerText === '조소/공예')
       window.location.href = 'http://localhost:3000/category/craft';
     if (event.target.innerText === '사운드')

@@ -14,6 +14,9 @@ function App({
   const [tagModalState, setTagModalState] = useState(false); // 태그 추가창 열고 닫기
   const [uploadModalState, setuploadModalState] = useState(false); // ㄹ
   const [uploadTagData, setUploadTagData] = useState([]);
+
+  const [previewState, setPreviewState] = useState(false);
+
   const titleValue = useRef();
   const contentValue = useRef();
   const tagFieldRef = useRef();
@@ -58,6 +61,8 @@ function App({
           ref={titleValue}
         ></input>
         <div className="divide"></div>
+
+        {previewState && <div></div>}
         <textarea
           ref={contentValue}
           name="content"
