@@ -58,17 +58,21 @@ function Join({ setJoinPage }) {
         <span className="titleLogo">PHOTOFOLIO</span>
         <form className="loginForm" encType="multipart/form-data">
           <span className="loginBoxName">USER ID</span>
-          <input
-            className="loginBoxInput"
-            ref={userId}
-            placeholder="테스트"
-          ></input>
+          <input className="loginBoxInput" ref={userId}></input>
 
           <span className="loginBoxName">PASSWORD</span>
-          <input className="loginBoxInput" ref={password}></input>
+          <input
+            className="loginBoxInput"
+            type="password"
+            ref={password}
+          ></input>
 
           <span className="loginBoxName">PASSWORD CHECK</span>
-          <input className="loginBoxInput" ref={passwordCheck}></input>
+          <input
+            className="loginBoxInput"
+            type="password"
+            ref={passwordCheck}
+          ></input>
 
           <span className="loginBoxName">USER NAME</span>
           <input className="loginBoxInput" ref={userName}></input>
