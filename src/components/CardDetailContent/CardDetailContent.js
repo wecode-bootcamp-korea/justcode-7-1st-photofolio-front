@@ -27,7 +27,7 @@ const CardDetailContents = () => {
         setcardDetailContents(res.feedWithTags[0]);
         setUserId(res.writerInfo[0].id);
         setTags(res.feedWithTags[0].tagInfo);
-        setSympathys(res.sympathySortCount);
+        setSympathys(res.sympathySortCount[0]);
         setReplyArray(res.feedCommentInfo);
         setFeedImg(res.feedImgArr[0].fileInfo[0]);
       });

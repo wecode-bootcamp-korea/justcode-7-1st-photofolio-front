@@ -32,11 +32,13 @@ function Header({ pathname }) {
     if (token) {
       setIsLogin(true);
       return;
-    } else if (!token) {
+    } else if (!token || token === undefined) {
       setIsLogin(false);
       return;
     }
   }, [token]);
+
+  const id = localStorage.getItem('id');
 
   //localStorage에 프로필 이미지 유무 체크
   const profileImg = localStorage.getItem('profile_image');
