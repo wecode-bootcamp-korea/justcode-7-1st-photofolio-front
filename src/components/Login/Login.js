@@ -22,23 +22,25 @@ function Login({ closeLoginpage, setJoinPage, setOpenLoginPage }) {
   }
 
   useEffect(() => {
-    console.log(resObj);
-    fetch('http://localhost:8000/user/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json', // 헤더 없으면 에러남
-      },
-      body: JSON.stringify(resObj),
-    })
-      .then(res => res.json())
-      .then(res => {
-        localStorage.setItem('token', res.token);
-        localStorage.setItem('profile_image', res.profile);
-        localStorage.setItem('id', res.id);
-        localStorage.setItem('kor_name', res.name);
-
-        if (res.token) window.location.href = 'http://localhost:3000/feeds';
-      });
+    if (resObj.login_id) {
+      fetch('http://localhost:8000/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', // 헤더 없으면 에러남
+        },
+        body: JSON.stringify(resObj),
+      })
+        .then(res => res.json())
+        .then(res => {
+          if (res.token !== undefined) {
+            localStorage.setItem('token', res.token);
+            localStorage.setItem('profile_image', res.profile);
+            localStorage.setItem('id', res.id);
+            localStorage.setItem('kor_name', res.name);
+          }
+          if (res.token) window.location.href = 'http://localhost:3000/feeds';
+        });
+    }
   }, [resObj]);
 
   return (
