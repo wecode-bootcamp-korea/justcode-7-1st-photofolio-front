@@ -24,6 +24,16 @@ function Join({ setJoinPage }) {
   const clickJoin = function (event) {
     event.preventDefault();
 
+    if (passwordCheck.current.value !== password.current.value) {
+      alert('패스워드가 일치하지 않습니다');
+      return;
+    }
+
+    if (userId.current.value.length < 8) {
+      alert('id는 8자리 이상으로 입력해주세요');
+      return;
+    }
+
     const formdata = new FormData();
     // Object.values(files).map((elem, idx) => formdata.append(profile, elem));
 
@@ -48,7 +58,11 @@ function Join({ setJoinPage }) {
       body: userData,
     })
       .then(res => res.json())
-      .then(res => console.log(res));
+      .then(res => {
+        if (res.message === '회원가입 되었습니다.') {
+          window.location.href = 'http://localhost:3000/feeds';
+        }
+      });
   }, [userData]);
 
   return (
@@ -58,17 +72,21 @@ function Join({ setJoinPage }) {
         <span className="titleLogo">PHOTOFOLIO</span>
         <form className="loginForm" encType="multipart/form-data">
           <span className="loginBoxName">USER ID</span>
-          <input
-            className="loginBoxInput"
-            ref={userId}
-            placeholder="테스트"
-          ></input>
+          <input className="loginBoxInput" ref={userId}></input>
 
           <span className="loginBoxName">PASSWORD</span>
-          <input className="loginBoxInput" ref={password}></input>
+          <input
+            className="loginBoxInput"
+            type="password"
+            ref={password}
+          ></input>
 
           <span className="loginBoxName">PASSWORD CHECK</span>
-          <input className="loginBoxInput" ref={passwordCheck}></input>
+          <input
+            className="loginBoxInput"
+            type="password"
+            ref={passwordCheck}
+          ></input>
 
           <span className="loginBoxName">USER NAME</span>
           <input className="loginBoxInput" ref={userName}></input>

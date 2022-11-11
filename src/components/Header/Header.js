@@ -5,6 +5,7 @@ import Login from '../Login/Login';
 import Join from '../Join/Join';
 
 function Header({ pathname }) {
+  const id = localStorage.getItem('id');
   const location = useLocation();
   let nowPage = location.pathname;
 
@@ -32,11 +33,13 @@ function Header({ pathname }) {
     if (token) {
       setIsLogin(true);
       return;
-    } else if (!token) {
+    } else if (!token || token === undefined) {
       setIsLogin(false);
       return;
     }
   }, [token]);
+
+  const id = localStorage.getItem('id');
 
   //localStorage에 프로필 이미지 유무 체크
   const profileImg = localStorage.getItem('profile_image');
