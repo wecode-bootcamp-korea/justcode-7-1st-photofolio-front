@@ -40,7 +40,7 @@ const CardDetailCarousel = () => {
   const params = useParams();
   useEffect(() => {
     //팔로우 기능 제외한 데이터 가져오기
-    fetch('http://localhost:8000/works/' + params.id, {
+    fetch('http://localhost:8000/works/feed/' + params.id, {
       headers: {
         'Content-Type': 'application/json',
         token: localStorage.getItem('token'),
@@ -54,7 +54,7 @@ const CardDetailCarousel = () => {
       });
 
     //팔로우 버튼 데이터 가져오기
-    fetch('http://localhost:8000/works/' + params.id + '/followcheck', {
+    fetch('http://localhost:8000/works/feed/' + params.id + '/followcheck', {
       headers: {
         'Content-Type': 'application/json',
         token: localStorage.getItem('token'),

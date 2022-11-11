@@ -10,6 +10,8 @@ function Card({
   title,
   view_count,
   created_at,
+  sympathy_cnt,
+  comment_cnt,
 }) {
   const navigate = useNavigate();
 
@@ -34,11 +36,11 @@ function Card({
         <div className="cardValueMargin">
           <div className="cardValueMargin2">
             <i class="fa-regular fa-face-smile"></i>
-            <span className="cardValueSpanMargin">좋아요수</span>
+            <span className="cardValueSpanMargin">{sympathy_cnt}</span>
           </div>
           <div className="cardValueMargin2">
             <i class="fa-regular fa-comment"></i>
-            <span className="cardValueSpanMargin">댓글수</span>
+            <span className="cardValueSpanMargin">{comment_cnt}</span>
           </div>
           <div className="cardValueMargin2" id="viewCount">
             <i class="fa-regular fa-eye"></i>

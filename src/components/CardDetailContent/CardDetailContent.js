@@ -15,7 +15,7 @@ const CardDetailContents = () => {
 
   //카드 상세페이지 정보 fetch
   useEffect(() => {
-    fetch('http://localhost:8000/works/' + id, {
+    fetch('http://localhost:8000/works/feed/' + id, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ const CardDetailContents = () => {
       .then(res => res.json())
       .then(res => {
         setcardDetailContents(res.feedWithTags[0]);
-        setUserId(res.feedWithTags[0].user_id);
+        setUserId(res.writerInfo[0].id);
         setTags(res.feedWithTags[0].tagInfo);
         setSympathys(res.sympathySortCount);
         setReplyArray(res.feedCommentInfo);

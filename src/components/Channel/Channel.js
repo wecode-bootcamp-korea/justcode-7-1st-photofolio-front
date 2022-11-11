@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import CardList from '../Artwork/CardList';
 import ChanelCardList from '../Artwork/ChanelCardList/ChanelCardList';
 import Join from '../Join/Join';
 import Login from '../Login/Login';
@@ -21,12 +22,15 @@ const Channel = () => {
 
   //클릭 여부 확인
   const [isClick, setIsClick] = useState(isFollow);
-  const { user_id } = useParams();
-  const params = useParams();
+  // const { user_id } = useParams();
+  // const params = useParams();
+
+  let param = useParams();
+  let params = param.user_id;
 
   //데이터 fetch
   useEffect(() => {
-    fetch('http://localhost:8000/channel/' + user_id, {
+    fetch('http://localhost:8000/channel/' + params, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -39,7 +43,7 @@ const Channel = () => {
         setFollowerInfo(result.userFollowerInfo[0]);
       });
     //팔로우 버튼
-    fetch('http://localhost:8000/works/' + params.id + '/followcheck', {
+    fetch('http://localhost:8000/works/feed/' + params + '/followcheck', {
       headers: {
         'Content-Type': 'application/json',
         token: localStorage.getItem('token'),
@@ -48,6 +52,7 @@ const Channel = () => {
       .then(res => res.json())
       .then(json => {
         setIsFollow(json.checkFollow[0].success);
+        console.log('isFollow : ', isFollow);
       });
   }, []);
 
@@ -207,20 +212,20 @@ const Channel = () => {
               {postArray.length !== 0 ? (
                 // 작품 리스트를 보여줌
                 <div className="feed-channel-feed-div">
-                  {postArray.map((post, index) => {
-                    return (
-                      <ChanelCardList
-                        key={index}
-                        user_id={post.user_id}
-                        profile_image={post.profile_image}
-                        img_url={post.img_url}
-                        comment_cnt={post.comment_cnt}
-                        sympathy_cnt={post.sympathy_cnt}
-                        view_count={post.view_count}
-                        created_at={post.created_at}
-                      />
-                    );
-                  })}
+                  {/* {postArray.map((post, index) => {
+                    return ( */}
+                  <ChanelCardList
+                  // key={index}
+                  // user_id={post.user_id}
+                  // profile_image={post.profile_image}
+                  // img_url={post.img_url}
+                  // comment_cnt={post.comment_cnt}
+                  // sympathy_cnt={post.sympathy_cnt}
+                  // view_count={post.view_count}
+                  // created_at={post.created_at}
+                  />
+                  {/* );
+                  })} */}
                 </div>
               ) : // 작품 데이터가 없다면, 현재 로그인 한 사람과 같은지 다른 사람인지 체크
               localStorage.getItem('id') == userInfo.user_id ? (
