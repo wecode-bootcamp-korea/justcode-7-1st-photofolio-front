@@ -130,8 +130,7 @@ const CardDetailContents = () => {
               </div>
               <div className="detail-reaction-icon-count-wrapper">
                 <div className="detail-icon-count">
-                  {/* {likeCnt} */}
-                  {/* {sympathys.sympathy_cnt} */}
+                  {sympathys.sympathy_cnt}
                 </div>
               </div>
             </div>

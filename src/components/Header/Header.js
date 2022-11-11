@@ -5,7 +5,6 @@ import Login from '../Login/Login';
 import Join from '../Join/Join';
 
 function Header({ pathname }) {
-  const id = localStorage.getItem('id');
   const location = useLocation();
   let nowPage = location.pathname;
 

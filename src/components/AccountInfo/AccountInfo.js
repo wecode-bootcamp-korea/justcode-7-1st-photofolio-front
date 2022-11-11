@@ -155,15 +155,6 @@ const AccountInfo = () => {
                             alt=""
                           />
                         )}
-                        <div className="account-info-img-part2-wrapper">
-                          <div className="account-info-img-explain">
-                            프로필 이미지를 등록해 주세요. <br /> 180 x 180 픽셀
-                            크기의 이미지를 권장합니다.
-                          </div>
-                          <button className="btn account-info-img-upload-btn">
-                            이미지 업로드
-                          </button>
-                        </div>
                       </div>
                     </td>
                   </tr>
