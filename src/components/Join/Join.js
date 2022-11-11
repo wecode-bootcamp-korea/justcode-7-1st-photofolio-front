@@ -191,13 +191,21 @@ function Join({ setJoinPage }) {
             <span className="loginBoxName">
               PASSWORD<span className="alertMent">{pwAlert}</span>
             </span>
-            <input className="loginBoxInput" ref={password}></input>
+            <input
+              className="loginBoxInput"
+              type="password"
+              ref={password}
+            ></input>
           </div>
           <div className="loginInputDiv">
             <span className="loginBoxName">
               PASSWORD CHECK<span className="alertMent">{pwCheckAlert}</span>
             </span>
-            <input className="loginBoxInput" ref={passwordCheck}></input>
+            <input
+              className="loginBoxInput"
+              type="password"
+              ref={passwordCheck}
+            ></input>
           </div>
           <div className="loginInputDiv">
             <span className="loginBoxName">
