@@ -203,29 +203,14 @@ const Channel = () => {
           <div className="channel-content-right-wrapper">
             <div className="channel-content-inner-right-wrapper">
               <div className="channel-content-right-menu">
-                {/* 수정해야됨 */}
                 작품
-                {/* {channelInfoArray.photos_count} */}
                 <hr />
               </div>
               {/* 작품 데이터가 있다면 */}
               {postArray.length !== 0 ? (
                 // 작품 리스트를 보여줌
                 <div className="feed-channel-feed-div">
-                  {/* {postArray.map((post, index) => {
-                    return ( */}
-                  <ChanelCardList
-                  // key={index}
-                  // user_id={post.user_id}
-                  // profile_image={post.profile_image}
-                  // img_url={post.img_url}
-                  // comment_cnt={post.comment_cnt}
-                  // sympathy_cnt={post.sympathy_cnt}
-                  // view_count={post.view_count}
-                  // created_at={post.created_at}
-                  />
-                  {/* );
-                  })} */}
+                  <ChanelCardList />
                 </div>
               ) : // 작품 데이터가 없다면, 현재 로그인 한 사람과 같은지 다른 사람인지 체크
               localStorage.getItem('id') == userInfo.user_id ? (
