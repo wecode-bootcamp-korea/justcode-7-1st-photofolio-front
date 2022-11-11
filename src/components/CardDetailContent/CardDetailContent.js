@@ -2,14 +2,16 @@ import React, { useEffect, useRef, useState } from 'react';
 import './CardDetailContent.scss';
 import Tag from './Tag/Tag';
 import Reply from './Reply/Reply';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import Login from '../Login/Login';
+import Join from '../Join/Join';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const CardDetailContents = () => {
   const [cardDetailContents, setcardDetailContents] = useState([]);
   const [tags, setTags] = useState([]); //태그
   const [feedImg, setFeedImg] = useState([]);
-  let [sympathys, setSympathys] = useState([]); //공감배열
   const [userId, setUserId] = useState([]); //user_id
+  let [likeBtn, setlikeBtn] = useState(false); //좋아요 버튼 상태
 
   const { id } = useParams();
 
@@ -27,9 +29,9 @@ const CardDetailContents = () => {
         setcardDetailContents(res.feedWithTags[0]);
         setUserId(res.writerInfo[0].id);
         setTags(res.feedWithTags[0].tagInfo);
-        setSympathys(res.sympathySortCount[0]);
         setReplyArray(res.feedCommentInfo);
         setFeedImg(res.feedImgArr[0].fileInfo[0]);
+        // setlikeBtn(res.)
       });
   }, [id]);
 
@@ -52,14 +54,25 @@ const CardDetailContents = () => {
 
   const navigate = useNavigate();
 
+  //login 모달창 열기
+  const [openLoginpage, setOpenLoginPage] = useState(false);
+  const [openJoinPage, setJoinPage] = useState(false);
+  function closeLoginpage() {
+    setOpenLoginPage(false);
+  }
   //로그인하지 않았을 때 댓글창 누르면, 메인으로 이동
-  const movePage = () => {
+  const openLoginModal = e => {
     alert('로그인한 다음 이용해 주세요.');
-    navigate('/works');
+    setOpenLoginPage(true);
   };
 
-  //현재 좋아요 갯수 상태
-  // const [likeCnt, setLikeCnt] = useState('');
+  // let [click, setClick] = useState(likeBtn); //좋아요 버튼 클릭 여부
+  // const [likeCnt, setLikeCnt] = useState(0); //좋아요 갯수
+
+  //좋아요 버튼 클릭 여부 확인
+  // const likeBtnClick = () => {
+  //   setlikeBtn(!click);
+  // };
 
   // //좋아요 누르면 실행되는 로직
   // const clickLike = () => {
@@ -83,6 +96,15 @@ const CardDetailContents = () => {
   return (
     <div>
       <div className="detail-out-wrapper">
+        {/* login 모달창 로직 추가 코드 */}
+        {openLoginpage && (
+          <Login
+            closeLoginpage={closeLoginpage}
+            setJoinPage={setJoinPage}
+            setOpenLoginPage={setOpenLoginPage}
+          />
+        )}
+        {openJoinPage && <Join setJoinPage={setJoinPage} />}
         <div className="detail-header-wrapper">
           <div className="detail-title-wrapper">
             <h3 className="detail-title">{cardDetailContents.title}</h3>
@@ -113,7 +135,7 @@ const CardDetailContents = () => {
             Copyright © {cardDetailContents.kor_name} All Rights Reserved.
           </div>
         </div>
-        {/* 공감 */}
+        {/* 좋아요 */}
         <div className="detail-reaction-wrapper">
           <div className="detail-reaction-inner-wrapper">
             <div className="detail-reaction-icon-wrapper">
@@ -129,9 +151,7 @@ const CardDetailContents = () => {
                 <div className="detail-icon-title">좋아요</div>
               </div>
               <div className="detail-reaction-icon-count-wrapper">
-                <div className="detail-icon-count">
-                  {sympathys.sympathy_cnt}
-                </div>
+                <div className="detail-icon-count">0</div>
               </div>
             </div>
           </div>
@@ -166,7 +186,7 @@ const CardDetailContents = () => {
                     <textarea
                       type="text"
                       placeholder="댓글을 작성하려면 로그인 해주세요."
-                      onClick={movePage}
+                      onClick={openLoginModal}
                     />
                   )}
                 </div>

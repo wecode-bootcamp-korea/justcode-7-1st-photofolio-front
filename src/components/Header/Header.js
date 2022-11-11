@@ -39,8 +39,6 @@ function Header({ pathname }) {
     }
   }, [token]);
 
-  const id = localStorage.getItem('id');
-
   //localStorage에 프로필 이미지 유무 체크
   const profileImg = localStorage.getItem('profile_image');
   const defaultProfileImg =
