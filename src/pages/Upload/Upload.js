@@ -68,7 +68,12 @@ function App() {
       body: cardData,
     })
       .then(res => res.json())
-      .then(res => console.log(res));
+      .then(res => {
+        console.log(res);
+        if (res.message === '업로드 성공') {
+          window.location.href = 'http://localhost:3000/feeds';
+        }
+      });
   }, [cardData]);
 
   return (
