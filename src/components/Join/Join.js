@@ -24,16 +24,6 @@ function Join({ setJoinPage }) {
   const clickJoin = function (event) {
     event.preventDefault();
 
-    if (passwordCheck.current.value !== password.current.value) {
-      alert('패스워드가 일치하지 않습니다');
-      return;
-    }
-
-    if (userId.current.value.length < 8) {
-      alert('id는 8자리 이상으로 입력해주세요');
-      return;
-    }
-
     const formdata = new FormData();
     // Object.values(files).map((elem, idx) => formdata.append(profile, elem));
 
@@ -58,11 +48,7 @@ function Join({ setJoinPage }) {
       body: userData,
     })
       .then(res => res.json())
-      .then(res => {
-        if (res.message === '회원가입 되었습니다.') {
-          window.location.href = 'http://localhost:3000/feeds';
-        }
-      });
+      .then(res => console.log(res));
   }, [userData]);
 
   return (
