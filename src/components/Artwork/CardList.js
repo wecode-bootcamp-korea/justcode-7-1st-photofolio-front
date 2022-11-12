@@ -67,6 +67,14 @@ function CardList({ filter }) {
         .then(data => {
           setData(data.searchResult);
         });
+    } else if (location.pathname === '/searchlist') {
+      // let params = new URLSearchParams(location.search);
+      let params = window.location.search;
+      fetch('http://localhost:8000/works/' + params)
+        .then(res => res.json())
+        .then(data => {
+          setData(data.searchResult);
+        });
     }
   }, []);
 

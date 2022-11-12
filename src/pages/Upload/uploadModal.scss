@@ -70,6 +70,7 @@
           width: 130px;
           height: 38px;
           margin: 0 5px;
+          cursor: pointer;
         }
 
         .finalUploadBtn {
@@ -78,6 +79,7 @@
           margin: 0 5px;
           color: white;
           background-color: rgb(95, 205, 138);
+          cursor: pointer;
 
           &:hover {
             background-color: rgb(126, 220, 162);

@@ -36,7 +36,7 @@ const CardDetailContents = () => {
   }, [id]);
 
   const reply = useRef(); //현재 댓글의 value
-  const [replyArray, setReplyArray] = useState([]); //댓글배열
+  const [replyArray, setReplyArray] = useState([]); //댓글배열`
 
   //새로운 댓글 저장 fetch
   const saveReply = () => {
@@ -124,6 +124,9 @@ const CardDetailContents = () => {
         <div className="detail-content-wrapper">
           <div className="detail-content-pictures">
             <img src={feedImg.img_url} alt="" />
+          </div>
+          <div className="detail-content-content">
+            {cardDetailContents.content}
           </div>
           {/* 태그 컴포넌트 */}
           <div className="detail-tag-wrapper">
