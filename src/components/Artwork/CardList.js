@@ -16,9 +16,15 @@ function CardList({ filter }) {
           setData(data.worksFeedList);
         });
     } else if (location.pathname === '/feeds') {
-      fetch('http://localhost:8000/feeds/list')
+      fetch('http://localhost:8000/feeds/list', {
+        headers: {
+          'Content-Type': 'application/json',
+          token: localStorage.getItem('token'),
+        },
+      })
         .then(res => res.json())
         .then(data => {
+          console.log(data);
           setData(data.feedsList);
         });
     } else if (location.pathname === '/searchlist') {
