@@ -125,6 +125,9 @@ const CardDetailContents = () => {
           <div className="detail-content-pictures">
             <img src={feedImg.img_url} alt="" />
           </div>
+          <div className="detail-content-content">
+            {cardDetailContents.content}
+          </div>
           {/* 태그 컴포넌트 */}
           <div className="detail-tag-wrapper">
             {tags.map((tag, index) => {
