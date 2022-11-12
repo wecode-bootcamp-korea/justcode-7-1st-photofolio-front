@@ -36,7 +36,7 @@ const CardDetailContents = () => {
   }, [id]);
 
   const reply = useRef(); //현재 댓글의 value
-  const [replyArray, setReplyArray] = useState([]); //댓글배열
+  const [replyArray, setReplyArray] = useState([]); //댓글배열`
 
   //새로운 댓글 저장 fetch
   const saveReply = () => {
