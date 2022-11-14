@@ -215,7 +215,7 @@ const CardDetailCarousel = () => {
             0 : 팔로잉 되어있지 않은 상태 (초록 버튼)
             */}
             {isLogin ? (
-              isFollow === 1 ? (
+              isFollow == 1 ? (
                 <div
                   className={isClick ? 'followBtn' : 'followingBtn'}
                   onClick={sendResult}
