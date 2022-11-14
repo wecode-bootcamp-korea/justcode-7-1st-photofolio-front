@@ -159,7 +159,7 @@ const Channel = () => {
                 ) : (
                   <div className="followBtns" onClick={handleToggle}>
                     {isLogin ? (
-                      isFollow === 1 ? (
+                      isFollow == 1 ? (
                         <div
                           className={isClick ? 'followBtn' : 'followingBtn'}
                           onClick={sendResult}
