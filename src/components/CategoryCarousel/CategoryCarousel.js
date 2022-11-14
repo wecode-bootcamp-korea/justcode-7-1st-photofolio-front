@@ -14,7 +14,7 @@ const CategoryCarousel = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:8000/works')
+    fetch('http://43.201.0.95:3306/works')
       .then(res => res.json())
       .then(json => {
         setCategories(json.categorySortCountList);

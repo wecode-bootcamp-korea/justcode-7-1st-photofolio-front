@@ -40,7 +40,7 @@ const CardDetailCarousel = () => {
   const params = useParams();
   useEffect(() => {
     //팔로우 기능 제외한 데이터 가져오기
-    fetch('http://localhost:8000/works/feed/' + params.id, {
+    fetch('http://43.201.0.95:3306/works/feed/' + params.id, {
       headers: {
         'Content-Type': 'application/json',
         token: localStorage.getItem('token'),
@@ -54,7 +54,7 @@ const CardDetailCarousel = () => {
       });
 
     //팔로우 버튼 데이터 가져오기
-    fetch('http://localhost:8000/works/feed/' + params.id + '/followcheck', {
+    fetch('http://43.201.0.95:3306/works/feed/' + params.id + '/followcheck', {
       headers: {
         'Content-Type': 'application/json',
         token: localStorage.getItem('token'),
@@ -76,7 +76,7 @@ const CardDetailCarousel = () => {
   const sendResult = e => {
     if (e.target.className === 'followBtn') {
       //POST 작가id, 토큰
-      fetch('http://localhost:8000/follow', {
+      fetch('http://43.201.0.95:3306/follow', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ const CardDetailCarousel = () => {
         .then(json => {});
     } else if (e.target.className === 'followingBtn') {
       //DELETE 작가id, 토큰
-      fetch('http://localhost:8000/follow', {
+      fetch('http://43.201.0.95:3306/follow', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -104,6 +104,9 @@ const CardDetailCarousel = () => {
         .then(json => {});
     }
   };
+  console.log('isFollow : ', isFollow);
+  console.log('isLogin : ', isLogin);
+  console.log('isClick : ', isClick);
 
   //캐러셀 내부 ul 위치 파악
   //1이면 맨 처음(index같은 느낌)

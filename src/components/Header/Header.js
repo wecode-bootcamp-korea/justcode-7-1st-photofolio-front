@@ -181,7 +181,8 @@ function Header({ pathname }) {
                     <li
                       onClick={() => {
                         localStorage.clear();
-                        window.location.href = 'http://localhost:3000/works';
+                        window.location.href =
+                          'http://54.180.151.218:3000/works';
                       }}
                     >
                       로그아웃

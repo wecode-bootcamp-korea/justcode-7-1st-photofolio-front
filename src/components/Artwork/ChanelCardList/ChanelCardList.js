@@ -8,7 +8,7 @@ function CardList({ filter }) {
   let param = useParams();
   let params = param.user_id;
 
-  fetch('http://localhost:8000/channel/' + params)
+  fetch('http://43.201.0.95:3306/channel/' + params)
     .then(res => res.json())
     .then(data => {
       setData(data.usersPosts);
