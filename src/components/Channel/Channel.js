@@ -30,7 +30,7 @@ const Channel = () => {
 
   //데이터 fetch
   useEffect(() => {
-    fetch('http://localhost:8000/channel/' + params, {
+    fetch('http://43.201.0.95:3306/channel/' + params, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -43,7 +43,7 @@ const Channel = () => {
         setFollowerInfo(result.userFollowerInfo[0]);
       });
     //팔로우 버튼
-    fetch('http://localhost:8000/works/feed/' + params + '/followcheck', {
+    fetch('http://43.201.0.95:3306/works/feed/' + params + '/followcheck', {
       headers: {
         'Content-Type': 'application/json',
         token: localStorage.getItem('token'),
@@ -89,7 +89,7 @@ const Channel = () => {
   const sendResult = e => {
     if (e.target.className === 'followBtn') {
       //POST 작가id, 토큰
-      fetch('http://localhost:8000/follow', {
+      fetch('http://43.201.0.95:3306/follow', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ const Channel = () => {
         .then(json => {});
     } else if (e.target.className === 'followingBtn') {
       //DELETE 작가id, 토큰
-      fetch('http://localhost:8000/follow', {
+      fetch('http://43.201.0.95:3306/follow', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

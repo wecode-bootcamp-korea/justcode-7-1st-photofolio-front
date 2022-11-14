@@ -60,7 +60,7 @@ function App() {
   }
 
   useEffect(() => {
-    fetch('http://localhost:8000/upload/form', {
+    fetch('http://43.201.0.95:3306/upload/form', {
       method: 'POST',
       headers: {
         token: localStorage.getItem('token'),
@@ -71,7 +71,7 @@ function App() {
       .then(res => {
         console.log(res);
         if (res.message === '업로드 성공') {
-          window.location.href = 'http://localhost:3000/feeds';
+          window.location.href = 'http://54.180.151.218:3000/feeds';
         }
       });
   }, [cardData]);
