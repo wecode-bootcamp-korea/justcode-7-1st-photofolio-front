@@ -58,7 +58,7 @@ function Join({ setJoinPage }) {
       userEmail.current.value &&
       files[0]
     ) {
-      fetch('http://43.201.0.95:3306/user/signup', {
+      fetch('http://43.201.0.95:8000/user/signup', {
         method: 'POST',
         headers: {
           // 'Content-Type': 'multipart/form-data', // 헤더 없으면 에러남

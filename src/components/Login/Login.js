@@ -23,7 +23,7 @@ function Login({ closeLoginpage, setJoinPage, setOpenLoginPage }) {
 
   useEffect(() => {
     if (resObj.login_id) {
-      fetch('http://43.201.0.95:3306/user/login', {
+      fetch('http://43.201.0.95:8000/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json', // 헤더 없으면 에러남

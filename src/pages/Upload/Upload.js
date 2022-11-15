@@ -60,7 +60,7 @@ function App() {
   }
 
   useEffect(() => {
-    fetch('http://43.201.0.95:3306/upload/form', {
+    fetch('http://43.201.0.95:8000/upload/form', {
       method: 'POST',
       headers: {
         token: localStorage.getItem('token'),

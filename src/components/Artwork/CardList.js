@@ -10,13 +10,13 @@ function CardList({ filter }) {
   let location = useLocation();
   useEffect(() => {
     if (location.pathname === '/works') {
-      fetch('http://43.201.0.95:3306/works')
+      fetch('http://43.201.0.95:8000/works')
         .then(res => res.json())
         .then(data => {
           setData(data.worksFeedList);
         });
     } else if (location.pathname === '/feeds') {
-      fetch('http://43.201.0.95:3306/feeds/list', {
+      fetch('http://43.201.0.95:8000/feeds/list', {
         headers: {
           'Content-Type': 'application/json',
           token: localStorage.getItem('token'),
@@ -30,31 +30,31 @@ function CardList({ filter }) {
     } else if (location.pathname === '/searchlist') {
       // let params = new URLSearchParams(location.search);
       let params = window.location.search;
-      fetch('http://43.201.0.95:3306/searchlist' + params)
+      fetch('http://43.201.0.95:8000/searchlist' + params)
         .then(res => res.json())
         .then(data => {
           setData(data.searchResult);
         });
     } else if (location.pathname === '/category/fashion') {
-      fetch('http://43.201.0.95:3306/category/fashion')
+      fetch('http://43.201.0.95:8000/category/fashion')
         .then(res => res.json())
         .then(data => {
           setData(data);
         });
     } else if (location.pathname === '/category/travel') {
-      fetch('http://43.201.0.95:3306/category/travel')
+      fetch('http://43.201.0.95:8000/category/travel')
         .then(res => res.json())
         .then(data => {
           setData(data);
         });
     } else if (location.pathname === '/category/pattern') {
-      fetch('http://43.201.0.95:3306/category/pattern')
+      fetch('http://43.201.0.95:8000/category/pattern')
         .then(res => res.json())
         .then(data => {
           setData(data);
         });
     } else if (location.pathname === '/category/animal') {
-      fetch('http://43.201.0.95:3306/category/animal')
+      fetch('http://43.201.0.95:8000/category/animal')
         .then(res => res.json())
         .then(data => {
           setData(data);
@@ -62,7 +62,7 @@ function CardList({ filter }) {
     } else if (location.pathname === '/searchlist') {
       // let params = new URLSearchParams(location.search);
       let params = window.location.search;
-      fetch('http://43.201.0.95:3306/works/' + params)
+      fetch('http://43.201.0.95:8000/works/' + params)
         .then(res => res.json())
         .then(data => {
           setData(data.searchResult);
@@ -70,7 +70,7 @@ function CardList({ filter }) {
     } else if (location.pathname === '/searchlist') {
       // let params = new URLSearchParams(location.search);
       let params = window.location.search;
-      fetch('http://43.201.0.95:3306/works/' + params)
+      fetch('http://43.201.0.95:8000/works/' + params)
         .then(res => res.json())
         .then(data => {
           setData(data.searchResult);
