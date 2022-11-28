@@ -80,7 +80,7 @@ function Join({ setJoinPage }) {
 
           if (res.message === '회원가입 되었습니다.') {
             localStorage.clear();
-            window.location.href = 'http://54.180.151.218:3000/works';
+            window.location.href = 'http://43.201.0.95:3000/works';
           }
 
           if (res.message === '아이디를 4자리 ~ 12자리 이내로 입력해주세요.') {

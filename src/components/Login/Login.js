@@ -38,8 +38,7 @@ function Login({ closeLoginpage, setJoinPage, setOpenLoginPage }) {
             localStorage.setItem('id', res.id);
             localStorage.setItem('kor_name', res.name);
           }
-          if (res.token)
-            window.location.href = 'http://54.180.151.218:3000/works';
+          if (res.token) window.location.href = 'http://43.201.0.95:3000/works';
         });
     }
   }, [resObj]);
