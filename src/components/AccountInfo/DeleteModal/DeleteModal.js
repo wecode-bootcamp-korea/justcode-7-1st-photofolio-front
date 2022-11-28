@@ -19,11 +19,9 @@ const DeleteModal = ({ setModalOpen }) => {
         token: localStorage.getItem('token'),
       },
     })
-      //토큰값 삭제
-      .then(localStorage.removeItem('token'))
-      .then(localStorage.removeItem('profile_image'))
-      .then(localStorage.removeItem('id'))
-      .then(localStorage.removeItem('kor_name'));
+      //모든 localstorage 데이터 삭제
+      .then(localStorage.clear());
+    //localstorage에 token이 없다면,
     if (!localStorage.getItem('token')) {
       alert('채널이 삭제되었습니다.');
       navigate('/works');

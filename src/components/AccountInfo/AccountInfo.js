@@ -57,7 +57,7 @@ const AccountInfo = () => {
   };
 
   return (
-    <div>
+    <>
       <div className="account-out-wrapper">
         <div className="account-header-wrapper">
           <div className="account-header">계정정보</div>
@@ -196,7 +196,7 @@ const AccountInfo = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

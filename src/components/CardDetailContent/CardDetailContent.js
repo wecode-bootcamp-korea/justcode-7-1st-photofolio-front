@@ -12,8 +12,8 @@ const CardDetailContents = () => {
   const [feedImg, setFeedImg] = useState([]);
   const [userId, setUserId] = useState([]); //user_id
   let [likeBtn, setlikeBtn] = useState(false); //좋아요 버튼 상태
-
   const { id } = useParams();
+  const token = localStorage.getItem('token');
 
   //카드 상세페이지 정보 fetch
   useEffect(() => {
@@ -31,7 +31,7 @@ const CardDetailContents = () => {
         setTags(res.feedWithTags[0].tagInfo);
         setReplyArray(res.feedCommentInfo);
         setFeedImg(res.feedImgArr[0].fileInfo[0]);
-        // setlikeBtn(res.)
+        //TODO: setlikeBtn(res.)
       });
   }, [id]);
 
@@ -66,6 +66,7 @@ const CardDetailContents = () => {
     setOpenLoginPage(true);
   };
 
+  //TODO:
   // let [click, setClick] = useState(likeBtn); //좋아요 버튼 클릭 여부
   // const [likeCnt, setLikeCnt] = useState(0); //좋아요 갯수
 
@@ -150,12 +151,8 @@ const CardDetailContents = () => {
               </button>
             </div>
             <div className="detail-reaction-icon-second-wrapper">
-              <div className="detail-reaction-icon-title-wrapper">
-                <div className="detail-icon-title">좋아요</div>
-              </div>
-              <div className="detail-reaction-icon-count-wrapper">
-                <div className="detail-icon-count">0</div>
-              </div>
+              <div className="detail-icon-title">좋아요</div>
+              <div className="detail-icon-count">0</div>
             </div>
           </div>
         </div>
@@ -172,47 +169,45 @@ const CardDetailContents = () => {
         </div>
         <details>
           <summary />
-          <div className="detail-reply-input-out-wrapper">
-            <div className="detail-reply-input-wrapper">
-              <div className="detail-reply-input-inner-wrapper">
-                <div className="detail-reply-title">
-                  {localStorage.getItem('kor_name')}
-                </div>
-                <div className="detail-reply-text-area-wrapper">
-                  {localStorage.getItem('token') ? (
-                    <textarea
-                      type="text"
-                      placeholder="주제와 무관한 댓글, 악플은 삭제될 수 있습니다."
-                      ref={reply}
-                    />
-                  ) : (
-                    <textarea
-                      type="text"
-                      placeholder="댓글을 작성하려면 로그인 해주세요."
-                      onClick={openLoginModal}
-                    />
-                  )}
-                </div>
-                <div className="detail-reply-text-limit">최대 1000자</div>
+          <div className="detail-reply-input-wrapper">
+            <div className="detail-reply-input-inner-wrapper">
+              <div className="detail-reply-title">
+                {localStorage.getItem('kor_name')}
               </div>
-              <div className="detail-reply-apload-btn">
-                <button onClick={saveReply}>등록</button>
-              </div>
-            </div>
-            <div className="detail-reply-list">
-              {/* 댓글 컴포넌트 */}
-              {replyArray.map(reply => {
-                return (
-                  <Reply
-                    key={reply.id}
-                    user_id={reply.user_id}
-                    kor_name={reply.kor_name}
-                    comment={reply.comment}
-                    created_at={reply.created_at}
+              <div className="detail-reply-text-area-wrapper">
+                {token ? (
+                  <textarea
+                    type="text"
+                    placeholder="주제와 무관한 댓글, 악플은 삭제될 수 있습니다."
+                    ref={reply}
                   />
-                );
-              })}
+                ) : (
+                  <textarea
+                    type="text"
+                    placeholder="댓글을 작성하려면 로그인 해주세요."
+                    onClick={openLoginModal}
+                  />
+                )}
+              </div>
+              <div className="detail-reply-text-limit">최대 1000자</div>
             </div>
+            <div className="detail-reply-apload-btn">
+              <button onClick={saveReply}>등록</button>
+            </div>
+          </div>
+          <div className="detail-reply-list">
+            {/* 댓글 컴포넌트 */}
+            {replyArray.map(reply => {
+              return (
+                <Reply
+                  key={reply.id}
+                  user_id={reply.user_id}
+                  kor_name={reply.kor_name}
+                  comment={reply.comment}
+                  created_at={reply.created_at}
+                />
+              );
+            })}
           </div>
         </details>
       </div>
